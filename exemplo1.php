@@ -8,10 +8,10 @@
 
 <body>
 
-    <h1>Olá mundo no HTML</h1>
+    <h1>Olá Mundo no HTML!</h1>
     <?php
 
-    echo "Olá mundo";
+    echo "<h1>Olá Mundo no PHP!</h1>";
 
 
     ?>
