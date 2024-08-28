@@ -1,8 +1,10 @@
+
+
 <!DOCTYPE html>
-<html lang = "en">
+<html lang="en">
 
     <head>
-        <meta charset = "UTF-8">
+        <meta charset="UTF-8">
         <title>Meu primeiro programa php</title>
     </head>
 
