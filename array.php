@@ -18,5 +18,11 @@ echo '<hr/>';
 
 foreach ($filmes as $desenhos) {
     echo '<li>', $desenhos, ' </li>';
-};
+}
 echo '<hr/>';
+
+$aluno["Valdisney"]["Idade"] = 20;
+$aluno["Clotilde"]["Idade"] = 26;
+$aluno["Juvenino"]["Idade"] = 21;
+$aluno["Toni Istarque"]["Idade"] = 22;
+print_r($aluno);
