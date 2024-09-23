@@ -18,7 +18,7 @@ if ($email !== $confirmaEmail) {
     . "</script>";
     die();
 }
-$sql = "insert into fale_conosco values (null,'$nomeCompleto','$uf','$cidade','$email','$ddd $telefone','$modalidade','$assunto','$mensagem','$cpf')";
+$sql = "insert into fale_conosco values (null,'$nomeCompleto','$uf','$cidade','$email','$ddd$telefone','$modalidade','$assunto','$mensagem','$cpf')";
 if ($conn->query($sql) === true) {
     echo "<script language='javascript' type='text/javascript'>"
     . "alert('Mensagem enviada com sucesso!');"
