@@ -44,9 +44,7 @@ $a->setEmail($email);
 $a->setSenha($senha);
 $a->setObservacao($obs);
 
-
-
-$sql = "INSERT INTO contato values(null, '".$a->getNome()."','".$a->getNome()."','".$a->getNome()."','".$a->getNome()."','".$a->getNome()."','".$a->getNome()."','".$a->getNome()."','".$a->getNome()."','".$a->getNome()."','".$a->getNome()."','".$a->getNome()."',)";
+$sql = "INSERT INTO contato values(null, '" . $a->getNome() . "','" . $a->getSobrenome() . "','" . $a->getNome() . "','" . $a->getNome() . "','" . $a->getNome() . "','" . $a->getNome() . "','" . $a->getNome() . "','" . $a->getNome() . "','" . $a->getNome() . "','" . $a->getNome() . "','" . $a->getNome() . "',)";
 //query($sql) - realiza uma consulta simples no banco
 
 
