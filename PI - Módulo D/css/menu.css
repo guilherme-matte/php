@@ -1,0 +1,67 @@
+.menu {
+    width: 100%;
+    background-color: inherit;
+    height: auto;
+    font-family: arial;
+    display: block;
+    justify-content: center;
+    text-align: center;
+    color: orange;
+    font-size: 17px;
+    position: relative;
+}
+
+
+
+.menu ul ul:hover li {
+    visibility: visible;
+}
+
+.menu ul ul {
+    margin: 5%;
+
+}
+
+.menu ul ul li {
+    margin: 5%;
+
+}
+
+.menu ul ul li a {
+    font-size: 17px;
+    text-decoration: none;
+    color: white;
+    margin: 1%;
+
+}
+
+.menu ul ul li a:hover {
+    text-decoration: underline;
+}
+
+.menu ul ul li:hover {
+    text-align: center;
+    background-color: rgb(0, 63, 126);
+    border-radius: 25px;
+}
+
+#sobrenos {
+    padding-top: 25px;
+    height: 100%;
+    width: 15%;
+
+    position: fixed;
+}
+
+#sobrenos a {
+
+    color: white;
+    text-decoration: none;
+    font-family: inherit;
+}
+
+#sobrenos a:hover {
+
+    background-color: rgb(0, 63, 126);
+    border-radius: 10px;
+}

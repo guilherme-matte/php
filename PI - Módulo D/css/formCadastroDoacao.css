@@ -1,0 +1,81 @@
+.container {
+    padding-top: 10%;
+    text-align: center;
+}
+
+.container a {
+    margin: 10%;
+    border: 1px solid blue;
+    background-color: orange;
+    border-radius: 10px;
+    font-family: arial;
+    text-decoration: none;
+    color: black;
+    padding: 1%;
+}
+
+.container a:hover,
+#cadastrar:hover {
+    background-color: rgb(170, 111, 0);
+}
+
+.cadastro {
+    display: none;
+    margin-top: 5%;
+
+}
+
+#pessoafisica:target,
+#empresa:target {
+    display: block;
+}
+
+fieldset {
+    text-align: center;
+    border: 0;
+
+}
+
+.dados input[type="text"],
+.dados input[type="email"],
+.dados input[type="password"],
+.dados input[type="tel"],
+.dados input[type="date"],
+.dados select,
+.dados textarea {
+    padding: 3px;
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 4px #888;
+    border-radius: 8px;
+    width: 400px;
+    height: 50px;
+    font-size: 16px;
+}
+
+.dados label {
+    display: block;
+    padding-top: 10%;
+    padding-bottom: 2%;
+    font-family: arial;
+    font-size: 18px;
+
+}
+
+#formP {
+    font-family: arial;
+    margin: 3%;
+    font-size: 24px;
+}
+
+#cadastrar {
+    margin-top: 5%;
+    margin-bottom: 15%;
+    background-color: orange;
+    width: 150px;
+    height: 35px;
+    border-radius: 10px;
+    font-size: 18px;
+    border: none;
+
+
+}

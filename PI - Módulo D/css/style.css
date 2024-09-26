@@ -1,0 +1,98 @@
+.aWhite {
+    color: aliceblue;
+}
+
+.pCab {
+    font-family: Arial;
+    font-size: 24px;
+    text-align: center;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    color: aliceblue;
+}
+
+.pCabSub {
+    text-align: center;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    color: aliceblue;
+    font-size: 18px;
+    font-family: arial;
+
+}
+
+.pCenter,
+#pSobreNos {
+    text-align: center;
+}
+
+#logoSenac {
+    width: 50%;
+    height: auto;
+    margin-bottom: 10%;
+}
+
+.hr1 {
+    margin: 0 auto;
+    width: 70%;
+
+    border: 2px solid orange;
+    border-radius: 10px;
+}
+
+.hr2 {
+    margin: 0 auto;
+    border: 1px solid orange;
+}
+
+#sobrenosMenu {
+    padding-top: 5%;
+    color: white;
+}
+
+.pCadDoacao {
+    margin-left: 1%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    margin-right: 1%;
+}
+
+#pPesquisarDoador {
+    text-align: center;
+    margin: 1%;
+}
+
+#TextPesquisar {
+
+    margin: 0 auto;
+    width: 100%;
+
+}
+
+#divTextPesquisar {
+    text-align: center;
+    margin: 0 auto;
+}
+
+#buttonPesquisa:hover {
+    cursor: pointer;
+    background-color: rgb(165, 107, 0);
+}
+
+@media all and (max-width: 900px) {
+
+    .pCab,
+    .pCabSub,
+    .pCadDoacao {
+        font-size: 90%;
+    }
+
+
+}
+
+#inputPesquisa {
+    width: 70%;
+
+
+}
+
