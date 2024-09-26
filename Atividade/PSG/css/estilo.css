@@ -1,0 +1,216 @@
+/* body { */
+/* background-color: red; 
+  background-color: #00FFFF; */
+
+/* background-image: url(../img/fundo.png); */
+/* } */
+#h1,
+#h2 {
+  text-align: center;
+}
+.p1 {
+  text-align: center;
+}
+.linkRedes {
+  text-decoration: none;
+}
+.imgRedes {
+  margin-left: 5px;
+  margin-top: 1%;
+  margin-bottom: 1%;
+}
+.hr1,
+.hr2 {
+  background-color: #ffa500;
+  width: 100%;
+  height: 5px;
+  border-radius: 4px;
+  border: none;
+}
+.hr2 {
+  margin-bottom: 0;
+}
+#imgBanner {
+  width: 100%;
+  height: auto;
+}
+.h2 {
+  text-align: center;
+  font-family: arial black;
+  font-size: 26px;
+  margin-top: 1%;
+  margin-bottom: 1%;
+}
+.pText {
+  text-align: center;
+  font-family: arial;
+  font-size: 14px;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  margin-left: 1%;
+  margin-right: 1%;
+  line-height: 130%;
+}
+#pCabecalhoMeio {
+  font-family: arial black;
+  font-size: 24px;
+  text-align: center;
+  margin-top: 7.2%;
+  margin-bottom: 5%;
+}
+#imgBannerPsg {
+  width: 80%;
+  height: auto;
+  border-radius: 6px;
+}
+#h3 {
+  text-align: center;
+  font-family: arial;
+  font-size: 20px;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  line-height: 130%;
+}
+#iframeYoutube {
+  width: 560px;
+  height: 315px;
+}
+.pJustify {
+  text-align: justify;
+  font-family: arial;
+  font-size: 14px;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  margin-left: 1%;
+  margin-right: 1%;
+  line-height: 130%;
+}
+#pDireitos {
+  text-align: center;
+  font-family: arial;
+  font-size: 14px;
+  margin-top: 2%;
+}
+/* Formatação da página oprograma */
+#imgAprendiz {
+  width: 19%;
+  height: auto;
+  float: right;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+#imgBannerInscricao {
+  width: 70%;
+  height: auto;
+  border-radius: 6px;
+}
+#iframeMaps {
+  width: 600px;
+  height: 450px;
+  border: 0;
+}
+#imgBannerPerguntas {
+  width: 80%;
+  height: auto;
+  border-radius: 6px;
+}
+.hLeft {
+  text-align: left;
+  font-family: arial;
+  font-size: 20px;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  margin-left: 1%;
+  margin-right: 1%;
+  line-height: 130%;
+}
+.ulPerguntas {
+  list-style-type: square;
+}
+.liPerguntas {
+  font-family: arial;
+  font-size: 14px;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  margin-left: 5%;
+  margin-right: 5%;
+  line-height: 130%;
+}
+.olPerguntas {
+  list-style-type: lower-alpha;
+  /* lower-alpha é letras alfabeticas minusculas */
+}
+.olPerguntasSub {
+  /* upper-roman é numeros romanos */
+  list-style-type: upper-roman;
+  margin-left: 2%;
+}
+
+@media all and (max-width: 600px) {
+  #cabecalho {
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+  }
+}
+@media all and (max-width: 650px) {
+  #iframeYoutube {
+    width: 100%;
+  }
+}
+@media all and (max-width: 410px) {
+  #iframeYoutube {
+    width: 100%;
+    height: auto;
+  }
+}
+#hr3,
+#hr4 {
+  background-color: #0000cd;
+  width: 100%;
+  height: 5px;
+  border-radius: 4px;
+  border: none;
+}
+#hr4 {
+  margin-bottom: 0;
+}
+
+@media all and (max-width: 750px) {
+  #hr3 {
+    display: none;
+  }
+}
+.h3HeadeFooter {
+  text-align: center;
+  font-family: arial;
+  font-size: 20px;
+  color: white;
+}
+.h3Tbody {
+  font-family: arial;
+  font-size: 16px;
+  color: black;
+  font-weight: bold;
+}
+.imgDemaisCursos {
+  width: 300px;
+  height: auto;
+}
+#formP {
+  font-family: arial;
+  font-size: 26px;
+  text-align: center;
+  font-weight: bold;
+  margin-top: 1%;
+  margin-bottom: 1%;
+}
+.dados label{
+  font-family: arial black;
+  font-size: 16px;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  color: #666;
+  display: block;
+}

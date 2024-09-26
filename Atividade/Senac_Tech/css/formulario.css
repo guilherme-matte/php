@@ -1,0 +1,187 @@
+.dados input[type="text"],
+.dados input[type="email"],
+.dados input[type="password"],
+.dados input[type="tel"],
+.dados input[type="date"],
+.dados select,
+#formDDD,
+#formTel {
+    height: 45px;
+}
+
+.dados textarea {
+    height: 200px;
+}
+
+.dados input[type="text"],
+.dados input[type="email"],
+.dados input[type="password"],
+.dados input[type="tel"],
+.dados input[type="date"],
+.dados select,
+.dados textarea {
+    padding: 3px;
+    border: 1px solid #ccc;
+    box-shadow: 5px 5px 4px #888;
+    border-radius: 8px;
+    width: 400px;
+    font-size: 16px;
+    margin-bottom: 3%;
+}
+
+.dadosCheckbox {
+    width: 400px;
+    font-family: arial;
+    font-size: 20px;
+    margin-top: 5%;
+    margin-bottom: 1%;
+    display: block;
+margin: 0 auto;
+
+}
+
+fieldset {
+    text-align: center;
+}
+
+.dados label,
+.dadosTelefone label {
+    font-family: arial;
+    font-size: 20px;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    display: block;
+}
+
+#formTelefone {
+    width: 400px;
+    height: auto;
+    margin: 0 auto;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    /* background-color: red; */
+    font-size: 16px;
+}
+
+#formTel {
+    width: 65%;
+    border: 1px solid #ccc;
+    box-shadow: 5px 5px 4px #888;
+    border-radius: 8px;
+    padding: 3px;
+    font-size: 16px;
+}
+
+#formDDD {
+    width: 30%;
+    border: 1px solid #ccc;
+    box-shadow: 5px 5px 4px #888;
+    border-radius: 8px;
+    padding: 3px;
+    font-size: 16px;
+}
+
+#camposObrigatorios {
+    width: 100%;
+    height: auto;
+    font-size: 22px;
+    color: red;
+    text-align: center;
+    margin-bottom: 5%;
+}
+
+.dadosTelefone input:focus,
+.dados input:focus,
+.dados select:focus,
+.dados textarea:focus,
+#formTelefone input:focus {
+    outline: none;
+    border: 1px solid rgb(0, 87, 173);
+}
+
+.botao {
+    margin-top: 7%;
+    width: 150px;
+    height: 40px;
+    background-color: orange;
+    border: none;
+    color: rgb(0, 87, 173);
+    font-size: 16px;
+    font-family: arial;
+    margin-bottom: 5%;
+    box-shadow: 3px 3px 4px #888;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.botao:hover {
+    background-color: rgb(161, 105, 0);
+
+}
+
+.dados option {
+    font-size: 14px;
+    font-family: arial;
+
+}
+
+@media all and (max-width: 600px) {
+
+    .dados input[type="text"],
+    .dados input[type="email"],
+    .dados input[type="password"],
+    .dados input[type="tel"],
+    .dados input[type="date"],
+    .dados select,
+    .dados textarea {
+        padding: 3px;
+        border: 1px solid #ccc;
+        box-shadow: 5px 5px 4px #888;
+        border-radius: 8px;
+        width: 90%;
+        height: 30px;
+        font-size: 16px;
+    }
+
+    #formTelefone {
+        width: 90%;
+        height: 30px;
+        height: auto;
+        margin: 0 auto;
+        margin-top: 1%;
+        margin-bottom: 1%;
+        /* background-color: red; */
+        font-size: 16px;
+    }
+
+    #formTel {
+        width: 100%;
+        height: 30px;
+        border: 1px solid #ccc;
+        box-shadow: 5px 5px 4px #888;
+        border-radius: 8px;
+        padding: 3px;
+        font-size: 16px;
+        margin-top: 5%;
+    }
+
+    #formDDD {
+        width: 100%;
+        height: 30px;
+        border: 1px solid #ccc;
+        box-shadow: 5px 5px 4px #888;
+        border-radius: 8px;
+        padding: 3px;
+        font-size: 16px;
+    }
+
+}
+
+#formMensagem {
+    font-family: arial;
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 5%;
+    margin-top: 5%;
+
+}

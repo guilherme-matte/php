@@ -1,0 +1,318 @@
+.linkRedes {
+    text-decoration: none;
+}
+
+.imgRedes {
+    margin-left: 5px;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+#logoSenac {
+    width: 200px;
+    height: auto;
+    margin-bottom: 2%;
+}
+
+#logoSenacInf {
+    width: 150px;
+    height: auto;
+    margin-top: 1%;
+    margin-bottom: 1%;
+
+}
+
+@media all and (max-width: 600px) {
+
+    #logoSenacInf,
+    #logoSenac {
+        width: 100px;
+        margin-top: 5%;
+        margin-bottom: 5%;
+    }
+
+
+}
+
+.pCenter {
+    text-align: center;
+    margin: 0 auto;
+}
+
+.linkPages {
+    width: 100%;
+    height: auto;
+    font-size: 22px;
+    font-family: arial;
+    font-style: italic;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    margin-left: 1%;
+    margin-right: 1%;
+    text-decoration: none;
+    color: white;
+
+}
+
+.linkNoticias {
+    width: 100%;
+    height: auto;
+    font-size: 22px;
+    font-family: arial;
+    font-style: italic;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    margin-left: 5%;
+    margin-right: 5%;
+    line-height: 150%;
+    color: rgb(0, 87, 173);
+    text-align: center;
+}
+
+#hrRodapeSup {
+    width: 100%;
+    background-color: orange;
+    height: 4px;
+    margin-bottom: 0;
+    border: 0;
+}
+
+#hrCabecalhoInf {
+    width: 100%;
+    background-color: rgb(0, 87, 173);
+    height: 4px;
+    margin-top: 0;
+    margin-bottom: 0%;
+    border: 0;
+}
+
+
+.titulo {
+    width: 100%;
+    height: auto;
+    font-size: 34px;
+    margin-top: 5%;
+    margin-bottom: 2%;
+
+    text-align: center;
+
+}
+
+.tituloEsq {
+    width: 95%;
+    height: auto;
+    font-size: 34px;
+    margin-top: 5%;
+    margin-bottom: 2%;
+    text-align: left;
+    padding-left: 5%;
+}
+
+.pJustify {
+    text-align: justify;
+    line-height: 180%;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 3%;
+    font-size: 21px;
+}
+
+#iFrameYoutube {
+    width: 80%;
+    height: 620px;
+    margin-bottom: 2%;
+    border-radius: 5px;
+}
+
+@media all and (max-width: 1000px) {
+    #iFrameYoutube {
+        width: 100%;
+        height: 450px;
+    }
+}
+
+#iFrameYoutubeRSTI {
+    width: 60%;
+    height: 420px;
+    margin: 1%;
+    border-radius: 5px;
+}
+
+@media all and (max-width: 900px) {
+    #iFrameYoutubeRSTI {
+        width: 100%;
+        height: 450px;
+    }
+}
+
+#imgFachadaSenac {
+    width: 80%;
+    height: auto;
+    border-radius: 5px;
+    border: 3px solid rgb(0, 87, 173);
+    border-right: 3px solid orange;
+    border-bottom: 3px solid orange;
+}
+
+.hr {
+    width: 99.6%;
+    height: 4px;
+    background-color: orange;
+    border: 0;
+}
+
+.hrAzul {
+    width: 35%;
+    height: auto;
+
+    border: 2.5px solid rgb(0, 87, 173);
+    text-align: left;
+    border-radius: 2px;
+}
+
+#tituloNoticias {
+    font-family: arial;
+    text-align: center;
+    font-size: 30px;
+    margin-top: 3%;
+}
+
+#imgCursos {
+    width: 100%;
+    height: auto;
+    border: 5px solid rgb(0, 87, 173);
+    border-radius: 10px;
+
+}
+
+#sectionForms,
+#articleForms {
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+}
+
+#pLocalizacao {
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#iframeMaps {
+    width: 800px;
+    height: 600px;
+    margin: 5%;
+}
+
+@media all and (max-width: 900px) {
+    #iframeMaps {
+        width: 80%;
+        height: 400px;
+        margin: 1%;
+        border: 1px solid orange;
+    }
+}
+
+
+
+
+.dadosLocalizacao {
+    width: 40%;
+    text-align: left;
+    font-size: 26px;
+    margin: 5%;
+    border-bottom: 1px solid orange;
+    padding-bottom: 2%;
+}
+
+.imgCardCursos {
+    width: 100%;
+    height: auto;
+    border-bottom: 2px solid orange;
+
+}
+
+.horasCursos {
+    width: 80px;
+    font-size: 26px;
+    font-family: 'Franklin Gothic Medium';
+    color: white;
+    margin-left: 5%;
+    margin-bottom: 5%;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background-color: orange;
+    border: 5px solid orange;
+}
+
+.textCursos {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 150%;
+    margin: 2%;
+}
+
+.imgTurmas {
+    width: 100%;
+    height: auto;
+    border: 1px solid orange;
+    margin-bottom: 5%;
+
+}
+
+.imgRSTI {
+    width: 80%;
+    height: auto;
+    border: 2px solid orange;
+    border-radius: 5px;
+    margin: 5%;
+}
+
+.imgAprendizagem {
+    width: 40%;
+    height: auto;
+    border: 2px solid orange;
+    border-radius: 5px;
+    margin: 5%;
+}
+
+
+#imgAprendizagem {
+    width: 50%;
+    height: auto;
+    border: 2px solid orange;
+    border-radius: 5px;
+    margin: 5%;
+}
+
+@media all and (max-width: 950px) {
+
+    .imgAprendizagem,
+    #imgAprendizagem {
+        width: 90%;
+    }
+}
+
+@media all and (max-width: 700px) {
+    .imgTurmas {
+        width: 100%;
+        height: auto;
+    }
+}
+
+.imgCursosLivres {
+
+    width: 70%;
+    height: auto;
+    border-radius: 20px;
+    border: 2px orange solid;
+}
+
+#direitos {
+    text-align: center;
+
+    padding-bottom: 1%;
+    font-family: arial;
+    font-size: 18px;
+}

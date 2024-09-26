@@ -1,0 +1,147 @@
+main {
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+
+header {
+  width: 100%;
+  height: auto;
+}
+
+
+#cabecalho {
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+  text-align: center;
+  display: block;
+  background-color: orange;
+}
+
+#cabecalhoPages {
+  width: 100%;
+  height: 1%;
+  background-color: orange;
+
+  display: flex;
+  text-align: center;
+}
+
+#sectionCabecalho {
+  width: 100%;
+  height: auto;
+
+}
+
+#navNoticias {
+  width: 50%;
+  height: auto;
+  text-align: center;
+  background-color: orange;
+  border: 5px solid rgb(0, 87, 173);
+  border-radius: 10px;
+  margin-left: 5%;
+  margin-right: 1%;
+}
+
+#meioNoticias {
+  width: 90%;
+  margin: 0 auto;
+  margin-bottom: 5%;
+  color: rgb(0, 87, 173);
+
+}
+
+#rodapePages {
+  width: 100%;
+  height: 1%;
+  background-color: rgb(0, 87, 173);
+
+  display: flex;
+  text-align: center;
+}
+
+#rodape {
+  width: 100%;
+  background-color: rgb(0, 87, 173);
+  color: white;
+  font-size: 16px;
+  font-family: arial;
+}
+
+#sectionNoticias {
+  width: 100%;
+  height: auto;
+  display: flex;
+}
+
+#divCursosImg {
+  width: 50%;
+  height: auto;
+  margin-right: 5%;
+  margin-left: 1%;
+}
+
+@media all and (max-width: 1000px) {
+  #sectionNoticias {
+    display: block;
+    margin: 0 auto;
+  }
+
+  #navNoticias {
+    margin: 0 auto;
+    width: 70%;
+    margin-bottom: 5%;
+  }
+
+  #divCursosImg,
+  #imgCursos {
+    margin: 0 auto;
+    text-align: center;
+    width: 80%;
+    height: auto;
+  }
+
+}
+
+
+
+#sectionCursosTecnicos,
+#sectionCursosLivres {
+  width: 90%;
+  height: auto;
+  margin: 0 auto;
+
+}
+
+.divImgCursos {
+  margin: 0 auto;
+  width: 100%;
+
+}
+
+.divImgTurmas {
+  margin: 0 auto;
+  width: 60%;
+  height: auto;
+}
+
+@media all and (max-width: 700px) {
+  .divImgTurmas {
+    width: 80%;
+  }
+}
+
+.divImgCursosLivres {
+  width: 100%;
+  height: auto;
+  text-align: center;
+  margin-bottom: 2%;
+}
+
+@media all and (max-width: 600px) {
+  .divImgCursosLivres {
+    display: none;
+  }
+}

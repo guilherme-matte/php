@@ -1,0 +1,76 @@
+#imgCursosTecnicos {
+    width: 100%;
+    height: auto;
+    margin-top: 0;
+}
+
+#hrCabecalhoSupCursos {
+    width: 99.6%;
+    border: 3px solid rgb(0, 87, 173);
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.pTituloEsq {
+    font-size: 26px;
+    font-family: arial;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    text-align: left;
+}
+
+.pCursosTecnicos,
+.pCursosTecnicosLink {
+    font-family: serif;
+    font-size: 18px;
+    line-height: 25px;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+.pCursosTecnicosLink {
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.aCursosTecnicos {
+    color: black;
+    text-decoration: none;
+    font-size: 18px;
+
+}
+
+.aCursosTecnicos:hover {
+    color: orange;
+}
+
+.botao {
+    margin-top: 7%;
+    width: 150px;
+    height: 40px;
+    background-color: orange;
+    border: none;
+    color: rgb(0, 87, 173);
+    font-size: 16px;
+    font-family: arial;
+    margin-bottom: 5%;
+    box-shadow: 3px 3px 4px #888;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.botao:hover {
+    background-color: rgb(161, 105, 0);
+
+}
+
+.pTituloCentro {
+    text-align: center;
+    font-size: 20px;
+    margin: 5%;
+}
+
+.hrCursos {
+    width: 99%;
+    border: 2px solid orange;
+}

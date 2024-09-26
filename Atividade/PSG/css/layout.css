@@ -1,0 +1,108 @@
+#corpo {
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+#cabecalho {
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+  display: flex;
+}
+#cabecalhoEsq {
+  width: 33.33%;
+  height: auto;
+  margin-top: 1%;
+  margin-bottom: 1%;
+}
+#cabecalhoMeio {
+  width: 33.33%;
+  height: auto;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  margin-left: 2%;
+}
+/*Novas formatações por conta do layout na index */
+#pcabecalhoMeio {
+  font-family: arial black;
+  font-size: 24px;
+  text-align: center;
+  margin-top: 7%;
+  margin-bottom: 5%;
+}
+
+#cabecalhoDir {
+  width: 33.33%;
+  height: auto;
+  margin-top: 3.5%;
+  margin-bottom: 1%;
+  display: block;
+}
+#divMenu,
+#divMeio {
+  width: 100%;
+  height: auto;
+}
+
+#divMeioSuperior {
+  width: 100%;
+  height: auto;
+}
+#divCentro {
+  width: 90%;
+  height: auto;
+  margin: 0 auto;
+  background-color: #dcdcdc;
+  border-radius: 6px;
+}
+#divMenuRodape {
+  width: 100%;
+  height: auto;
+}
+#divRodape {
+  width: 100%;
+  height: auto;
+  background-color: pink;
+  padding-bottom: 3%;
+}
+/* Formatação da responsividade do sistema */
+@media all and (max-width: 750px) {
+  #divCentro {
+    width: 90%;
+    height: auto;
+    margin: 0 auto;
+    background-color: #dcdcdc;
+    border-radius: 6px;
+  }
+  #cabecalhoEsq {
+    width: 50%;
+    height: auto;
+  }
+  #cabecalhoDir {
+    padding-top: 2%;
+    width: 50%;
+    height: auto;
+  }
+  #cabecalhoMeio {
+    display: none;
+  }
+  #divMenuRodape {
+    display: none;
+  }
+
+  #cabecalhoEsq {
+    width: 100%;
+    height: 65%;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  #cabecalhoDir {
+    width: 100%;
+    height: 24px;
+    margin-bottom: 1%;
+    margin-top: 0;
+  }
+  #cabecalhoMeio {
+    display: none;
+  }
+}

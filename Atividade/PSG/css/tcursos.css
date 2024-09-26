@@ -1,0 +1,21 @@
+table {
+  width: 100%;
+  height: auto;
+}
+.tdHeadeFooter {
+  padding-top: 3%;
+  padding-bottom: 3%;
+  background-color: black;
+}
+.tdCont1,
+.tdCont2 {
+  width: 33.33%;
+  vertical-align: middle;
+  text-align: center;
+}
+.tdCont1 {
+  background-color: #c0c0c0;
+}
+.tdCont2 {
+  background-color: #dcdcdc;
+}
