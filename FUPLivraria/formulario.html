@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>Livraria</title>
+        <meta charset="windows-1252">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <a href="consulta.php">
+            Consultar
+        </a>
+        <br/>
+        <a href="formulario.html">
+            Cadastrar
+        </a>
+        <hr>
+        <h1>Cadastrar livro</h1>
+        <form action="Cadastra.php" method="post">
+            Digite o titulo do livro:
+            <input type="text" name="titulo"><br>
+            Edição:
+            <input type="number" name="edicao"><br>
+            Tema:
+            <select name="tema">
+                <option value="Romance" selected>Romance</option>
+                <option value="Sci-Fi">Sci-Fi</option>
+                <option value="Acao">Ação</option>
+            </select><br>
+            Número de páginas:
+            <input type="number" name="numPaginas"><br>
+            Ano de publicação:
+            <input type="number" name="anoPublicacao"><br>
+            <input type="submit" name="Enviar">
+        </form>
+
+
+    </body>
+</html>
+

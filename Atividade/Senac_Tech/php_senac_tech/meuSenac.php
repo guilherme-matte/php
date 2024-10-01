@@ -29,17 +29,6 @@ $pessoa->setCidade($cidade);
 $pessoa->setEmail($email);
 $pessoa->setSenha($senha);
 $pessoa->setCpf($cpf);
-$sql = "insert into meu_senac values(null,'" . $pessoa->getNomeCompleto() . "','" . $pessoa->getFone() . "','" . $pessoa->getEstado() . "','" . $pessoa->getCidade() . "','" . $pessoa->getEmail() . "','" . $pessoa->getSenha() . "','" . $pessoa->getCpf() . "')";
 
-if ($conn->query($sql) === true) {
-    echo "<script language='javascript' type='text/javascript'>"
-    . "alert('Cadastro realizado com sucesso');"
-    . "window.location.href='../pages/meu_senac.html'"
-    . "</script>";
-    die();
-} else {
-    echo "Erro: " . sql . "<br>" . $conn->error;
-    echo '<br>';
-    echo 'Cadastro nao realizado';
-}
-$conn->close();
+$conexao = new conexao();
+$cadastro = $conexao->cadastroMeuSenac($pessoa->getNomeCompleto() , $pessoa->getFone() , $pessoa->getEstado(), $pessoa->getCidade() , $pessoa->getEmail() , $pessoa->getSenha(), $pessoa->getCpf());

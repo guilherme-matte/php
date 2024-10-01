@@ -16,7 +16,7 @@ $cpf = $_POST['cpf'];
 
 if ($email !== $confirmaEmail) {
     echo "<script language='javascript' type='text/javascript'>"
-    . "alert('CAMPOS EMAIL NÃO SÃO IGUAIS!');"
+    . "alert('CAMPOS EMAIL Nï¿½O Sï¿½O IGUAIS!');"
     . "window.location.href='/../atividade/pages/faleconosco.html'"
     . "</script>";
     die();
@@ -35,17 +35,5 @@ $pessoa->setAssunto($assunto);
 $pessoa->setModalidade($modalidade);
 $pessoa->setMensagem($mensagem);
 
-$sql = "insert into fale_conosco values (null,'" . $pessoa->getNomeCompleto() . "','" . $pessoa->getEstado() . "','" . $pessoa->getCidade() . "','" . $pessoa->getEmail() . "','" . $pessoa->getFone() . "','" . $pessoa->getModalidade() . "','" . $pessoa->getAssunto() . "','" . $pessoa->getMensagem() . "','" . $pessoa->getCpf() . "')";
-
-if ($conn->query($sql) === true) {
-    echo "<script language='javascript' type='text/javascript'>"
-    . "alert('Mensagem enviada com sucesso!');"
-    . "window.location.href='../pages/faleconosco.html'"
-    . "</script>";
-    die();
-} else {
-    echo "Erro: " . sql . "<br>" . $conn->error;
-    echo '<br>';
-    echo 'Cadastro nao realizado';
-}
-$conn->close();
+$conexao = new conexao();
+$cadastro = $conexao->CadastroFaleConosco($pessoa->getNomeCompleto(), $pessoa->getEstado(), $pessoa->getCidade(), $pessoa->getEmail(), $pessoa->getFone(), $pessoa->getModalidade(), $pessoa->getAssunto(), $pessoa->getMensagem(), $pessoa->getCpf());
