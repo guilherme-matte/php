@@ -5,7 +5,8 @@
 
 .container a {
     margin: 10%;
-    border: 1px solid blue;
+    border: 2px solid rgb(0, 87, 173);
+
     background-color: orange;
     border-radius: 10px;
     font-family: arial;
