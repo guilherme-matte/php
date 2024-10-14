@@ -1,0 +1,152 @@
+main{
+	width: 100%;
+	height: auto;
+	margin: 0 auto;
+}
+header{
+	width: 100%;
+	height: auto;
+}
+#cabecalho{
+	width: 100%;
+	height: auto;
+	margin: 0 auto;
+	display: flex;
+}
+#cabecalhoEsq{
+	width: 33.33%;
+	height: auto;
+	margin-top: 1%;
+	margin-bottom: 1%;
+}
+#cabecalhoMeio{
+	width: 33.33%;
+	height: auto;
+	margin-top: 1%;
+	margin-bottom: 1%;
+}
+#cabecalhoDir{
+	width: 33.34%;
+	height: auto;
+	margin-top: 3.8%;
+	margin-bottom: 1%;
+	display: block;
+}
+
+#sectionMeio{
+	width: 100%;
+	height: auto;
+}
+#articleBannerSup{
+	width: 100%;
+	height: auto;
+	margin: 0;
+}
+#articleInformacoesSup{
+	width: 99.5%;
+	height: auto;
+	margin-top: 1%;
+	margin-bottom: 1%;
+}
+#articleBannerPsg{
+	width: 100%;
+	height: auto;
+	margin: 0;
+}
+.articleCursos{
+	width: 100%;
+	height: auto;
+	margin: 0;
+}
+.divTextCursos{
+	width: 95%;
+	height: auto;
+	margin-top: 1%;
+	margin-bottom: 1%;
+}
+.divCardsCursos{
+	width: 100%;
+	height: auto;
+	margin: 0 auto;
+	justify-content: center;
+	display: flex;
+}
+.divCursos{
+	width: 33.33%;
+	height: auto;
+}
+footer{
+	width: 100%;
+	height: auto;
+}
+
+#articleFooter{
+	width: 100%;
+	height: auto;
+	padding-top: 2%;
+	background-color: #FFA500;
+}
+#articleTabela{
+	width: 100%;
+	height: auto;
+	padding-top: 2%;
+	
+}
+#divTabela{
+	width: 80%;
+	height: auto;
+	margin: 0 auto;
+	
+}
+#sectionForms, #articleForms{
+	width: 100%;
+	height: auto;
+	margin: 0 auto;
+}
+
+
+@media all and (max-width: 1100px){
+	.articleCursos{
+		width: 100%;
+		height: auto;
+	}
+	.divCardsCursos{
+		width: 100%;
+		height: auto;
+		display: block;
+	}
+	.divCursos{
+		width: 50%;
+		height: auto;
+		float: left;
+		margin: 0;
+		display: flex;
+		justify-content: center;
+	}
+}
+@media all and (max-width: 750px){
+	.divCardsCursos{
+		width: 100%;
+		height: auto;
+		display: block;
+	}
+	.divCursos{
+		width: 98%;
+		height: auto;
+		float: left;
+	}
+	#cabecalhoEsq{
+		width: 50%;
+		height: auto;
+	}
+	#cabecalhoMeio{
+		display: none;
+	}
+	#cabecalhoDir{
+		width: 50%;
+		height: auto;
+		margin-top: 5%;
+		margin-bottom: 1%;
+	}
+	
+}

@@ -1,0 +1,67 @@
+fieldset{
+	border: 0;
+	text-align: center;
+}
+.dados input[type="text"],
+.dados input[type="email"],
+.dados input[type="password"],
+.dados input[type="tel"],
+.dados input[type="date"],
+.dados select,
+.dados textarea{
+	padding: 3px;
+	border: 1px solid #CCC;
+	box-shadow: 10px 10px 8px #888;
+	border-radius: 8px;
+	width: 400px;
+	height: 50px;
+	font-size: 16px;
+	margin-bottom:2%;
+}
+.dados input:focus, .dados select:focus, 
+.dados textarea:focus{
+	background-color: #888;
+	outline: none;
+}
+.botao{
+	font-size: 24px;
+	font-family: arial;
+	background-color: red;
+	border: 0;
+	margin-top: 2%;
+	margin-bottom: 2%;
+	color: #FFF;
+	box-shadow: 8px 8px 8px rgba(0,128,128);
+	text-shadow: 3px 3px 3px rgba(0,191,255);
+	border-radius: 6px;
+	padding: 10px;
+	width: 150px;
+}
+.botao:hover{
+	background-color: #F4A460;
+	box-shadow: 8px 8px 8px rgba(255,0,255);
+}
+.botao, select{
+	cursor: pointer;
+}
+@media all and (max-width: 450px){
+		.dados input[type="text"],
+		.dados input[type="email"],
+		.dados input[type="password"],
+		.dados input[type="tel"],
+		.dados input[type="date"],
+		.dados select,
+		.dados textarea{
+			width: 95%;
+			height: auto;
+			margin-bottom:2%;
+	
+	}
+	.botao{
+		font-size: 20px;
+		width: 100px;
+		height: auto;
+		padding: 1%;
+		border: 0;
+	}
+}

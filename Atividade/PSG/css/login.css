@@ -1,0 +1,31 @@
+form {
+    text-align: center;
+    margin-top: 5%;
+}
+
+form label {
+    font-family: arial;
+    font-size: 18px;
+}
+
+input {
+    text-align: center;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    height: 25px;
+    width: 30%;
+}
+
+#pAcessar {
+    text-align: center;
+    font-size: 28px;
+    font-family: arial;
+    margin-top: 5%;
+}
+
+button {
+    margin-top: 5%;
+    margin-bottom: 5%;
+    width: 20%;
+    height: 25px;
+}

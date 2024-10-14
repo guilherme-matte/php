@@ -90,14 +90,41 @@
     </p>
     <hr class="hr1" />
     <!--Menu do sistema -->
-    <h1 id="h2">
-      <a href="../index.html">Home</a>|
-      <a href="./oprograma.html">O programa</a>|
-      <a href="./inscrever.html">Como se inscrever</a>|
-      <a href="./consulta.html">Consulta de vagas</a>|
-      <a href="./perguntas.html">Perguntas frequentes</a>|
-      <a href="./fale_conosco.html">Fale Conosco</a>
-    </h1>
+    <div id="divMenu">
+      <h1 id='h2'>
+        <a href="../index.php">Home</a>|
+        <a href="./oprograma.php">O programa</a>|
+        <a href="./inscrever.php">Como se inscrever</a>|
+        <a href="./consulta.php">Consulta de vagas</a>|
+        <a href="./perguntas.php">Perguntas frequentes</a>|
+        <a href="./fale_conosco.php">Fale Conosco</a>
+
+      </h1>
+      <div id="divUsuarioLogado">
+        <?php
+        session_start();
+        echo "<p id='usuarioLogado'>";
+        if (isset($_SESSION['nome_usu_sessao'])) {
+          echo " Olá " . $_SESSION['nome_usu_sessao'];
+          echo "<br/>";
+          if (isset($_GET["logout"])) {
+            session_destroy();
+            header("location: oprograma.php");
+          }
+          if (isset($_SESSION["nome_usu_sessao"]) && ($_SESSION['cargo_usu_sessao']) === 'ADM') {
+            echo "<a href='./pages/ADM.php'> Administração | </a>  ";
+          }
+          echo "<a href='oprograma.php?logout'>Logout</a> ";
+
+          echo "</p>";
+        } else {
+          echo '<a href="./login.html">Logar</a>';
+        }
+
+        echo "</p>";
+        ?>
+      </div>
+    </div>
     <hr id="hr2" />
     <img
       id="imgBanner"
@@ -105,61 +132,50 @@
       alt="Banner Programa"
       title="Banner programa Senac gratuidade"
     />
-
-    <h1 class="h2">Como se inscrever</h1>
+    <h1 class="h2">O programa Senac Gratuidade</h1>
+    <p class="pText">
+      O que é o PSG.
+      <!--Tag strong coloca texto em destaque -->
+    </p>
+    <p class="pText">
+      <!--Tag em coloca texto em itálico -->
+      <img id="imgAprendiz" src="../img/corte.jpg" />
+      Firmado em 22 de julho de 2008 entre o Ministério da Educação, o
+      Ministério do Trabalho, o Ministério da Fazenda, a Confederação Nacional
+      do Comércio de Bens, Serviços e Turismo - CNC e o Senac, e ratificado pelo
+      Decreto nº 6.633, de 5 de novembro de 2008 , o Programa Senac de
+      Gratuidade – PSG tem por objetivo garantir o acesso à educação
+      profissional de qualidade para pessoas cuja renda familiar mensal per
+      capita não ultrapasse dois salários mínimos.
+      <br />
+      Pelo acordo celebrado, o Senac investe, desde 2014, 66,67% de sua Receita
+      Líquida de Contribuição nesse importante programa de educação inclusiva.
+    </p>
     <p class="p1">
       <img
-        id="imgBannerInscricao"
-        src="../img/incricao.png"
-        alt="Como se inscrever"
-        title="Inscrição no computador"
+        id="imgBannerPsg"
+        src="../img/card_cursos.jpg"
+        alt="Banner cursos gratuitos"
+        title="Banner sobre os cursos gratuitos"
       />
     </p>
+    <h1 class="h2">Regulamento</h1>
     <p class="pJustify">
-      O ingresso nos cursos do PSG se dá por ordem de inscrição do candidato.
-      Portanto acompanhe a divulgação dos cursos e programações do Senac de seu
-      estado e conheça a oferta de vagas gratuitas em unidades mais próximas.
-      <br />
-      Para realizar a sua inscrição você deve estar atento a documentação
-      necessária, segundo o curso escolhido.
-      <br />
-      No ato da inscrição, o interessado preencherá a “Ficha de Inscrição” com
-      informações pessoais e será informado dos documentos necessários, data e
-      local para efetivação da sua matrícula. Fique atento! A não apresentação
-      de quaisquer dos documentos exigidos, importará no cancelamento da
-      inscrição.
-      <br />
-      A inscrição direta do interessado não se aplica aos cursos de Aprendizagem
-      Profissional Comercial, pois por determinação da legislação e normas
-      vigentes, essa inscrição deve ser feita pelo empregador.
+      Conheça as formas de divulgação, inscrição e matrícula no PSG, tipos da
+      oferta de educação profissional, metodologia do cálculo do gasto médio
+      aluno/hora-aula, contabilização da gratuidade, regras para elaboração do
+      plano de aplicação e retificativo, formas de registro dos dados da
+      produção e indicadores utilizados no processo de avaliação das pesquisas.
     </p>
-    <h2 id="h3">
-      Dúvidas sobre o programa Senac gratuidade, procure a nossa unidade Senac
-      Tech para mais informações.
+    <h2 class="p1">
+      <a href="../pdf/diretrizes.pdf" target="blank">Diretrizes</a>
     </h2>
-    <p class="pText">
-      Av. Venancio Aires 93, Porto Alegre, RS.
-      <br />
-      Telefone: (51) 3288-7750
-      <br />
-      Site: senacrs.com.br
-      <br />
-      E-mail: pdgtech@senacrs.com.br
-    </p>
-    <p class="p1">
-      <iframe
-        id="iframeMaps"
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3453.791777190024!2d-51.22147318985053!3d-30.042831031095265!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x951978567f17f28d%3A0x2c2c5272bacf4d3a!2sSenac%20Tech!5e0!3m2!1spt-BR!2sbr!4v1720190459067!5m2!1spt-BR!2sbr"
-        allowfullscreen=""
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-      ></iframe>
-    </p>
-
     <hr class="hr1" />
     <h2 id="h2">
       <a href="../index.html">Home</a>|
       <a href="./oprograma.html">O programa</a>|
+
+
       <a href="./inscrever.html">Como se inscrever</a>|
       <a href="./consulta.html">Consulta de vagas</a>|
       <a href="./perguntas.html">Perguntas frequentes</a>|
