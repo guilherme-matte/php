@@ -90,14 +90,41 @@
 	  </p>
 	  <hr class="hr1" />
 	  <!--Menu do sistema -->
-	  <h1 id="h2">
-		<a href="../index.html">Home</a>|
-		<a href="./oprograma.html">O programa</a>|
-		<a href="./inscrever.html">Como se inscrever</a>|
-		<a href="./consulta.html">Consulta de vagas</a>|
-		<a href="./perguntas.html">Perguntas frequentes</a>|
-		<a href="./fale_conosco.html">Fale Conosco</a>
-	  </h1>
+	  <div id="divMenu">
+      <h1 id='h2'>
+        <a href="../index.php">Home</a>|
+        <a href="./oprograma.php">O programa</a>|
+        <a href="./inscrever.php">Como se inscrever</a>|
+        <a href="./consulta.php">Consulta de vagas</a>|
+        <a href="./perguntas.php">Perguntas frequentes</a>|
+        <a href="./fale_conosco.php">Fale Conosco</a>
+
+      </h1>
+      <div id="divUsuarioLogado">
+        <?php
+        session_start();
+        echo "<p id='usuarioLogado'>";
+        if (isset($_SESSION['nome_usu_sessao'])) {
+          echo " Olá " . $_SESSION['nome_usu_sessao'];
+          echo "<br/>";
+          if (isset($_GET["logout"])) {
+            session_destroy();
+            header("location: perguntas.php");
+          }
+          if (isset($_SESSION["nome_usu_sessao"]) && ($_SESSION['cargo_usu_sessao']) === 'ADM') {
+            echo "<a href='./pages/ADM.php'> Administração | </a>  ";
+          }
+          echo "<a href='perguntas.php?logout'>Logout</a> ";
+
+          echo "</p>";
+        } else {
+          echo '<a href="./login.html">Logar</a>';
+        }
+
+        echo "</p>";
+        ?>
+      </div>
+    </div>
 	  <hr id="hr2" />
 	  <img
 		id="imgBanner"
