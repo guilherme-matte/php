@@ -70,24 +70,38 @@ session_start();
     <!--Menu do sistema -->
 
     <div id="divMenu">
-      <h1 id="h2">
+      <h1 id='h2'>
         <a href="./index.html">Home</a>|
         <a href="./pages/oprograma.html">O programa</a>|
         <a href="./pages/inscrever.html">Como se inscrever</a>|
         <a href="./pages/consulta.html">Consulta de vagas</a>|
         <a href="./pages/perguntas.html">Perguntas frequentes</a>|
-        <a href="./pages/fale_conosco.html">Fale Conosco</a>|
-        <a href="./pages/login.html">Logar</a>
+        <a href="./pages/fale_conosco.html">Fale Conosco</a>
 
       </h1>
-
+      <div id="divUsuarioLogado">
         <?php
+        echo "<p id='usuarioLogado'>";
         if (isset($_SESSION['nome_usu_sessao'])) {
-          echo "<p id='usuarioLogado'>
-          Olá " . $_SESSION['nome_usu_sessao']."</p>";
+          echo " Olá " . $_SESSION['nome_usu_sessao'];
+          echo "<br/>";
+
+          if (isset($_SESSION["nome_usu_sessao"]) && ($_SESSION['cargo_usu_sessao']) === 'ADM') {
+            echo "<a href='./pages/ADM.html'> Administração | </a>  ";
+          }
+          echo "<a href='index.php?logout'>Logout</a> ";
+
+          echo "</p>";
+          if (isset($_GET["logout"])) {
+            session_destroy();
+            header("location: index.php");
+          }
+        } else {
+          echo '<a href="./pages/login.html">Logar</a>';
         }
+        echo "</p>";
         ?>
-      
+      </div>
     </div>
     <hr class="hr2" />
 

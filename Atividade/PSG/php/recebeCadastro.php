@@ -15,7 +15,7 @@ $stmt->bind_param("ss", $login, $senhaHash);
 if ($stmt->execute()) {
     echo "<script language='javascript' type='text/javascript'>
 		alert('Cadastro realizado com sucesso!');
-		window.location.href='./login.php';
+		window.location.href='../pages/login.html';
 		</script>";
 } else {
     echo "<script language='javascript' type='text/javascript'>
