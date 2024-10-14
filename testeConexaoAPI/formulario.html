@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário Departamento</title>
+</head>
+
+<body>
+    <form action="processaCadastro.php" method="post">
+        <h2>Cadastro</h2>
+
+        Digite o nome do funcionario:
+        <input type="text" name="nome" id="nome">
+        <br>
+        Digite o email:
+        <input type="email" name="email" id="email">
+        <br>
+        Departamento ID:
+        <input type="number" name="dept" id="dept">
+        <br>
+        <input type="submit" name="cadastrar" id="cadastrar">
+    </form>
+
+    <hr>
+
+    <h2>Pesquisar por nome</h2>
+    <form action="filtrarUser.php" method="get">
+        Escreva o nome do Usuário
+        <br>
+        <input type="text" name="nome" id="nome">
+        <br>
+        <input type="submit" name="Pesquisar">
+    </form>
+</body>
+
+</html>
