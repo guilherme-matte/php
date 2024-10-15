@@ -156,6 +156,7 @@
       $conn->error";
       }
     }
+  
     $sql = "SELECT id, login,cargo FROM login";
     $result = $conn->query($sql);
     if (isset($_SESSION["nome_usu_sessao"]) && ($_SESSION['cargo_usu_sessao']) === 'ADM') {

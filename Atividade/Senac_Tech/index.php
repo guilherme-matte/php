@@ -1,3 +1,16 @@
+<?php
+session_start();
+ob_start();
+if (isset($_GET['logout'])) {
+    session_destroy();
+    // echo "<script language='javascript' type='text/javascript'>
+    //         window.location.href='index.php';
+    //     </script>";
+    header('Location: index.php');
+    exit();
+}
+
+?>
 <!DOCTYPE html>
 
 <html>
@@ -53,9 +66,7 @@
                 <input type="checkbox" id="bt_menu" />
                 <label for="bt_menu">&#9776;</label>
                 <nav class="menu">
-                    <?php
-                    session_start();
-                    ?>
+
                     <ul>
                         <li>
 
@@ -114,15 +125,12 @@
                         </li>
                         <li>
                             <?php
-
+                            ob_start();
                             if (isset($_SESSION["nome_usu_sessao"])) {
+
+
                                 echo "<p id='user'> " . $_SESSION['nome_usu_sessao'] . "</p>";
-                                if (isset($_GET['logout'])) {
-                                    session_destroy();
-                                    echo "<script language='javascript' type='text/javascript'>
-			 	                            window.location.href='index.php';
-			 	                        </script>";
-                                }
+
                                 if (isset($_SESSION["cargo_usu_sessao"]) == 'ADM') {
                                     echo '
                                     <ul>
@@ -291,3 +299,7 @@
 </body>
 
 </html>
+<?php
+ob_end_flush();
+
+?>

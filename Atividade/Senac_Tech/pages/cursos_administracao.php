@@ -1,3 +1,14 @@
+<?php
+session_start();
+ob_start();
+if (isset($_GET['logout'])) {
+    session_destroy();
+
+    header('Location: ../index.php');
+    exit();
+}
+
+?>
 <!DOCTYPE html>
 
 <html>
@@ -53,9 +64,7 @@
                 <input type="checkbox" id="bt_menu" />
                 <label for="bt_menu">&#9776;</label>
                 <nav class="menu">
-                    <?php
-                    session_start();
-                    ?>
+
                     <ul>
                         <li>
 
@@ -117,25 +126,20 @@
 
                             if (isset($_SESSION["nome_usu_sessao"])) {
                                 echo "<p id='user'> " . $_SESSION['nome_usu_sessao'] . "</p>";
-                                if (isset($_GET['logout'])) {
-                                    session_destroy();
-                                    echo "<script language='javascript' type='text/javascript'>
-			 	                            window.location.href='../index.php';
-			 	                        </script>";
-                                }
+
                                 if (isset($_SESSION["cargo_usu_sessao"]) == 'ADM') {
                                     echo '
                                     <ul>
                                         <li>
                                             <a href="adm.php">Administração</a>
-                                            <a href="index.php?logout">Sair</a>
+                                            <a href="cursos_administracao.php?logout">Sair</a>
                                         </li>
                                     </ul>';
                                 } else {
                                     echo '
                                     <ul>
                                         <li>
-                                            <a href="index.php?logout">Sair</a>
+                                            <a href="cursos_administracao.php?logout">Sair</a>
                                         </li>
                                     </ul>';
                                 }
@@ -204,7 +208,7 @@
         <footer id="rodape">
 
             <hr id="hrRodapeSup" />
-            
+
             <p class="pCenter"><img id="logoSenacInf" src="../img/senac_logo.png" title="Senac RS" width="150"
                     height="auto"></p>
 
@@ -214,3 +218,7 @@
 </body>
 
 </html>
+<?php
+ob_end_flush();
+
+?>

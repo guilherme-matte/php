@@ -1,3 +1,14 @@
+<?php
+session_start();
+ob_start();
+if (isset($_GET['logout'])) {
+    session_destroy();
+
+    header('Location: ../index.php');
+    exit();
+}
+
+?>
 <!DOCTYPE html>
 
 <html>
@@ -53,9 +64,7 @@
                 <input type="checkbox" id="bt_menu" />
                 <label for="bt_menu">&#9776;</label>
                 <nav class="menu">
-                    <?php
-                    session_start();
-                    ?>
+
                     <ul>
                         <li>
 
@@ -117,25 +126,20 @@
 
                             if (isset($_SESSION["nome_usu_sessao"])) {
                                 echo "<p id='user'> " . $_SESSION['nome_usu_sessao'] . "</p>";
-                                if (isset($_GET['logout'])) {
-                                    session_destroy();
-                                    echo "<script language='javascript' type='text/javascript'>
-			 	                            window.location.href='../index.php';
-			 	                        </script>";
-                                }
+
                                 if (isset($_SESSION["cargo_usu_sessao"]) == 'ADM') {
                                     echo '
                                     <ul>
                                         <li>
                                             <a href="adm.php">Administração</a>
-                                            <a href="index.php?logout">Sair</a>
+                                            <a href="cursos_desenvolvimento.php?logout">Sair</a>
                                         </li>
                                     </ul>';
                                 } else {
                                     echo '
                                     <ul>
                                         <li>
-                                            <a href="index.php?logout">Sair</a>
+                                            <a href="cursos_desenvolvimento.php?logout">Sair</a>
                                         </li>
                                     </ul>';
                                 }
@@ -163,7 +167,7 @@
         <p class="tituloEsq">Curso Técnico em Desenvolvimento de Sistemas</p>
         <p class="horasCursos">1216H</p>
 
-        <hr class="hr"/>
+        <hr class="hr" />
 
         <p class="textCursos">
             Com ele, você terá a qualificação necessária para atuar na área de desenvolvimento, com um grande
@@ -209,7 +213,7 @@
 
         <div class="divImgTurmas"><img class="imgTurmas" src="../img/tec_dev_dia.png"></div>
         <div class="divImgTurmas"> <img class="imgTurmas" src="../img/tec_dev_noite.png"></div>
-        
+
         <!-- Fim do Corpo da pagina -->
         <footer id="rodape">
 
@@ -224,3 +228,7 @@
 </body>
 
 </html>
+<?php
+ob_end_flush();
+
+?>

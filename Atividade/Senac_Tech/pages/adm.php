@@ -20,9 +20,10 @@ if (isset($_GET['logout'])) {
     <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" type="text/css" href="../css/reset.css" />
     <link rel="stylesheet" type="text/css" href="../css/style.css" />
-
     <link rel="stylesheet" type="text/css" href="../css/menu.css" />
     <link rel="stylesheet" type="text/css" href="../css/layout.css" />
+    <link rel="stylesheet" type="text/css" href="../css/formAdmin.css" />
+
 </head>
 <!-- -------------------------------- -->
 
@@ -65,7 +66,7 @@ if (isset($_GET['logout'])) {
                 <input type="checkbox" id="bt_menu" />
                 <label for="bt_menu">&#9776;</label>
                 <nav class="menu">
-                    
+
                     <ul>
                         <li>
 
@@ -126,6 +127,7 @@ if (isset($_GET['logout'])) {
                             <?php
 
                             if (isset($_SESSION["nome_usu_sessao"])) {
+
                                 echo "<p id='user'> " . $_SESSION['nome_usu_sessao'] . "</p>";
 
                                 if (isset($_SESSION["cargo_usu_sessao"]) == 'ADM') {
@@ -133,14 +135,15 @@ if (isset($_GET['logout'])) {
                                     <ul>
                                         <li>
                                             <a href="adm.php">Administração</a>
-                                            <a href="cursos_informatica.php?logout">Sair</a>
+                                            <a href="adm.php?logout">Sair</a>
                                         </li>
                                     </ul>';
                                 } else {
                                     echo '
                                     <ul>
                                         <li>
-                                            <a href="cursos_informatica.php?logout">Sair</a>
+                                            <a href="adm.php?logout">Sair</a>
+                                            
                                         </li>
                                     </ul>';
                                 }
@@ -155,6 +158,7 @@ if (isset($_GET['logout'])) {
                         </li>
                     </ul>
                 </nav>
+
                 <!-- </div> -->
                 <hr id="hrCabecalhoInf" />
 
@@ -162,68 +166,99 @@ if (isset($_GET['logout'])) {
 
         </header>
         <!-- Corpo da pagina -->
-        <div class="divImgCursos"> <img class="imgCardCursos" src="../img/tecnico_informatica.png"
-                title="Técnico de Informática">
+
+        <div id="formulario">
+            <?php
+            include '../php_senac_tech/conexao.php';
+
+            $conexao = new conexao();
+
+            if (isset($_POST['edit_user'])) {
+                $conexao->alterar($_POST['id'], $_POST['nomeCompleto'], $_POST['email'], $_POST['cargo']);
+            }
+            if (isset($_POST["delete_user"])) {
+                $conexao->deletar($_POST['id']);
+            }
+            $result = $conexao->listar();
+            if (isset($_SESSION["nome_usu_sessao"]) && ($_SESSION['cargo_usu_sessao']) === 'ADM') {
+                echo '
+	<h1 id="lista">Lista de usuários</h1>
+	<table>
+		<thead>
+			<tr>
+				<td>ID</td>
+				<td>Nome Completo</td>
+				<td>Email</td>
+                <td>Cargo</td>
+				<td>Ação</td>
+			</tr>
+		</thead>';
+
+
+                if ($result->num_rows > 0) {
+                    $linha = 0;
+                    while ($row = $result->fetch_assoc()) {
+                        $linha + 1;
+                        if ($linha % 2 == 0) {
+                            $linha = 1;
+                        } else {
+                            $linha = 2;
+                        }
+                        echo "<tbody id='linha$linha'>
+                        <tr>
+							<form method='post'>
+								<td >
+								<input type='hidden' name='id' 
+								value='" . $row["id"] . "'/>
+								" . $row["id"] . "</td>
+								<td>
+								<input type='text' name='nomeCompleto' 
+								value='" . $row["nomeCompleto"] . "'/>
+								</td>
+								<td>
+								<input type='text' name='email' 
+								value='" . $row["email"] . "'/>
+								</td>
+								<td>
+								<input type='text' name='cargo' 
+								value='" . $row["cargo"] . "'/>
+								</td>
+								<td>
+								<button type='submit' name='edit_user'>
+									Editar
+								</button>
+								<button type='submit' name='delete_user' 
+								onclick='return confirm(\"Tem certeza 
+								que deseja excluir este usuário?\")'>
+									Excluir
+								</button>
+								</td>
+							</form>					
+						</tr>";
+                    }
+                } else {
+                    echo "<tr>
+					<td colspan='5'>
+					Nenhum usuário encontrado!
+					</td>
+				</tr>";
+                }
+                echo '
+		</tbody>	
+	</table>
+	<hr />
+	<a href="../index.php">Voltar para tela inicial</a>';
+            }
+
+            ?>
         </div>
-        <p class="tituloEsq">Curso Técnico de Informática</p>
-        <br>
 
-        <p class="horasCursos">1200H </p>
-
-        <br>
-
-        <!-- <hr class="hr"> -->
-        <p class="textCursos">
-            A formação vai te preparar para fazer o planejamento e pela execução dos processos de manutenção de
-            computadores
-            e pela operação de redes locais de computadores. Além de, desenvolver aplicativos computacionais, adotando
-            normas técnicas, de qualidade, de saúde, de segurança do trabalho e preservação ambiental no desempenho de
-            sua
-            função.
-        </p>
-        <p class="textCursos">
-            Por meio de uma proposta pedagógica adequada às exigências do mundo profissional, o curso oferece nos
-            momentos
-            presenciais* uma aprendizagem pautada por metodologias que propiciam atuação por projetos, aulas práticas,
-            teóricas, vivenciais e flexíveis com foco no mercado de trabalho. Mas também, momentos mediados por
-            tecnologia, em uma plataforma educacional própria, com conteúdos produzidos por tutores altamente
-            qualificados. Ambos os modos estimulam você a experimentar habilidades necessárias para os profissionais do
-            futuro.
-        </p>
-        <p class="textCursos">
-            Acompanhe a distribuição da carga-horária do currículo:
-        </p>
-        <p class="textCursos">
-            Total de horas do curso: 1.200h
-        </p>
-        <p class="textCursos">
-            - Momentos presenciais*: 996h
-        </p>
-        <p class="textCursos">
-            - Momentos mediados por tecnologias com tutoria ativa**: 204h (no formato EAD - Educação a Distância)
-        </p>
-        <p class="textCursos">
-            Ao final da formação você estará apto a atuar em empresas de diversos segmentos, além de poder participar de
-            concursos em organizações públicas.
-        </p>
-        <p class="textCursos">
-            Gostou da ideia de ser um profissional completo da área de Informática? Venha para o curso Técnico em
-            Informática e mude de vida.
-        </p>
-        <hr class="hr">
-        <p class="titulo"> Turmas Disponiveis</p>
-
-        <div class="divImgTurmas"><img class="imgTurmas" src="../img/tec_inf_turma_manha.png"></div>
-
-
-        <div class="divImgTurmas"><img class="imgTurmas" src="../img/tec_inf_turma_noite.png"></div>
         <!-- Fim do Corpo da pagina -->
         <footer id="rodape">
 
             <hr id="hrRodapeSup" />
 
-            <p class="pCenter"><img id="logoSenacInf" src="../img/senac_logo.png" title="Senac RS" width="150"
-                    height="auto"></p>
+            <p class="pCenter"><img id="logoSenacInf" src="../img/senac_logo.png" title="Senac RS"></p>
 
             <p id="direitos">© Todos os Direitos Reservados - 2024.</p>
         </footer>
