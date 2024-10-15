@@ -179,7 +179,7 @@ if (isset($_GET['logout'])) {
             $conexao = new conexao();
 
             if (isset($_POST['edit_user'])) {
-                $conexao->alterar($_POST['id'], $_POST['nomeCompleto'], $_POST['email'], $_POST['cargo']);
+                $conexao->alterar($_POST['id'], $_POST['nomeCompleto'], $_POST['email'], strtoupper($_POST['cargo']));
             }
             if (isset($_POST["delete_user"])) {
                 $conexao->deletar($_POST['id']);
@@ -228,7 +228,7 @@ if (isset($_GET['logout'])) {
 								<input type='text' name='cargo' 
 								value='" . $row["cargo"] . "'/>
 								</td>
-								<td>
+								<td id='botoes'>
 								<button type='submit' name='edit_user'>
 									Editar
 								</button>
@@ -250,9 +250,7 @@ if (isset($_GET['logout'])) {
                 }
                 echo '
 		</tbody>	
-	</table>
-	<hr />
-	<a href="../index.php">Voltar para tela inicial</a>';
+	</table>';
             }
 
             ?>

@@ -139,14 +139,14 @@ if (isset($_GET['logout'])) {
                                     <ul>
                                         <li>
                                             <a href="adm.php">Administração</a>
-                                            <a href="index.php?logout">Sair</a>
+                                            <a href="meu_senac.php?logout">Sair</a>
                                         </li>
                                     </ul>';
                                 } else {
                                     echo '
                                     <ul>
                                         <li>
-                                            <a href="index.php?logout">Sair</a>
+                                            <a href="meu_senac.php?logout">Sair</a>
                                         </li>
                                     </ul>';
                                 }

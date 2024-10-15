@@ -130,7 +130,7 @@
       $id = $_POST['id'];
       $nomeCompleto = $_POST['nomeCompleto'];
       $email = $_POST['email'];
-      $cargo = $_POST['cargo'];
+      $cargo = strtoupper($_POST['cargo']);
 
       $sql_update = "UPDATE meu_senac SET nomeCompleto='$nomeCompleto',email='$email',cargo='$cargo' WHERE id = $id";
       if ($conn->query($sql_update) === true) {
