@@ -56,34 +56,37 @@
                 <input type="checkbox" id="bt_menu" />
                 <label for="bt_menu">&#9776;</label>
                 <nav class="menu">
+                    <?php
+                    session_start();
+                    ?>
                     <ul>
                         <li>
 
-                            <a href="../index.html">Home</a>
+                            <a href="../index.php">Home</a>
 
                         </li>
 
                         <li>
 
-                            <a href="../pages/cursos.html">Cursos</a>
+                            <a href="cursos.php">Cursos</a>
                             <ul>
                                 <li>
-                                    <a href="./cursos_informatica.html">Téc em Informática</a>
+                                    <a href="cursos_informatica.php">Téc em Informática</a>
                                 </li>
                                 <li>
-                                    <a href="./cursos_administracao.html">Administração</a>
+                                    <a href="cursos_administracao.php">Administração</a>
                                 </li>
                                 <li>
-                                    <a href="./cursos_desenvolvimento.html">Desenvolvimento</a>
+                                    <a href="cursos_desenvolvimento.php">Desenvolvimento</a>
                                 </li>
                                 <li>
-                                    <a href="./RS_TI.html">Programa - RS-TI</a>
+                                    <a href="RS_TI.php">Programa - RS-TI</a>
                                 </li>
                                 <li>
-                                    <a href="./aprendizagem.html">Programa - Aprendizagem</a>
+                                    <a href="aprendizagem.php">Programa - Aprendizagem</a>
                                 </li>
                                 <li>
-                                    <a href="./cursos.html#livres">Cursos Livres</a>
+                                    <a href="cursos.php#livres">Cursos Livres</a>
                                 </li>
 
                             </ul>
@@ -91,30 +94,65 @@
 
                         <li>
 
-                            <a href="../pages/faleconosco.html">Fale Conosco</a>
+                            <a href="faleconosco.php">Fale Conosco</a>
 
                         </li>
                         <li>
 
-                            <a href="../pages/meu_senac.html">Meu Senac</a>
+                            <a href="meu_senac.php">Meu Senac</a>
 
                         </li>
                         <li>
 
-                            <a href="../pages/localizacao.html">Localização</a>
+                            <a href="localizacao.php">Localização</a>
 
                         </li>
 
                         <li>
 
-                            <a href="../PSG/index.html">PSG</a>
+                            <a href="../../PSG/index.php">PSG</a>
                         </li>
                         <li>
-                            <a href="../pages/consulta.php">Consultar</a>
+                            <a href="consulta.php">Consultar</a>
+                        </li>
+                        <li>
+                            <?php
+
+                            if (isset($_SESSION["nome_usu_sessao"])) {
+                                echo "<p id='user'> " . $_SESSION['nome_usu_sessao'] . "</p>";
+                                if (isset($_GET['logout'])) {
+                                    session_destroy();
+                                    echo "<script language='javascript' type='text/javascript'>
+			 	                            window.location.href='../index.php';
+			 	                        </script>";
+                                }
+                                if (isset($_SESSION["cargo_usu_sessao"]) == 'ADM') {
+                                    echo '
+                                    <ul>
+                                        <li>
+                                            <a href="adm.php">Administração</a>
+                                            <a href="index.php?logout">Sair</a>
+                                        </li>
+                                    </ul>';
+                                } else {
+                                    echo '
+                                    <ul>
+                                        <li>
+                                            <a href="index.php?logout">Sair</a>
+                                        </li>
+                                    </ul>';
+                                }
+                            } else {
+                                echo '<a href="login.php">Entrar</a>';
+                            }
+
+                            ?>
+
+
+
                         </li>
                     </ul>
                 </nav>
-
                 <!-- </div> -->
                 <hr id="hrCabecalhoInf" />
 
@@ -140,7 +178,7 @@
                 sua
                 função.
             <p class="pCursosTecnicosLink"> Para mais informações clique <a class="aCursosTecnicos"
-                    href="./cursos_informatica.html">"AQUI"</a>!
+                    href="./cursos_informatica.php">"AQUI"</a>!
             </p>
 
             </p>
@@ -160,7 +198,7 @@
                 curso Técnico em Administração do Senac-RS foi feito para você!
 
             <p class="pCursosTecnicosLink"> Para mais informações clique <a class="aCursosTecnicos"
-                    href="./cursos_administracao.html">"AQUI"</a>!
+                    href="./cursos_administracao.php">"AQUI"</a>!
 
             </p>
 
@@ -179,7 +217,7 @@
                 sonhos.
 
             <p class="pCursosTecnicosLink"> Para mais informações clique <a class="aCursosTecnicos"
-                    href="./cursos_desenvolvimento.html">"AQUI"</a>!
+                    href="./cursos_desenvolvimento.php">"AQUI"</a>!
 
             </p>
 
@@ -196,7 +234,7 @@
             </p>
 
             <p class="pCursosTecnicosLink"> Para mais informações clique <a class="aCursosTecnicos"
-                    href="./RS_TI.html">"AQUI"</a>!
+                    href="./RS_TI.php">"AQUI"</a>!
             </p>
 
             <hr class="hrCursos">
@@ -210,7 +248,7 @@
 
             </p>
             <p class="pCursosTecnicosLink"> Para mais informações clique <a class="aCursosTecnicos"
-                    href="./aprendizagem.html">"AQUI"</a>!
+                    href="./aprendizagem.php">"AQUI"</a>!
             </p>
             <br />
             <hr class="hrCursos" />

@@ -10,8 +10,6 @@
     <link rel="stylesheet" type="text/css" href="../css/reset.css" />
     <link rel="stylesheet" type="text/css" href="../css/style.css" />
     <link rel="stylesheet" type="text/css" href="../css/menu.css" />
-    <link rel="stylesheet" type="text/css" href="../css/consulta.css" />
-
     <link rel="stylesheet" type="text/css" href="../css/layout.css" />
 </head>
 <!-- -------------------------------- -->
@@ -160,57 +158,65 @@
 
         </header>
         <!-- Corpo da pagina -->
-        <div class="botoes">
-            <a href="#faleConosco" class="btConsultas">Fale Conosco</a>
-            <a href="#meuSenac" class="btConsultas">Meu Senac</a>
+        <div class="divImgCursos"><img class="imgCardCursos" src="../img/tecnico_dev.jpg"></div>
 
+        <p class="tituloEsq">Curso Técnico em Desenvolvimento de Sistemas</p>
+        <p class="horasCursos">1216H</p>
 
-        </div>
+        <hr class="hr"/>
 
-        <?php
-        include '../php_senac_tech/conexao.php';
-        $conexao = new Conexao();
+        <p class="textCursos">
+            Com ele, você terá a qualificação necessária para atuar na área de desenvolvimento, com um grande
+            diferencial: a
+            habilidade comunicacional em língua inglesa, para falar com um mercado cada dia mais globalizado.
+        </p>
+        <p class="textCursos">
+            A área de
+            desenvolvimento de sistemas emprega milhares de pessoas todos os dias e muitas das vagas não são supridas
+            por
+            falta de talentos. Segundo a Brasscom, Associação das Empresas de Tecnologia da Informação e Comunicação
+            (TIC) e
+            de Tecnologias Digitais, o segmento deverá precisar de 70 mil profissionais por ano, até 2024.
+            Chegou a sua vez!
+        </p>
+        <p class="textCursos">
+            Com 1.216 horas, o curso prepara o profissional para desenvolver sistemas computacionais utilizando o
+            ambiente
+            de desenvolvimento, seguindo as normas e especificações da lógica e das linguagens de programação bem como a
+            modelagem, implementação e manutenção do banco de dados. Além disso, a formação prepara para o
+            desenvolvimento,
+            a manutenção e testes de programas de computador, adotando normas técnicas e de qualidade. Apesar de o curso
+            ser
+            bilíngue, o aluno não precisa saber inglês para ingressar.
+        </p>
+        <p class="textCursos">
+            As aulas de inglês são ministradas de acordo com o
+            andamento do conteúdo tecnológico e, dessa forma, são trabalhadas a fala, escrita e leitura relacionadas à
+            profissão. Assim, você estará preparado para atuar em diversas frentes de trabalho, podendo empreender na
+            área
+            ou buscar seu primeiro estágio já nos primeiros meses de curso.
+        </p>
+        <p class="textCursos">
+            A qualificação é uma excelente oportunidade
+            para
+            ingressar no mercado de trabalho, com muitas possibilidades de atuação. Venha para o Técnico em
+            Desenvolvimento
+            de Sistemas - Bilíngue do Senac-RS.
+        </p>
 
-        $consulta = $conexao->consultaFaleConosco();
-        echo '<div id="faleConosco" class="faleConosco">';
-        echo '<p class="titulo">
-                Consulta Fale Conosco
-                </p>';
+        <hr class="hr">
+        <p class="titulo">Turmas Disponíveis</p>
 
-        while ($linha = $consulta->fetch_assoc()) {
-            $id = $linha['id'];
-            $nomeCompleto = $linha['nomeCompleto'];
-            $uf = $linha['uf'];
-            $cidade = $linha['cidade'];
-            $email = $linha['email'];
-            $telefone = $linha['telefone'];
-            $modalidade = $linha['modalidade'];
-            $assunto = $linha['assunto'];
-            $mensagem = $linha['mensagem'];
-            $cpf = $linha['cpf'];
-
-            echo '<hr class="hr" />';
-
-            echo '<p class="pId">Chamado ' . $id . ' </p>';
-            echo '<p class="pLeft">- Nome Completo: ' . $nomeCompleto . ' -</p>';
-            echo '<p class="pLeft">- CPF: ' . $cpf . ' -</p>';
-            echo '<p class="pLeft">- Email: ' . $email . ' -</p>';
-            echo '<p class="pLeft">- Telefone: ' . $telefone . ' -</p>';
-            echo '<p class="pLeft">- UF: ' . $uf . '-</p>';
-            echo '<p class="pLeft">- Municipio: ' . $cidade . ' -</p>';
-            echo '<p class="pLeft">- Modalidade: ' . $modalidade . ' -</p>';
-            echo '<p class="pLeft">- Assunto: ' . $assunto . ' -</p>';
-            echo '<p class="pLeft">- Mensagem: </p>';
-            echo '<p class="pMensagem">' . $mensagem . '</p>';
-        }
-        echo '</div>';
-        ?>
+        <div class="divImgTurmas"><img class="imgTurmas" src="../img/tec_dev_dia.png"></div>
+        <div class="divImgTurmas"> <img class="imgTurmas" src="../img/tec_dev_noite.png"></div>
+        
         <!-- Fim do Corpo da pagina -->
         <footer id="rodape">
 
             <hr id="hrRodapeSup" />
 
-            <p class="pCenter"><img id="logoSenacInf" src="../img/senac_logo.png" title="Senac RS"></p>
+            <p class="pCenter"><img id="logoSenacInf" src="../img/senac_logo.png" title="Senac RS" width="150"
+                    height="auto"></p>
 
             <p id="direitos">© Todos os Direitos Reservados - 2024.</p>
         </footer>

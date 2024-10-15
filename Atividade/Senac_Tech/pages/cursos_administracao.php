@@ -53,34 +53,37 @@
                 <input type="checkbox" id="bt_menu" />
                 <label for="bt_menu">&#9776;</label>
                 <nav class="menu">
+                    <?php
+                    session_start();
+                    ?>
                     <ul>
                         <li>
 
-                            <a href="../index.html">Home</a>
+                            <a href="../index.php">Home</a>
 
                         </li>
 
                         <li>
 
-                            <a href="../pages/cursos.html">Cursos</a>
+                            <a href="cursos.php">Cursos</a>
                             <ul>
                                 <li>
-                                    <a href="./cursos_informatica.html">Téc em Informática</a>
+                                    <a href="cursos_informatica.php">Téc em Informática</a>
                                 </li>
                                 <li>
-                                    <a href="./cursos_administracao.html">Administração</a>
+                                    <a href="cursos_administracao.php">Administração</a>
                                 </li>
                                 <li>
-                                    <a href="./cursos_desenvolvimento.html">Desenvolvimento</a>
+                                    <a href="cursos_desenvolvimento.php">Desenvolvimento</a>
                                 </li>
                                 <li>
-                                    <a href="./RS_TI.html">Programa - RS-TI</a>
+                                    <a href="RS_TI.php">Programa - RS-TI</a>
                                 </li>
                                 <li>
-                                    <a href="./aprendizagem.html">Programa - Aprendizagem</a>
+                                    <a href="aprendizagem.php">Programa - Aprendizagem</a>
                                 </li>
                                 <li>
-                                    <a href="./cursos.html#livres">Cursos Livres</a>
+                                    <a href="cursos.php#livres">Cursos Livres</a>
                                 </li>
 
                             </ul>
@@ -88,22 +91,62 @@
 
                         <li>
 
-                            <a href="../pages/faleconosco.html">Fale Conosco</a>
+                            <a href="faleconosco.php">Fale Conosco</a>
+
+                        </li>
+                        <li>
+
+                            <a href="meu_senac.php">Meu Senac</a>
+
+                        </li>
+                        <li>
+
+                            <a href="localizacao.php">Localização</a>
 
                         </li>
 
                         <li>
 
-                            <a href="../pages/localizacao.html">Localização</a>
-
-                        </li>
-
-                        <li>
-
-                            <a href="../PSG/index.html">PSG</a>
+                            <a href="../../PSG/index.php">PSG</a>
                         </li>
                         <li>
-                            <a href="../pages/consulta.php">Consultar</a>
+                            <a href="consulta.php">Consultar</a>
+                        </li>
+                        <li>
+                            <?php
+
+                            if (isset($_SESSION["nome_usu_sessao"])) {
+                                echo "<p id='user'> " . $_SESSION['nome_usu_sessao'] . "</p>";
+                                if (isset($_GET['logout'])) {
+                                    session_destroy();
+                                    echo "<script language='javascript' type='text/javascript'>
+			 	                            window.location.href='../index.php';
+			 	                        </script>";
+                                }
+                                if (isset($_SESSION["cargo_usu_sessao"]) == 'ADM') {
+                                    echo '
+                                    <ul>
+                                        <li>
+                                            <a href="adm.php">Administração</a>
+                                            <a href="index.php?logout">Sair</a>
+                                        </li>
+                                    </ul>';
+                                } else {
+                                    echo '
+                                    <ul>
+                                        <li>
+                                            <a href="index.php?logout">Sair</a>
+                                        </li>
+                                    </ul>';
+                                }
+                            } else {
+                                echo '<a href="login.php">Entrar</a>';
+                            }
+
+                            ?>
+
+
+
                         </li>
                     </ul>
                 </nav>
@@ -115,63 +158,53 @@
 
         </header>
         <!-- Corpo da pagina -->
-        <div class="divImgCursos"><img class="imgCardCursos" src="../img/tecnico_dev.jpg"></div>
+        <div class="divImgCursos"><img class="imgCardCursos" src="../img/tecnico_administracao.jpg"></div>
 
-        <p class="tituloEsq">Curso Técnico em Desenvolvimento de Sistemas</p>
-        <p class="horasCursos">1216H</p>
-
-        <hr class="hr"/>
-
+        <p class="tituloEsq">Curso Técnico em Administração</p>
+        <br>
+        <p class="horasCursos">1200H </p>
         <p class="textCursos">
-            Com ele, você terá a qualificação necessária para atuar na área de desenvolvimento, com um grande
-            diferencial: a
-            habilidade comunicacional em língua inglesa, para falar com um mercado cada dia mais globalizado.
+            A formação vai te preparar para desempenhar funções voltadas para a gestão de pessoas, operações logísticas,
+            gestão de materiais e patrimônio, marketing, vendas, finanças, entre outros.
         </p>
         <p class="textCursos">
-            A área de
-            desenvolvimento de sistemas emprega milhares de pessoas todos os dias e muitas das vagas não são supridas
-            por
-            falta de talentos. Segundo a Brasscom, Associação das Empresas de Tecnologia da Informação e Comunicação
-            (TIC) e
-            de Tecnologias Digitais, o segmento deverá precisar de 70 mil profissionais por ano, até 2024.
-            Chegou a sua vez!
+            Por meio de uma proposta pedagógica adequada às exigências do mundo profissional, o curso oferece nos
+            momentos
+            presenciais* uma aprendizagem pautada por metodologias que propiciam atuação por projetos, aulas práticas,
+            teóricas, vivenciais e flexíveis com foco no mercado de trabalho. Mas também, momentos mediados por
+            tecnologia**, em uma plataforma educacional própria, com conteúdo produzido por tutores altamente
+            qualificados.
+            Ambos os modos estimulam você a experimentar habilidades necessárias para os profissionais do futuro.
         </p>
         <p class="textCursos">
-            Com 1.216 horas, o curso prepara o profissional para desenvolver sistemas computacionais utilizando o
-            ambiente
-            de desenvolvimento, seguindo as normas e especificações da lógica e das linguagens de programação bem como a
-            modelagem, implementação e manutenção do banco de dados. Além disso, a formação prepara para o
-            desenvolvimento,
-            a manutenção e testes de programas de computador, adotando normas técnicas e de qualidade. Apesar de o curso
-            ser
-            bilíngue, o aluno não precisa saber inglês para ingressar.
+            Acompanhe a distribuição da carga-horária do currículo:
         </p>
         <p class="textCursos">
-            As aulas de inglês são ministradas de acordo com o
-            andamento do conteúdo tecnológico e, dessa forma, são trabalhadas a fala, escrita e leitura relacionadas à
-            profissão. Assim, você estará preparado para atuar em diversas frentes de trabalho, podendo empreender na
-            área
-            ou buscar seu primeiro estágio já nos primeiros meses de curso.
+            Total de horas do curso: 1.000h
         </p>
         <p class="textCursos">
-            A qualificação é uma excelente oportunidade
-            para
-            ingressar no mercado de trabalho, com muitas possibilidades de atuação. Venha para o Técnico em
-            Desenvolvimento
-            de Sistemas - Bilíngue do Senac-RS.
+            - Momentos presenciais*: 844h
         </p>
-
+        <p class="textCursos">
+            - Momentos mediados por tecnologias com tutoria ativa**: 156h (no formato EAD - Educação a Distância)
+        </p>
+        <p class="textCursos">
+            Ao final da formação você estará apto a atuar em empresas de diversos segmentos, além de poder participar de
+            concursos em organizações públicas.
+        </p>
+        <p class="textCursos">
+            Gostou da ideia de ser um profissional completo da área Administrativa? Venha para o curso Técnico em
+            Administração do Senac-RS e mude de vida.
+        </p>
         <hr class="hr">
-        <p class="titulo">Turmas Disponíveis</p>
 
-        <div class="divImgTurmas"><img class="imgTurmas" src="../img/tec_dev_dia.png"></div>
-        <div class="divImgTurmas"> <img class="imgTurmas" src="../img/tec_dev_noite.png"></div>
-        
+        <p class="titulo">Turmas Disponíveis</p>
+        <div class="divImgTurmas"><img class="imgTurmas" src="../img/tec_adm_noite.png"></div>
         <!-- Fim do Corpo da pagina -->
         <footer id="rodape">
 
             <hr id="hrRodapeSup" />
-
+            
             <p class="pCenter"><img id="logoSenacInf" src="../img/senac_logo.png" title="Senac RS" width="150"
                     height="auto"></p>
 

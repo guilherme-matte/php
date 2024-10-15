@@ -14,11 +14,11 @@
 }
 
 .menu ul li {
-    width: 150px;
+    width: 170px;
     float: left;
 }
 
-.menu a {
+.menu a ,#user  {
     color: white;
     padding: 15px;
     display: block;

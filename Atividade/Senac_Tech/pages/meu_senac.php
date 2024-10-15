@@ -9,12 +9,12 @@
     <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" type="text/css" href="../css/reset.css" />
     <link rel="stylesheet" type="text/css" href="../css/style.css" />
-    <link rel="stylesheet" type="text/css" href="../css/layout.css" />
     <link rel="stylesheet" type="text/css" href="../css/menu.css" />
+    <link rel="stylesheet" type="text/css" href="../css/layout.css" />
     <link rel="stylesheet" type="text/css" href="../css/formulario.css" />
 
 </head>
-
+<!-- -------------------------------- -->
 
 <body>
     <main>
@@ -55,34 +55,37 @@
                 <input type="checkbox" id="bt_menu" />
                 <label for="bt_menu">&#9776;</label>
                 <nav class="menu">
+                    <?php
+                    session_start();
+                    ?>
                     <ul>
                         <li>
 
-                            <a href="../index.html">Home</a>
+                            <a href="../index.php">Home</a>
 
                         </li>
 
                         <li>
 
-                            <a href="../pages/cursos.html">Cursos</a>
+                            <a href="cursos.php">Cursos</a>
                             <ul>
                                 <li>
-                                    <a href="./cursos_informatica.html">Téc em Informática</a>
+                                    <a href="cursos_informatica.php">Téc em Informática</a>
                                 </li>
                                 <li>
-                                    <a href="./cursos_administracao.html">Administração</a>
+                                    <a href="cursos_administracao.php">Administração</a>
                                 </li>
                                 <li>
-                                    <a href="./cursos_desenvolvimento.html">Desenvolvimento</a>
+                                    <a href="cursos_desenvolvimento.php">Desenvolvimento</a>
                                 </li>
                                 <li>
-                                    <a href="./RS_TI.html">Programa - RS-TI</a>
+                                    <a href="RS_TI.php">Programa - RS-TI</a>
                                 </li>
                                 <li>
-                                    <a href="./aprendizagem.html">Programa - Aprendizagem</a>
+                                    <a href="aprendizagem.php">Programa - Aprendizagem</a>
                                 </li>
                                 <li>
-                                    <a href="./cursos.html#livres">Cursos Livres</a>
+                                    <a href="cursos.php#livres">Cursos Livres</a>
                                 </li>
 
                             </ul>
@@ -90,26 +93,62 @@
 
                         <li>
 
-                            <a href="../pages/faleconosco.html">Fale Conosco</a>
+                            <a href="faleconosco.php">Fale Conosco</a>
 
                         </li>
                         <li>
 
-                            <a href="../pages/meu_senac.html">Meu Senac</a>
+                            <a href="meu_senac.php">Meu Senac</a>
 
                         </li>
                         <li>
 
-                            <a href="../pages/localizacao.html">Localização</a>
+                            <a href="localizacao.php">Localização</a>
 
                         </li>
 
                         <li>
 
-                            <a href="../PSG/index.html">PSG</a>
+                            <a href="../../PSG/index.php">PSG</a>
                         </li>
                         <li>
-                            <a href="../pages/consulta.php">Consultar</a>
+                            <a href="consulta.php">Consultar</a>
+                        </li>
+                        <li>
+                            <?php
+
+                            if (isset($_SESSION["nome_usu_sessao"])) {
+                                echo "<p id='user'> " . $_SESSION['nome_usu_sessao'] . "</p>";
+                                if (isset($_GET['logout'])) {
+                                    session_destroy();
+                                    echo "<script language='javascript' type='text/javascript'>
+			 	                            window.location.href='../index.php';
+			 	                        </script>";
+                                }
+                                if (isset($_SESSION["cargo_usu_sessao"]) == 'ADM') {
+                                    echo '
+                                    <ul>
+                                        <li>
+                                            <a href="adm.php">Administração</a>
+                                            <a href="index.php?logout">Sair</a>
+                                        </li>
+                                    </ul>';
+                                } else {
+                                    echo '
+                                    <ul>
+                                        <li>
+                                            <a href="index.php?logout">Sair</a>
+                                        </li>
+                                    </ul>';
+                                }
+                            } else {
+                                echo '<a href="login.php">Entrar</a>';
+                            }
+
+                            ?>
+
+
+
                         </li>
                     </ul>
                 </nav>
@@ -120,33 +159,42 @@
             </section>
 
         </header>
+        <!-- Corpo da pagina -->
 
-        </header>
-        <!-- -------------------------------- -->
         <article id="articleTituloFaleConosco">
-            <p class="titulo">Fale Conosco</p>
-            <p id="formMensagem">
-                O Senac-RS tem a maior satisfação em atendê-lo.
-            </p>
-            <p id="formMensagem">
-                Importante: preencha corretamente os campos do formulário a seguir, para que possamos lhe dar um
-                retorno.
-            </p>
-
+            <p class="titulo">Meu Senac</p>
 
         </article>
         <section id="sectionForms">
+
             <article id="articleForms">
                 <p id="camposObrigatorios">
                     Todos o campos são OBRIGATÓRIOS
-                <form action="../php_senac_tech/faleConosco.php" method="post">
+                <form action="../php_senac_tech/meuSenac.php" method="post">
+
                     <fieldset>
+
                         <fieldset class="bloco">
                             <div class="dados">
                                 <label>Nome Completo</label>
-                                <input type="text" name="nomeCompleto" placeholder="Digite seu nome completo" required>
+                                <input type="text" maxlength="50" name="nomeCompleto"
+                                    placeholder="Digite seu nome completo" required>
                             </div>
                         </fieldset>
+
+                        <fieldset class="bloco">
+                            <div class="dadosTelefone">
+                                <label>Telefone:</label>
+                                <div id="formTelefone">
+                                    <input type="text" name="ddd" maxlength="3" required placeholder="(00)" title="DDD"
+                                        id="formDDD">
+
+                                    <input type="tel" maxlength="9" name="telefone" required placeholder="0 0000-0000"
+                                        title="Número de Telefone" id="formTel">
+                                </div>
+                            </div>
+                        </fieldset>
+
                         <fieldset class="bloco">
                             <div class="dados">
                                 <label>UF:</label>
@@ -181,6 +229,7 @@
                                 </select>
                             </div>
                         </fieldset>
+
                         <fieldset class="bloco">
                             <div class="dados">
                                 <label>Cidade:</label>
@@ -192,82 +241,58 @@
                                 </select>
                             </div>
                         </fieldset>
+
                         <fieldset class="bloco">
                             <div class="dados">
                                 <label>Email:</label>
-                                <input type="email" name="email" required placeholder="nome@dominio.com"
+                                <input type="email" maxlength="50" name="email" required placeholder="nome@dominio.com"
                                     pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
                             </div>
                         </fieldset>
                         <fieldset class="bloco">
                             <div class="dados">
-                                <label>Confirme Email:</label>
-                                <input type="email" name="confEmail" required placeholder="nome@dominio.com"
-                                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
-                            </div>
-                        </fieldset>
-                        <fieldset class="bloco">
-                            <div class="dadosTelefone">
-                                <label>Telefone:</label>
-                                <div id="formTelefone">
-                                    <input type="text" name="ddd" required placeholder="(00)" title="DDD" id="formDDD">
-
-                                    <input type="tel" name="telefone" required placeholder="0 0000-0000"
-                                        title="Número de Telefone" id="formTel">
-                                </div>
-                            </div>
-                        </fieldset>
-                        <fieldset class="bloco">
-                            <div class="dados">
-                                <label>Modalidade</label>
-                                <select name="modalidade" required>
-                                    <option value="presencial" selected>Curso presencial</option>
-                                    <option value="ead">Curso Técnico EAD</option>
-                                </select>
-                            </div>
-                        </fieldset>
-                        <fieldset class="bloco">
-                            <div class="dados">
-                                <label>Assunto:</label>
-                                <select name="assunto" required>
-                                    <option value="Solicitacoes" selected>Solicitações</option>
-                                    <option value="Elogios">Elogios</option>
-                                    <option value="Sugestoes">Sugestões</option>
-                                    <option value="Reclamacoes">Reclamções</option>
-                                </select>
-                            </div>
-                        </fieldset>
-                        <fieldset class="bloco">
-                            <div class="dados">
-                                <label>Mensagem:</label>
-                                <textarea name="mensagem" placeholder="Digite sua mensagem aqui..." cols="30" rows="10"
-                                    required></textarea>
-
+                                <label>Senha:</label>
+                                <input type="password"  name="senha" required minlength="3" maxlength="15">
                             </div>
                         </fieldset>
                         <fieldset class="bloco">
                             <div class="dados">
                                 <label>CPF:</label>
-                                <input type="text" name="cpf" placeholder="000.000.000-00" required>
+                                <input type="text" maxlength="11" name="cpf" placeholder="00000000000" required>
                             </div>
                         </fieldset>
+
+
+
+                        <fieldset class="bloco">
+                            <div class="dadosCheckbox">
+                                <input type="checkbox" name="autorizacao" required>
+
+                                <label>
+                                    Autorizo o Senac-RS me contatar e realizar o envio de informações relacionadas
+                                    aos seus produtos/serviços e eventos
+                                </label>
+                            </div>
+                        </fieldset>
+
                         <button type="submit" class="botao">Enviar</button>
+
                     </fieldset>
                 </form>
                 </p>
             </article>
         </section>
-        <!-- ------------------ -->
+
+        <!-- Fim do Corpo da pagina -->
         <footer id="rodape">
 
             <hr id="hrRodapeSup" />
 
-            <p class="pCenter"><img id="logoSenacInf" src="../img/senac_logo.png" title="Senac RS" width="150"
-                    height="auto"></p>
+            <p class="pCenter"><img id="logoSenacInf" src="../img/senac_logo.png" title="Senac RS"></p>
 
             <p id="direitos">© Todos os Direitos Reservados - 2024.</p>
         </footer>
+    </main>
 </body>
-</main>
 
 </html>

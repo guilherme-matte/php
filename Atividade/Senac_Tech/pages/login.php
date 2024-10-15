@@ -9,8 +9,10 @@
     <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" type="text/css" href="../css/reset.css" />
     <link rel="stylesheet" type="text/css" href="../css/style.css" />
-    <link rel="stylesheet" type="text/css" href="../css/menu.css" />
     <link rel="stylesheet" type="text/css" href="../css/layout.css" />
+    <link rel="stylesheet" type="text/css" href="../css/menu.css" />
+    <link rel="stylesheet" type="text/css" href="../css/login.css" />
+</head>
 </head>
 <!-- -------------------------------- -->
 
@@ -56,31 +58,31 @@
                     <ul>
                         <li>
 
-                            <a href="../index.html">Home</a>
+                            <a href="../index.php">Home</a>
 
                         </li>
 
                         <li>
 
-                            <a href="../pages/cursos.html">Cursos</a>
+                            <a href=".cursos.php">Cursos</a>
                             <ul>
                                 <li>
-                                    <a href="./cursos_informatica.html">Téc em Informática</a>
+                                    <a href="./cursos_informatica.php">Téc em Informática</a>
                                 </li>
                                 <li>
-                                    <a href="./cursos_administracao.html">Administração</a>
+                                    <a href="./cursos_administracao.php">Administração</a>
                                 </li>
                                 <li>
-                                    <a href="./cursos_desenvolvimento.html">Desenvolvimento</a>
+                                    <a href="./cursos_desenvolvimento.php">Desenvolvimento</a>
                                 </li>
                                 <li>
-                                    <a href="./RS_TI.html">Programa - RS-TI</a>
+                                    <a href="./RS_TI.php">Programa - RS-TI</a>
                                 </li>
                                 <li>
-                                    <a href="./aprendizagem.html">Programa - Aprendizagem</a>
+                                    <a href="./aprendizagem.php">Programa - Aprendizagem</a>
                                 </li>
                                 <li>
-                                    <a href="./cursos.html#livres">Cursos Livres</a>
+                                    <a href="./cursos.php#livres">Cursos Livres</a>
                                 </li>
 
                             </ul>
@@ -88,22 +90,26 @@
 
                         <li>
 
-                            <a href="../pages/faleconosco.html">Fale Conosco</a>
+                            <a href="faleconosco.php">Fale Conosco</a>
+
+                        </li>
+                        <li>
+
+                            <a href="meu_senac.php">Meu Senac</a>
+
+                        </li>
+                        <li>
+
+                            <a href="localizacao.php">Localização</a>
 
                         </li>
 
                         <li>
 
-                            <a href="../pages/localizacao.html">Localização</a>
-
-                        </li>
-
-                        <li>
-
-                            <a href="../PSG/index.html">PSG</a>
+                            <a href="../../PSG/index.php">PSG</a>
                         </li>
                         <li>
-                            <a href="../pages/consulta.php">Consultar</a>
+                            <a href=".consulta.php">Consultar</a>
                         </li>
                     </ul>
                 </nav>
@@ -115,55 +121,29 @@
 
         </header>
         <!-- Corpo da pagina -->
-        <div class="divImgCursos"><img class="imgCardCursos" src="../img/tecnico_administracao.jpg"></div>
-
-        <p class="tituloEsq">Curso Técnico em Administração</p>
+        <p class="titulo">Seja Bem-Vindo!</p>
         <br>
-        <p class="horasCursos">1200H </p>
-        <p class="textCursos">
-            A formação vai te preparar para desempenhar funções voltadas para a gestão de pessoas, operações logísticas,
-            gestão de materiais e patrimônio, marketing, vendas, finanças, entre outros.
-        </p>
-        <p class="textCursos">
-            Por meio de uma proposta pedagógica adequada às exigências do mundo profissional, o curso oferece nos
-            momentos
-            presenciais* uma aprendizagem pautada por metodologias que propiciam atuação por projetos, aulas práticas,
-            teóricas, vivenciais e flexíveis com foco no mercado de trabalho. Mas também, momentos mediados por
-            tecnologia**, em uma plataforma educacional própria, com conteúdo produzido por tutores altamente
-            qualificados.
-            Ambos os modos estimulam você a experimentar habilidades necessárias para os profissionais do futuro.
-        </p>
-        <p class="textCursos">
-            Acompanhe a distribuição da carga-horária do currículo:
-        </p>
-        <p class="textCursos">
-            Total de horas do curso: 1.000h
-        </p>
-        <p class="textCursos">
-            - Momentos presenciais*: 844h
-        </p>
-        <p class="textCursos">
-            - Momentos mediados por tecnologias com tutoria ativa**: 156h (no formato EAD - Educação a Distância)
-        </p>
-        <p class="textCursos">
-            Ao final da formação você estará apto a atuar em empresas de diversos segmentos, além de poder participar de
-            concursos em organizações públicas.
-        </p>
-        <p class="textCursos">
-            Gostou da ideia de ser um profissional completo da área Administrativa? Venha para o curso Técnico em
-            Administração do Senac-RS e mude de vida.
-        </p>
-        <hr class="hr">
 
-        <p class="titulo">Turmas Disponíveis</p>
-        <div class="divImgTurmas"><img class="imgTurmas" src="../img/tec_adm_noite.png"></div>
+        <div id="blocoLogin">
+
+            <form action="../php_senac_tech/verificaLogin.php" method="post">
+                <input type="text" name="email" required placeholder="E-mail">
+                <br>
+
+                <input type="password" name="senha" required placeholder="Senha">
+                <br>
+                <button type="submit">Acessar</button>
+            </form>
+
+        </div>
+
+
         <!-- Fim do Corpo da pagina -->
         <footer id="rodape">
 
             <hr id="hrRodapeSup" />
-            
-            <p class="pCenter"><img id="logoSenacInf" src="../img/senac_logo.png" title="Senac RS" width="150"
-                    height="auto"></p>
+
+            <p class="pCenter"><img id="logoSenacInf" src="../img/senac_logo.png" title="Senac RS"></p>
 
             <p id="direitos">© Todos os Direitos Reservados - 2024.</p>
         </footer>

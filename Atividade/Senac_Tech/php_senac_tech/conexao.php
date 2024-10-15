@@ -9,11 +9,21 @@ class conexao
         $this->conexao();
     }
 
-    public function conexao()
+    private function conexao()
     {
         $this->conn = new mysqli($this->servidor, $this->user, $this->pass, $this->banco);
     }
 
+    public function logar($email)
+    {
+        $stmt = $this->conn->prepare("SELECT * FROM meu_senac WHERE email = ?");
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        $this->conn->close();
+        return $result;
+    }
     public function cadastroFaleConosco($nomeCompleto, $uf, $cidade, $email, $telefone, $modalidade, $assunto, $mensagem, $cpf)
     {
         $sql = "insert into fale_conosco values (null,?,?,?,?,?,?,?,?,?)";
@@ -24,11 +34,11 @@ class conexao
         if ($stmt == true) {
             echo "<script language='javascript' type='text/javascript'>"
                 . "alert('Mensagem enviada com sucesso!');"
-                . "window.location.href='../pages/faleconosco.html'"
+                . "window.location.href='../pages/faleconosco.php'"
                 . "</script>";
             die();
         } else {
-            echo "Erro: " . sql . "<br>" . $conn->error;
+            echo "Erro: " . sql . "<br>" . $this->conn->error;
             echo '<br>';
             echo 'Cadastro nao realizado';
         }
@@ -46,11 +56,11 @@ class conexao
         if ($stmt == true) {
             echo "<script language='javascript' type='text/javascript'>"
                 . "alert('Cadastro realizado com sucesso!');"
-                . "window.location.href='../pages/meu_senac.html'"
+                . "window.location.href='../pages/meu_senac.php'"
                 . "</script>";
             die();
         } else {
-            echo "Erro: " . sql . "<br>" . $conn->error;
+            echo "Erro: " . sql . "<br>" . $this->conn->error;
             echo '<br>';
             echo 'Cadastro nao realizado';
         }
@@ -69,5 +79,4 @@ class conexao
         }
         $this->conn->close();
     }
-
 }
