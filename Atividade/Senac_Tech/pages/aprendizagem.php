@@ -120,9 +120,14 @@ if (isset($_GET['logout'])) {
 
                             <a href="../../PSG/index.php">PSG</a>
                         </li>
-                        <li>
-                            <a href="consulta.php">Consultar</a>
-                        </li>
+                        <?php
+                        if (isset($_SESSION['cargo_usu_sessao']) == 'ADM') {
+                            echo '
+                            <li>
+                                <a href="consulta.php">Consultar</a>
+                            </li>';
+                        }
+                        ?>
                         <li>
                             <?php
 

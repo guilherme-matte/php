@@ -128,10 +128,11 @@
     include '../php/conexaoLogin.php';
     if (isset($_POST['edit_user'])) {
       $id = $_POST['id'];
-      $login = $_POST['login'];
+      $nomeCompleto = $_POST['nomeCompleto'];
+      $email = $_POST['email'];
       $cargo = $_POST['cargo'];
 
-      $sql_update = "UPDATE login SET login='$login',cargo='$cargo' WHERE id = $id";
+      $sql_update = "UPDATE meu_senac SET nomeCompleto='$nomeCompleto',email='$email',cargo='$cargo' WHERE id = $id";
       if ($conn->query($sql_update) === true) {
         echo "<script>
   alert('Usuário editado com sucesso!');
@@ -144,7 +145,7 @@
     }
     if (isset($_POST["delete_user"])) {
       $id = $_POST["id"];
-      $sql_delete = "DELETE FROM login WHERE id = $id";
+      $sql_delete = "DELETE FROM meu_senac WHERE id = $id";
       if ($conn->query($sql_delete) === true) {
         echo "<script>
 			alert('Usuário excluído com sucesso!');
@@ -156,8 +157,8 @@
       $conn->error";
       }
     }
-  
-    $sql = "SELECT id, login,cargo FROM login";
+
+    $sql = "SELECT id, nomeCompleto,email,cargo FROM meu_senac";
     $result = $conn->query($sql);
     if (isset($_SESSION["nome_usu_sessao"]) && ($_SESSION['cargo_usu_sessao']) === 'ADM') {
       echo '
@@ -190,10 +191,13 @@
 								value='" . $row["id"] . "'/>
 								" . $row["id"] . "</td>
 								<td>
-								<input type='text' name='login' 
-								value='" . $row["login"] . "'/>
+								<input type='text' name='nomeCompleto' 
+								value='" . $row["nomeCompleto"] . "'/>
 								</td>
-								
+								<td>
+								<input type='text' name='email' 
+								value='" . $row["email"] . "'/>
+								</td>
 								<td>
 								<input type='text' name='cargo' 
 								value='" . $row["cargo"] . "'/>

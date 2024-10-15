@@ -120,20 +120,20 @@ if (isset($_GET['logout'])) {
 
                             <a href="../../PSG/index.php">PSG</a>
                         </li>
-                        <li>
-                            <a href="consulta.php">Consultar</a>
-                        </li>
+                        <?php
+                        if (isset($_SESSION['cargo_usu_sessao']) == 'ADM') {
+                            echo '
+                            <li>
+                                <a href="consulta.php">Consultar</a>
+                            </li>';
+                        }
+                        ?>
                         <li>
                             <?php
 
                             if (isset($_SESSION["nome_usu_sessao"])) {
                                 echo "<p id='user'> " . $_SESSION['nome_usu_sessao'] . "</p>";
-                                if (isset($_GET['logout'])) {
-                                    session_destroy();
-                                    echo "<script language='javascript' type='text/javascript'>
-			 	                            window.location.href='../index.php';
-			 	                        </script>";
-                                }
+                                
                                 if (isset($_SESSION["cargo_usu_sessao"]) == 'ADM') {
                                     echo '
                                     <ul>
@@ -169,19 +169,14 @@ if (isset($_GET['logout'])) {
 
         </header>
         <!-- Corpo da pagina -->
-        <div class="botoes">
-            <a href="#faleConosco" class="btConsultas">Fale Conosco</a>
-            <a href="#meuSenac" class="btConsultas">Meu Senac</a>
-
-
-        </div>
+        
 
         <?php
         include '../php_senac_tech/conexao.php';
         $conexao = new Conexao();
 
         $consulta = $conexao->consultaFaleConosco();
-        echo '<div id="faleConosco" class="faleConosco">';
+        echo '<div id="faleConosco" class="consulta">';
         echo '<p class="titulo">
                 Consulta Fale Conosco
                 </p>';

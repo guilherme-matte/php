@@ -106,12 +106,13 @@ class conexao
     {
         $sql = "select * from fale_conosco";
         $result = $this->conn->query($sql)
-            or die("Falha na consulta");
+            or die("Falha na consulta " . $this->conn->error);
+            $this->conn->close();
         if ($result == true) {
             return $result;
         } else {
             die("Falha na consulta");
         }
-        $this->conn->close();
+        
     }
 }
