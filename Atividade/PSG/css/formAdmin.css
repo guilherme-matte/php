@@ -22,15 +22,14 @@ table input {
 }
 
 table td {
-    border-left: 1px solid;
-    border-right: 1px solid;
-}
-
-#linha1 {
-    background-color: rgb(214, 214, 214);
+    border: none;
 }
 
 #linha2 {
+    background-color: rgb(214, 214, 214);
+}
+
+#linha1 {
     background-color: rgb(247, 246, 246);
 }
 
@@ -41,4 +40,28 @@ table tr {
 table thead tr td {
     padding-top: 1%;
     padding-bottom: 1%;
+}
+
+#lista {
+    font-family: arial;
+    font-size: 26px;
+    margin: 2%;
+}
+
+tbody button {
+    border: none;
+    background-color: orange;
+    color: black;
+    border-radius: 5px;
+    padding-top: 2px;
+    padding-left: 5px;
+    padding-bottom: 2px;
+    padding-right: 5px;
+    margin-left: 1%;
+    margin-right: 1%;
+}
+
+tbody button:hover {
+    background-color: rgb(201, 130, 0);
+    cursor: pointer;
 }

@@ -160,7 +160,7 @@
     $result = $conn->query($sql);
     if (isset($_SESSION["nome_usu_sessao"]) && ($_SESSION['cargo_usu_sessao']) === 'ADM') {
       echo '
-	<h1>Lista de usuários</h1>
+	<h1 id="lista">Lista de usuários</h1>
 	<table>
 		<thead>
 			<tr>
@@ -181,7 +181,6 @@
           } else {
             $linha = 2;
           }
-          echo $linha;
           echo "<tbody id='linha$linha'>
             <tr>
 							<form method='post'>

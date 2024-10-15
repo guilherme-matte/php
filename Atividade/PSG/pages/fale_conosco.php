@@ -82,7 +82,7 @@
             header("location: fale_conosco.php");
           }
           if (isset($_SESSION["nome_usu_sessao"]) && ($_SESSION['cargo_usu_sessao']) === 'ADM') {
-            echo "<a href='./pages/ADM.php'> Administração | </a>  ";
+            echo "<a href='./ADM.php'> Administração | </a>  ";
           }
           echo "<a href='fale_conosco.php?logout'>Logout</a> ";
 
