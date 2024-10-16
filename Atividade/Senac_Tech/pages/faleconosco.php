@@ -258,9 +258,9 @@ if (isset($_GET['logout'])) {
                             <div class="dadosTelefone">
                                 <label>Telefone:</label>
                                 <div id="formTelefone">
-                                    <input type="text" name="ddd" required placeholder="(00)" title="DDD" id="formDDD">
+                                    <input type="text" name="ddd" maxlength="3" required placeholder="(00)" title="DDD" id="formDDD">
 
-                                    <input type="tel" name="telefone" required placeholder="0 0000-0000"
+                                    <input type="tel" maxlength="9" name="telefone" required placeholder="0 0000-0000"
                                         title="Número de Telefone" id="formTel">
                                 </div>
                             </div>
@@ -269,8 +269,8 @@ if (isset($_GET['logout'])) {
                             <div class="dados">
                                 <label>Modalidade</label>
                                 <select name="modalidade" required>
-                                    <option value="presencial" selected>Curso presencial</option>
-                                    <option value="ead">Curso Técnico EAD</option>
+                                    <option value="Presencial" selected>Curso presencial</option>
+                                    <option value="EAD">Curso Técnico EAD</option>
                                 </select>
                             </div>
                         </fieldset>
@@ -278,10 +278,10 @@ if (isset($_GET['logout'])) {
                             <div class="dados">
                                 <label>Assunto:</label>
                                 <select name="assunto" required>
-                                    <option value="Solicitacoes" selected>Solicitações</option>
+                                    <option value="Solicitações" selected>Solicitações</option>
                                     <option value="Elogios">Elogios</option>
-                                    <option value="Sugestoes">Sugestões</option>
-                                    <option value="Reclamacoes">Reclamções</option>
+                                    <option value="Sugestões">Sugestões</option>
+                                    <option value="Reclamações">Reclamações</option>
                                 </select>
                             </div>
                         </fieldset>
@@ -296,7 +296,7 @@ if (isset($_GET['logout'])) {
                         <fieldset class="bloco">
                             <div class="dados">
                                 <label>CPF:</label>
-                                <input type="text" name="cpf" placeholder="000.000.000-00" required>
+                                <input type="text" maxlength="11" name="cpf" placeholder="Digite o CPF sem pontos e hífen" required>
                             </div>
                         </fieldset>
                         <button type="submit" class="botao">Enviar</button>

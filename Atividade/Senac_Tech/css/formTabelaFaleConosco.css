@@ -1,0 +1,127 @@
+#formulario {
+    text-align: center;
+}
+
+table {
+    width: 1600px;
+    margin: 0 auto;
+    font-size: 23px;
+    font-family: arial;
+    border: 2px solid orange;
+    margin-bottom: 5%;
+}
+
+#campos input {
+    font-family: arial;
+    font-size: 16px;
+    width: 90%;
+    height: 30px;
+    border-radius: 5px;
+    margin-top: 25%;
+
+}
+
+table td {
+    border: none;
+}
+
+#linha2 {
+    background-color: rgb(214, 214, 214);
+}
+
+#linha1 {
+    background-color: rgb(247, 246, 246);
+}
+
+table tr {
+    text-align: center;
+    border-bottom: 1px solid orange;
+}
+
+table thead tr td {
+    padding-top: 1%;
+    padding-bottom: 1%;
+}
+
+table tbody tr td {
+    height: 90px;
+}
+
+#lista {
+    font-family: arial;
+    font-size: 26px;
+    margin: 2%;
+}
+
+tbody button {
+    position: relative;
+    border: none;
+    top: -15%;
+    background-color: orange;
+    color: black;
+    border-radius: 5px;
+
+    width: 70px;
+    height: 50px;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+tbody button:hover {
+    background-color: rgb(201, 130, 0);
+    cursor: pointer;
+}
+
+#botoes {
+    height: 100%;
+    width: 100%;
+    padding-bottom: 5%;
+}
+
+
+
+#mensagemTd {
+    text-align: center;
+    font-family: arial;
+    font-size: 16px;
+    width: 90%;
+    height: 350px;
+    border-radius: 5px;
+
+
+}
+
+#mensagemInput {
+    display: grid;
+    position: relative;
+    left: 5%;
+    top: 2%;
+    width: 90%;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    text-align: start;
+    height: 250px;
+
+}
+
+#msg {
+    font-family: arial;
+    color: black;
+    font-size: 25px;
+    position: relative;
+    top: 3%
+}
+
+#tdBotao {
+
+    border-left: 1px solid orange;
+}
+
+#nenhumUsuario {
+    font-family: arial;
+    color: black;
+    font-size: 25px;
+    position: relative;
+    top: 25%;
+
+}

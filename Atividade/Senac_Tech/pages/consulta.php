@@ -22,6 +22,7 @@ if (isset($_GET['logout'])) {
     <link rel="stylesheet" type="text/css" href="../css/style.css" />
     <link rel="stylesheet" type="text/css" href="../css/menu.css" />
     <link rel="stylesheet" type="text/css" href="../css/consulta.css" />
+    <link rel="stylesheet" type="text/css" href="../css/formTabelaFaleConosco.css" />
 
     <link rel="stylesheet" type="text/css" href="../css/layout.css" />
 </head>
@@ -174,43 +175,32 @@ if (isset($_GET['logout'])) {
         <?php
         include '../php_senac_tech/conexao.php';
         $conexao = new Conexao();
-
+        if (isset($_POST['edit_user'])) {
+            $conexao->alterarFaleConosco($_POST['id'], $_POST['nomeCompleto'], $_POST['cpf'], $_POST['uf'], $_POST['cidade'], $_POST['email'], $_POST['telefone'], $_POST['modalidade'], $_POST['assunto'], $_POST['mensagem']);
+        }
+        if (isset($_POST["delete_user"])) {
+            $conexao->deletarFaleConosco($_POST['id']);
+        }
         $consulta = $conexao->consultaFaleConosco();
+
+
         echo '<div id="faleConosco" class="consulta">';
         echo '<p class="titulo">
                 Consulta Fale Conosco
                 </p>';
 
-        while ($linha = $consulta->fetch_assoc()) {
-            $id = $linha['id'];
-            $nomeCompleto = $linha['nomeCompleto'];
-            $uf = $linha['uf'];
-            $cidade = $linha['cidade'];
-            $email = $linha['email'];
-            $telefone = $linha['telefone'];
-            $modalidade = $linha['modalidade'];
-            $assunto = $linha['assunto'];
-            $mensagem = $linha['mensagem'];
-            $cpf = $linha['cpf'];
 
-            echo '<hr class="hr" />';
+        echo '<hr class="hr" />';
 
 
-            // if (isset($_POST['edit_user'])) {
-            //     $conexao->alterar($_POST['id'], $_POST['nomeCompleto'], $_POST['email'], strtoupper($_POST['cargo']));
-            // }
-            // if (isset($_POST["delete_user"])) {
-            //     $conexao->deletar($_POST['id']);
-            // }
-            // $result = $conexao->listar();
-            // if (isset($_SESSION["nome_usu_sessao"]) && ($_SESSION['cargo_usu_sessao']) == 'ADM') {
-            echo '
-	<h1 id="lista">Lista de usuários</h1>
+
+
+        echo '
 	<table>
 		<thead>
 			<tr>
 				<td>ID</td>
-				<td>Nome Completo</td>
+				<td>Nome</td>
                 <td>CPF</td>
                 <td>Estado</td>
                 <td>Cidade</td>
@@ -218,24 +208,40 @@ if (isset($_GET['logout'])) {
                 <td>Telefone</td>
                 <td>Modalidade</td>
                 <td>Assunto</td>
-                <td>Mensagem</td>
                 <td>Ação</td>
 
 			</tr>
 		</thead>';
+        $linhaTabela = 0;
+        if ($consulta->num_rows  < 1) {
+            echo "
+            <tbody>
+            <tr>
+            <td colspan='10'>
+               <p id='nenhumUsuario'> Nenhum usuário encontrado!</p>
+            </td>
+            </tbody>";
+        } else {
+            while ($linha = $consulta->fetch_assoc()) {
 
+                $id = $linha['id'];
+                $nomeCompleto = $linha['nomeCompleto'];
+                $uf = $linha['uf'];
+                $cidade = $linha['cidade'];
+                $email = $linha['email'];
+                $telefone = $linha['telefone'];
+                $modalidade = $linha['modalidade'];
+                $assunto = $linha['assunto'];
+                $mensagem = $linha['mensagem'];
+                $cpf = $linha['cpf'];
 
-
-            $linhaTabela = 0;
-
-            $linhaTabela + 1;
-            if ($linhaTabela % 2 == 0) {
-                $linhaTabela = 1;
-            } else {
-                $linhaTabela = 2;
-            }
-            echo "<tbody id='linha$linhaTabela'>
-                        <tr>
+                if ($linhaTabela % 2 == 0) {
+                    $linhaTabela = 1;
+                } else {
+                    $linhaTabela = 2;
+                }
+                echo "<tbody id='linha$linhaTabela'>
+                        <tr id='campos'>
 							<form method='post'>
 								<td >
 								<input type='hidden' name='id' 
@@ -269,12 +275,14 @@ if (isset($_GET['logout'])) {
 								<input type='text' name='modalidade' 
 								value='" . $linha["modalidade"] . "'/>
 								</td>
-                                <td id='mensagem'>
+                                <td>
 								<input type='text' name='assunto' 
-								value='" . $linha["mensagem"] . "'/>
+								value='" . $linha["assunto"] . "'/>
 								</td>
+                                
 
-								<td id='botoes'>
+								<td  id=tdBotao>
+                                <div id='botoes'>
 								<button type='submit' name='edit_user'>
 									Editar
 								</button>
@@ -283,32 +291,29 @@ if (isset($_GET['logout'])) {
 								que deseja excluir este usuário?\")'>
 									Excluir
 								</button>
+                                </div>
 								</td>
-							</form>					
-						</tr>";
-
-
-
-
-            echo '
+											
+						    </tr>
+                            <tr>
+                            <td colspan='10' id='mensagemTd'>
+                            <label id='msg'>Mensagem</label>
+								<input type='text' id='mensagemInput' name='mensagem' 
+								value='" . $linha["mensagem"] . "'/>
+								</td></tr></form>	
+                        ";
+            }
+        }
+        echo '
 		</tbody>	
 	</table>';
 
 
 
-            // echo '<p class="pId">Chamado ' . $id . ' </p>';
-            // echo '<p class="pLeft">- Nome Completo: ' . $nomeCompleto . ' -</p>';
-            // echo '<p class="pLeft">- CPF: ' . $cpf . ' -</p>';
-            // echo '<p class="pLeft">- Email: ' . $email . ' -</p>';
-            // echo '<p class="pLeft">- Telefone: ' . $telefone . ' -</p>';
-            // echo '<p class="pLeft">- UF: ' . $uf . '-</p>';
-            // echo '<p class="pLeft">- Municipio: ' . $cidade . ' -</p>';
-            // echo '<p class="pLeft">- Modalidade: ' . $modalidade . ' -</p>';
-            // echo '<p class="pLeft">- Assunto: ' . $assunto . ' -</p>';
-            // echo '<p class="pLeft">- Mensagem: </p>';
-            // echo '<p class="pMensagem">' . $mensagem . '</p>';
-        }
+
+
         echo '</div>';
+
         ?>
         <!-- Fim do Corpo da pagina -->
         <footer id="rodape">

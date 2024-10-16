@@ -8,7 +8,7 @@
   <link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon" />
   <link rel="stylesheet" type="text/css" href="../css/reset.css" />
   <link rel="stylesheet" type="text/css" href="../css/estilo.css" />
-  <link rel="stylesheet" type="text/css" href="../css/formAdmin.css" />
+  <link rel="stylesheet" type="text/css" href="../css/formTabela.css" />
 
 </head>
 
@@ -92,8 +92,8 @@
       $sql_update = "UPDATE meu_senac SET nomeCompleto='$nomeCompleto',email='$email',cargo='$cargo' WHERE id = $id";
       if ($conn->query($sql_update) === true) {
         echo "<script>
-  alert('Usuário editado com sucesso!');
-  </script>";
+          alert('Usuário editado com sucesso!');
+        </script>";
       } else {
         echo "<script>
 			alert('Não foi possivel alterar usuário!');

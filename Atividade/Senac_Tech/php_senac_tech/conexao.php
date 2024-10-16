@@ -45,7 +45,36 @@ class conexao
             echo $this->conn->error;
         }
     }
+    public function deletarFaleConosco($id) //metodo para deletar chamado na tabela Fale Conosco
+    {
+        $sql_delete = "DELETE FROM fale_conosco WHERE id = $id";
+        if ($this->conn->query($sql_delete) === true) {
+            echo "<script>
+            alert('Usuário excluído com sucesso!');
+            </script>";
+        } else {
+            echo "<script>
+            alert('Não foi possível excluir usuário! ');
+            </script>";
+            echo ($this->conn->error);
+        }
+    }
+    public function alterarFaleConosco($id, $nomeCompleto, $cpf, $uf, $cidade, $email, $telefone, $modalidade, $assunto, $mensagem)
+    {
 
+        $sql_update = "UPDATE fale_conosco SET nomeCompleto='$nomeCompleto',uf='$uf',cidade='$cidade',email='$email',telefone='$telefone',modalidade='$modalidade',assunto='$assunto',mensagem='$mensagem',cpf='$cpf'";
+
+        if ($this->conn->query($sql_update) === true) {
+            echo "<script>
+            alert('Usuário editado com sucesso!');
+            </script>";
+        } else {
+            echo "<script>
+            alert('Não foi possivel alterar usuário!');
+            </script>";
+            echo $this->conn->error;
+        }
+    }
     public function alterar($id, $nomeCompleto, $email, $cargo) //metodo para alterar usuario na tabela de administração
     {
         $sql_update = "UPDATE meu_senac SET nomeCompleto='$nomeCompleto',email='$email',cargo='$cargo' WHERE id = $id";
@@ -53,7 +82,6 @@ class conexao
             echo "<script>
             alert('Usuário editado com sucesso!');
             </script>";
-            die();
         } else {
             echo "<script>
             alert('Não foi possivel alterar usuário!');
@@ -76,7 +104,7 @@ class conexao
                 . "</script>";
             die();
         } else {
-            echo "Erro: " . sql . "<br>" . $this->conn->error;
+            echo "Erro: <br>" . $this->conn->error;
             echo '<br>';
             echo 'Cadastro nao realizado';
         }
@@ -98,7 +126,7 @@ class conexao
                 . "</script>";
             die();
         } else {
-            echo "Erro: " . sql . "<br>" . $this->conn->error;
+            echo "Erro: "  . $this->conn->error;
             echo '<br>';
             echo 'Cadastro nao realizado';
         }
@@ -110,12 +138,11 @@ class conexao
         $sql = "select * from fale_conosco";
         $result = $this->conn->query($sql)
             or die("Falha na consulta " . $this->conn->error);
-        $this->conn->close();
         if ($result == true) {
             return $result;
         } else {
+
             die("Falha na consulta");
         }
-
     }
 }

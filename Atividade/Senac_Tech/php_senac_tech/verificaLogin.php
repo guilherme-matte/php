@@ -12,12 +12,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             session_start();
             $nomeFormatado = explode(" ", $row['nomeCompleto']);
 
-
-
+if(count($nomeFormatado) > 1) {
             $_SESSION['nome_usu_sessao'] = $nomeFormatado[0] . " " . $nomeFormatado[count($nomeFormatado) - 1];
-            $_SESSION['cargo_usu_sessao'] = $row['cargo'];
-            header("location: ../index.php");
-            exit();
+           
+}else{
+            $_SESSION['nome_usu_sessao'] = $nomeFormatado[0];
+
+}
+$_SESSION['cargo_usu_sessao'] = $row['cargo'];
+header("location: ../index.php");
+exit();
         } else {
             echo "<script language='javascript' type='text/javascript'>
 			 	alert('Não foi possível realizar o login! Senha incorreta!');
@@ -30,5 +34,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		 		window.location.href='../pages/login.php';
 		 		</script>";
     }
-
 }

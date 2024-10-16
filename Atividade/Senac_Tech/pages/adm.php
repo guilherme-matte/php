@@ -22,7 +22,7 @@ if (isset($_GET['logout'])) {
     <link rel="stylesheet" type="text/css" href="../css/style.css" />
     <link rel="stylesheet" type="text/css" href="../css/menu.css" />
     <link rel="stylesheet" type="text/css" href="../css/layout.css" />
-    <link rel="stylesheet" type="text/css" href="../css/formAdmin.css" />
+    <link rel="stylesheet" type="text/css" href="../css/formTabela.css" />
 
 </head>
 <!-- -------------------------------- -->
@@ -239,7 +239,11 @@ if (isset($_GET['logout'])) {
 								</button>
 								</td>
 							</form>					
-						</tr>";
+						</tr>
+                        
+                        "
+                        
+                        ;
                     }
                 } else {
                     echo "<tr>
