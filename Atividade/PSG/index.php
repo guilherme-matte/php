@@ -76,7 +76,9 @@ session_start();
         <a href="./pages/inscrever.php">Como se inscrever</a>|
         <a href="./pages/consulta.php">Consulta de vagas</a>|
         <a href="./pages/perguntas.php">Perguntas frequentes</a>|
-        <a href="./pages/fale_conosco.php">Fale Conosco</a>
+        <a href="./pages/fale_conosco.php">Fale Conosco</a>|
+        <a href="../Senac_Tech/index.php">Senac Tech</a>
+
 
       </h1>
       <div id="divUsuarioLogado">

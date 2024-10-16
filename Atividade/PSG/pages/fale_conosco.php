@@ -67,7 +67,9 @@
         <a href="./inscrever.php">Como se inscrever</a>|
         <a href="./consulta.php">Consulta de vagas</a>|
         <a href="./perguntas.php">Perguntas frequentes</a>|
-        <a href="./fale_conosco.php">Fale Conosco</a>
+        <a href="./fale_conosco.php">Fale Conosco</a>|
+        <a href="../../Senac_Tech/index.php">Senac Tech</a>
+
 
       </h1>
       <div id="divUsuarioLogado">

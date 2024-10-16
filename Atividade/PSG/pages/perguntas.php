@@ -97,7 +97,9 @@
         <a href="./inscrever.php">Como se inscrever</a>|
         <a href="./consulta.php">Consulta de vagas</a>|
         <a href="./perguntas.php">Perguntas frequentes</a>|
-        <a href="./fale_conosco.php">Fale Conosco</a>
+        <a href="./fale_conosco.php">Fale Conosco</a>|
+		<a href="../../Senac_Tech/index.php">Senac Tech</a>
+
 
       </h1>
       <div id="divUsuarioLogado">
@@ -112,7 +114,7 @@
             header("location: perguntas.php");
           }
           if (isset($_SESSION["nome_usu_sessao"]) && ($_SESSION['cargo_usu_sessao']) === 'ADM') {
-            echo "<a href='./pages/ADM.php'> Administração | </a>  ";
+            echo "<a href='ADM.php'> Administração | </a>  ";
           }
           echo "<a href='perguntas.php?logout'>Logout</a> ";
 
