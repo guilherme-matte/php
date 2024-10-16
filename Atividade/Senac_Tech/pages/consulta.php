@@ -3,7 +3,7 @@ session_start();
 ob_start();
 if (isset($_GET['logout'])) {
     session_destroy();
-    
+
     header('Location: ../index.php');
     exit();
 }
@@ -66,7 +66,7 @@ if (isset($_GET['logout'])) {
                 <input type="checkbox" id="bt_menu" />
                 <label for="bt_menu">&#9776;</label>
                 <nav class="menu">
-                    
+
                     <ul>
                         <li>
 
@@ -133,7 +133,7 @@ if (isset($_GET['logout'])) {
 
                             if (isset($_SESSION["nome_usu_sessao"])) {
                                 echo "<p id='user'> " . $_SESSION['nome_usu_sessao'] . "</p>";
-                                
+
                                 if (isset($_SESSION['cargo_usu_sessao']) && $_SESSION['cargo_usu_sessao'] == 'ADM') {
                                     echo '
                                     <ul>
@@ -169,7 +169,7 @@ if (isset($_GET['logout'])) {
 
         </header>
         <!-- Corpo da pagina -->
-        
+
 
         <?php
         include '../php_senac_tech/conexao.php';
@@ -195,17 +195,118 @@ if (isset($_GET['logout'])) {
 
             echo '<hr class="hr" />';
 
-            echo '<p class="pId">Chamado ' . $id . ' </p>';
-            echo '<p class="pLeft">- Nome Completo: ' . $nomeCompleto . ' -</p>';
-            echo '<p class="pLeft">- CPF: ' . $cpf . ' -</p>';
-            echo '<p class="pLeft">- Email: ' . $email . ' -</p>';
-            echo '<p class="pLeft">- Telefone: ' . $telefone . ' -</p>';
-            echo '<p class="pLeft">- UF: ' . $uf . '-</p>';
-            echo '<p class="pLeft">- Municipio: ' . $cidade . ' -</p>';
-            echo '<p class="pLeft">- Modalidade: ' . $modalidade . ' -</p>';
-            echo '<p class="pLeft">- Assunto: ' . $assunto . ' -</p>';
-            echo '<p class="pLeft">- Mensagem: </p>';
-            echo '<p class="pMensagem">' . $mensagem . '</p>';
+
+            // if (isset($_POST['edit_user'])) {
+            //     $conexao->alterar($_POST['id'], $_POST['nomeCompleto'], $_POST['email'], strtoupper($_POST['cargo']));
+            // }
+            // if (isset($_POST["delete_user"])) {
+            //     $conexao->deletar($_POST['id']);
+            // }
+            // $result = $conexao->listar();
+            // if (isset($_SESSION["nome_usu_sessao"]) && ($_SESSION['cargo_usu_sessao']) == 'ADM') {
+            echo '
+	<h1 id="lista">Lista de usuários</h1>
+	<table>
+		<thead>
+			<tr>
+				<td>ID</td>
+				<td>Nome Completo</td>
+                <td>CPF</td>
+                <td>Estado</td>
+                <td>Cidade</td>
+				<td>Email</td>
+                <td>Telefone</td>
+                <td>Modalidade</td>
+                <td>Assunto</td>
+                <td>Mensagem</td>
+                <td>Ação</td>
+
+			</tr>
+		</thead>';
+
+
+
+            $linhaTabela = 0;
+
+            $linhaTabela + 1;
+            if ($linhaTabela % 2 == 0) {
+                $linhaTabela = 1;
+            } else {
+                $linhaTabela = 2;
+            }
+            echo "<tbody id='linha$linhaTabela'>
+                        <tr>
+							<form method='post'>
+								<td >
+								<input type='hidden' name='id' 
+								value='" . $linha["id"] . "'/>
+								" . $linha["id"] . "</td>
+								<td>
+								<input type='text' name='nomeCompleto' 
+								value='" . $linha["nomeCompleto"] . "'/>
+								</td>
+                                <td>
+								<input type='text' name='cpf' 
+								value='" . $linha["cpf"] . "'/>
+								</td>
+                                <td>
+								<input type='text' name='uf' 
+								value='" . $linha["uf"] . "'/>
+								</td>
+								<td>
+								<input type='text' name='cidade' 
+								value='" . $linha["cidade"] . "'/>
+								</td>
+								<td>
+								<input type='text' name='email' 
+								value='" . $linha["email"] . "'/>
+								</td>
+                                <td>
+								<input type='text' name='telefone' 
+								value='" . $linha["telefone"] . "'/>
+								</td>
+                                <td>
+								<input type='text' name='modalidade' 
+								value='" . $linha["modalidade"] . "'/>
+								</td>
+                                <td id='mensagem'>
+								<input type='text' name='assunto' 
+								value='" . $linha["mensagem"] . "'/>
+								</td>
+
+								<td id='botoes'>
+								<button type='submit' name='edit_user'>
+									Editar
+								</button>
+								<button type='submit' name='delete_user' 
+								onclick='return confirm(\"Tem certeza 
+								que deseja excluir este usuário?\")'>
+									Excluir
+								</button>
+								</td>
+							</form>					
+						</tr>";
+
+
+
+
+            echo '
+		</tbody>	
+	</table>';
+
+
+
+            // echo '<p class="pId">Chamado ' . $id . ' </p>';
+            // echo '<p class="pLeft">- Nome Completo: ' . $nomeCompleto . ' -</p>';
+            // echo '<p class="pLeft">- CPF: ' . $cpf . ' -</p>';
+            // echo '<p class="pLeft">- Email: ' . $email . ' -</p>';
+            // echo '<p class="pLeft">- Telefone: ' . $telefone . ' -</p>';
+            // echo '<p class="pLeft">- UF: ' . $uf . '-</p>';
+            // echo '<p class="pLeft">- Municipio: ' . $cidade . ' -</p>';
+            // echo '<p class="pLeft">- Modalidade: ' . $modalidade . ' -</p>';
+            // echo '<p class="pLeft">- Assunto: ' . $assunto . ' -</p>';
+            // echo '<p class="pLeft">- Mensagem: </p>';
+            // echo '<p class="pMensagem">' . $mensagem . '</p>';
         }
         echo '</div>';
         ?>
