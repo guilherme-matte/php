@@ -121,7 +121,7 @@ if (isset($_GET['logout'])) {
                             <a href="../../PSG/index.php">PSG</a>
                         </li>
                         <?php
-                        if (isset($_SESSION['cargo_usu_sessao']) == 'ADM') {
+                        if (isset($_SESSION['cargo_usu_sessao']) && $_SESSION['cargo_usu_sessao'] == 'ADM') {
                             echo '
                             <li>
                                 <a href="consulta.php">Consultar</a>
@@ -135,7 +135,7 @@ if (isset($_GET['logout'])) {
 
                                 echo "<p id='user'> " . $_SESSION['nome_usu_sessao'] . "</p>";
 
-                                if (isset($_SESSION["cargo_usu_sessao"]) == 'ADM') {
+                                if (isset($_SESSION['cargo_usu_sessao']) && $_SESSION['cargo_usu_sessao'] == 'ADM') {
                                     echo '
                                     <ul>
                                         <li>
@@ -185,7 +185,7 @@ if (isset($_GET['logout'])) {
                 $conexao->deletar($_POST['id']);
             }
             $result = $conexao->listar();
-            if (isset($_SESSION["nome_usu_sessao"]) && ($_SESSION['cargo_usu_sessao']) === 'ADM') {
+            if (isset($_SESSION["nome_usu_sessao"]) && ($_SESSION['cargo_usu_sessao']) == 'ADM') {
                 echo '
 	<h1 id="lista">Lista de usuários</h1>
 	<table>

@@ -24,14 +24,14 @@ class conexao
         $this->conn->close();
         return $result;
     }
-    public function listar()
+    public function listar() //metodo para listar usuario na tabela de administração
     {
         $sql = "SELECT id,nomeCompleto ,email,cargo FROM meu_senac";
         $result = $this->conn->query($sql);
         $this->conn->close();
         return $result;
     }
-    public function deletar($id)
+    public function deletar($id) //metodo para deletar usuario na tabela de administração
     {
         $sql_delete = "DELETE FROM meu_senac WHERE id = $id";
         if ($this->conn->query($sql_delete) === true) {
@@ -45,13 +45,15 @@ class conexao
             echo $this->conn->error;
         }
     }
-    public function alterar($id, $nomeCompleto, $email, $cargo)
+
+    public function alterar($id, $nomeCompleto, $email, $cargo) //metodo para alterar usuario na tabela de administração
     {
         $sql_update = "UPDATE meu_senac SET nomeCompleto='$nomeCompleto',email='$email',cargo='$cargo' WHERE id = $id";
         if ($this->conn->query($sql_update) === true) {
             echo "<script>
             alert('Usuário editado com sucesso!');
             </script>";
+            die();
         } else {
             echo "<script>
             alert('Não foi possivel alterar usuário!');
@@ -59,6 +61,7 @@ class conexao
             echo $this->conn->error;
         }
     }
+
     public function cadastroFaleConosco($nomeCompleto, $uf, $cidade, $email, $telefone, $modalidade, $assunto, $mensagem, $cpf)
     {
         $sql = "insert into fale_conosco values (null,?,?,?,?,?,?,?,?,?)";
@@ -107,12 +110,12 @@ class conexao
         $sql = "select * from fale_conosco";
         $result = $this->conn->query($sql)
             or die("Falha na consulta " . $this->conn->error);
-            $this->conn->close();
+        $this->conn->close();
         if ($result == true) {
             return $result;
         } else {
             die("Falha na consulta");
         }
-        
+
     }
 }

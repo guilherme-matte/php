@@ -109,7 +109,7 @@
                             <a href="../../PSG/index.php">PSG</a>
                         </li>
                         <?php
-                        if (isset($_SESSION['cargo_usu_sessao']) == 'ADM') {
+                        if (isset($_SESSION['cargo_usu_sessao']) && $_SESSION['cargo_usu_sessao'] == 'ADM') {
                             echo '
                             <li>
                                 <a href="consulta.php">Consultar</a>

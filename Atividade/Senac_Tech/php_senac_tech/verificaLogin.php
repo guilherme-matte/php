@@ -21,13 +21,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         } else {
             echo "<script language='javascript' type='text/javascript'>
 			 	alert('Não foi possível realizar o login! Senha incorreta!');
-			 	window.location.href='../pages/login.html';
+			 	window.location.href='../pages/login.php';
 			 	</script>";
         }
     } else {
         echo "<script language='javascript' type='text/javascript'>
 		 		alert('Não foi possível realizar o login! Usuário ou senha incorreta!');
-		 		window.location.href='../pages/login.html';
+		 		window.location.href='../pages/login.php';
 		 		</script>";
     }
 

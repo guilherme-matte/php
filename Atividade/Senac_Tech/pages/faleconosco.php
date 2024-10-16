@@ -120,16 +120,21 @@ if (isset($_GET['logout'])) {
 
                             <a href="../../PSG/index.php">PSG</a>
                         </li>
-                        <li>
-                            <a href="consulta.php">Consultar</a>
-                        </li>
+                         <?php
+                        if (isset($_SESSION['cargo_usu_sessao']) && $_SESSION['cargo_usu_sessao'] == 'ADM') {
+                            echo '
+                            <li>
+                                <a href="consulta.php">Consultar</a>
+                            </li>';
+                        }
+                        ?>
                         <li>
                             <?php
 
                             if (isset($_SESSION["nome_usu_sessao"])) {
                                 echo "<p id='user'> " . $_SESSION['nome_usu_sessao'] . "</p>";
                                 
-                                if (isset($_SESSION["cargo_usu_sessao"]) == 'ADM') {
+                                if (isset($_SESSION['cargo_usu_sessao']) && $_SESSION['cargo_usu_sessao'] == 'ADM') {
                                     echo '
                                     <ul>
                                         <li>

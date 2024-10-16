@@ -15,69 +15,29 @@
 <body>
   <p class="p1">
     <a href="../index.html">
-      <img
-        src="../img/senac_logo_new.png"
-        alt="Logotipo SenacRS"
-        title="Logotipo SenacRS" />
+      <img src="../img/senac_logo_new.png" alt="Logotipo SenacRS" title="Logotipo SenacRS" />
     </a>
   </p>
   <p class="p1">
-    <a
-      class="linkRedes"
-      href="https://www.facebook.com/senacrsoficial"
-      target="blank">
-      <img
-        class="imgRedes"
-        src="../img/icon_facebook.png"
-        alt="Rede social Facebook"
-        title="Rede social Facebook" />
+    <a class="linkRedes" href="https://www.facebook.com/senacrsoficial" target="blank">
+      <img class="imgRedes" src="../img/icon_facebook.png" alt="Rede social Facebook" title="Rede social Facebook" />
     </a>
-    <a
-      class="linkRedes"
-      href="https://www.instagram.com/senacrs/"
-      target="blank">
-      <img
-        class="imgRedes"
-        src="../img/icon_instagram.png"
-        alt="Rede social Instagram"
-        title="Rede social Instagram" />
+    <a class="linkRedes" href="https://www.instagram.com/senacrs/" target="blank">
+      <img class="imgRedes" src="../img/icon_instagram.png" alt="Rede social Instagram" title="Rede social Instagram" />
     </a>
     <a class="linkRedes" href="https://x.com/senacrs" target="blank">
-      <img
-        class="imgRedes"
-        src="../img/icon_twitter.png"
-        alt="Rede social X-Twitter"
-        title="Rede social X-Twitter" />
+      <img class="imgRedes" src="../img/icon_twitter.png" alt="Rede social X-Twitter" title="Rede social X-Twitter" />
     </a>
-    <a
-      class="linkRedes"
+    <a class="linkRedes"
       href="https://www.linkedin.com/authwall?trk=gf&trkInfo=AQGjNOZytbRLdwAAAZCDGdKQorc6a1HY6F3qjme8z6BVRLg3Kf_kVJ6e2WdIWIQaf8cRxOiTYKMz4bfZdnAKle3AQRelQP4NsP7sHBP37X7E5DOoOr4lQF2mPZUvO0avML2F1HE=&original_referer=https://www.senacrs.com.br/&sessionRedirect=https%3A%2F%2Fbr.linkedin.com%2Fschool%2Fsenac-rs%2F"
       target="blank">
-      <img
-        class="imgRedes"
-        src="../img/icon_linkedin.png"
-        alt="Rede social Linkedin"
-        title="Rede social Linkedin" />
+      <img class="imgRedes" src="../img/icon_linkedin.png" alt="Rede social Linkedin" title="Rede social Linkedin" />
     </a>
-    <a
-      class="linkRedes"
-      href="https://www.youtube.com/senacrsoficial"
-      target="blank">
-      <img
-        class="imgRedes"
-        src="../img/icon_youtube.png"
-        alt="Canal Youtube"
-        title="Canal Youtube" />
+    <a class="linkRedes" href="https://www.youtube.com/senacrsoficial" target="blank">
+      <img class="imgRedes" src="../img/icon_youtube.png" alt="Canal Youtube" title="Canal Youtube" />
     </a>
-    <a
-      class="linkRedes"
-      href="https://open.spotify.com/user/oe434380olmwip17xaxyjb0bc"
-      target="blank">
-      <img
-        class="imgRedes"
-        src="../img/icon_spotify.png"
-        alt="Canal Spotify"
-        title="Canal Spotify" />
+    <a class="linkRedes" href="https://open.spotify.com/user/oe434380olmwip17xaxyjb0bc" target="blank">
+      <img class="imgRedes" src="../img/icon_spotify.png" alt="Canal Spotify" title="Canal Spotify" />
     </a>
   </p>
   <hr class="hr1" />
@@ -104,7 +64,7 @@
           session_destroy();
           header("location: inscrever.php");
         }
-        if (isset($_SESSION["nome_usu_sessao"]) && ($_SESSION['cargo_usu_sessao']) === 'ADM') {
+        if (isset($_SESSION["nome_usu_sessao"]) && ($_SESSION['cargo_usu_sessao']) == 'ADM') {
           echo "<a href='./ADM.php'> Administração | </a>  ";
         }
         echo "<a href='inscrever.php?logout'>Logout</a> ";
@@ -119,11 +79,7 @@
     </div>
   </div>
   <hr id="hr2" />
-  <img
-    id="imgBanner"
-    src="../img/banner_programa.jpg"
-    alt="Banner Programa"
-    title="Banner programa Senac gratuidade" />
+  <img id="imgBanner" src="../img/banner_programa.jpg" alt="Banner Programa" title="Banner programa Senac gratuidade" />
   <div id="formulario">
     <?php
     include '../php/conexaoLogin.php';
@@ -161,7 +117,7 @@
 
     $sql = "SELECT id, nomeCompleto,email,cargo FROM meu_senac";
     $result = $conn->query($sql);
-    if (isset($_SESSION["nome_usu_sessao"]) && ($_SESSION['cargo_usu_sessao']) === 'ADM') {
+    if (isset($_SESSION["nome_usu_sessao"]) && ($_SESSION['cargo_usu_sessao']) == 'ADM') {
       echo '
 	<h1 id="lista">Lista de usuários</h1>
 	<table>
@@ -169,6 +125,7 @@
 			<tr>
 				<td>ID</td>
 				<td>Login</td>
+        <td>Email</td>
 				<td>Cargo</td>
 				<td>Ação</td>
 			</tr>
@@ -246,68 +203,28 @@
   </h2>
   <hr class="hr1" />
   <p class="p1">
-    <img
-      src="../img/senac_logo_new.png"
-      alt="Logotipo Senac"
-      title="logotipo Senac" />
+    <img src="../img/senac_logo_new.png" alt="Logotipo Senac" title="logotipo Senac" />
   </p>
   <p class="p1">
-    <a
-      class="linkRedes"
-      href="https://www.facebook.com/senacrsoficial"
-      target="blank">
-      <img
-        class="imgRedes"
-        src="../img/icon_facebook.png"
-        alt="Rede social Facebook"
-        title="Rede social Facebook" />
+    <a class="linkRedes" href="https://www.facebook.com/senacrsoficial" target="blank">
+      <img class="imgRedes" src="../img/icon_facebook.png" alt="Rede social Facebook" title="Rede social Facebook" />
     </a>
-    <a
-      class="linkRedes"
-      href="https://www.instagram.com/senacrs/"
-      target="blank">
-      <img
-        class="imgRedes"
-        src="../img/icon_instagram.png"
-        alt="Rede social Instagram"
-        title="Rede social Instagram" />
+    <a class="linkRedes" href="https://www.instagram.com/senacrs/" target="blank">
+      <img class="imgRedes" src="../img/icon_instagram.png" alt="Rede social Instagram" title="Rede social Instagram" />
     </a>
     <a class="linkRedes" href="https://x.com/senacrs" target="blank">
-      <img
-        class="imgRedes"
-        src="../img/icon_twitter.png"
-        alt="Rede social X-Twitter"
-        title="Rede social X-Twitter" />
+      <img class="imgRedes" src="../img/icon_twitter.png" alt="Rede social X-Twitter" title="Rede social X-Twitter" />
     </a>
-    <a
-      class="linkRedes"
+    <a class="linkRedes"
       href="https://www.linkedin.com/authwall?trk=gf&trkInfo=AQGjNOZytbRLdwAAAZCDGdKQorc6a1HY6F3qjme8z6BVRLg3Kf_kVJ6e2WdIWIQaf8cRxOiTYKMz4bfZdnAKle3AQRelQP4NsP7sHBP37X7E5DOoOr4lQF2mPZUvO0avML2F1HE=&original_referer=https://www.senacrs.com.br/&sessionRedirect=https%3A%2F%2Fbr.linkedin.com%2Fschool%2Fsenac-rs%2F"
       target="blank">
-      <img
-        class="imgRedes"
-        src="../img/icon_linkedin.png"
-        alt="Rede social Linkedin"
-        title="Rede social Linkedin" />
+      <img class="imgRedes" src="../img/icon_linkedin.png" alt="Rede social Linkedin" title="Rede social Linkedin" />
     </a>
-    <a
-      class="linkRedes"
-      href="https://www.youtube.com/senacrsoficial"
-      target="blank">
-      <img
-        class="imgRedes"
-        src="../img/icon_youtube.png"
-        alt="Canal Youtube"
-        title="Canal Youtube" />
+    <a class="linkRedes" href="https://www.youtube.com/senacrsoficial" target="blank">
+      <img class="imgRedes" src="../img/icon_youtube.png" alt="Canal Youtube" title="Canal Youtube" />
     </a>
-    <a
-      class="linkRedes"
-      href="https://open.spotify.com/user/oe434380olmwip17xaxyjb0bc"
-      target="blank">
-      <img
-        class="imgRedes"
-        src="../img/icon_spotify.png"
-        alt="Canal Spotify"
-        title="Canal Spotify" />
+    <a class="linkRedes" href="https://open.spotify.com/user/oe434380olmwip17xaxyjb0bc" target="blank">
+      <img class="imgRedes" src="../img/icon_spotify.png" alt="Canal Spotify" title="Canal Spotify" />
     </a>
   </p>
   <p id="pDireitos">© Todos os Direitos Reservados - 2024.</p>
