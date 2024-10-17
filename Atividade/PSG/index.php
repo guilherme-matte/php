@@ -78,7 +78,7 @@ session_start();
         <a href="./pages/perguntas.php">Perguntas frequentes</a>|
         <a href="./pages/fale_conosco.php">Fale Conosco</a>|
         <a href="../Senac_Tech/index.php">Senac Tech</a>
-
+        <a href="./pages/consultaFaleConosco.php">fale_conosco</a>
 
       </h1>
       <div id="divUsuarioLogado">
