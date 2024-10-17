@@ -31,6 +31,32 @@ class conexao
         $this->conn->close();
         return $result;
     }
+    public function deletarFaleConoscoPSG($id){
+        $sql_delete = "DELETE FROM fale_conosco_psg WHERE id = $id";
+        if ($this->conn->query($sql_delete) === true) {
+            echo "<script>
+    alert('Usuário excluído com sucesso!');
+    </script>";
+        } else {
+            echo "<script>
+    alert('Não foi possível excluir usuário! ');
+    </script>";
+            echo $this->conn->error;
+        }
+    }
+    public function deletarFaleConosco($id){
+        $sql_delete = "DELETE FROM fale_conosco WHERE id = $id";
+        if ($this->conn->query($sql_delete) === true) {
+            echo "<script>
+    alert('Usuário excluído com sucesso!');
+    </script>";
+        } else {
+            echo "<script>
+    alert('Não foi possível excluir usuário! ');
+    </script>";
+            echo $this->conn->error;
+        }
+    }
     public function deletar($id) //metodo para deletar usuario na tabela de administração
     {
         $sql_delete = "DELETE FROM meu_senac WHERE id = $id";
@@ -82,6 +108,7 @@ class conexao
             echo "<script>
             alert('Usuário editado com sucesso!');
             </script>";
+            die();
         } else {
             echo "<script>
             alert('Não foi possivel alterar usuário!');
@@ -101,6 +128,27 @@ class conexao
             echo "<script language='javascript' type='text/javascript'>"
                 . "alert('Mensagem enviada com sucesso!');"
                 . "window.location.href='../pages/faleconosco.php'"
+                . "</script>";
+            die();
+        } else {
+            echo "Erro: <br>" . $this->conn->error;
+            echo '<br>';
+            echo 'Cadastro nao realizado';
+        }
+        $stmt->close();
+        $this->conn->close();
+    }
+    public function cadastroFaleConoscoPSG( $nome, $sobrenome, $dataNasc, $endereco, $bairro, $cidade, $estado, $sexo,$fone,$email,$usuario,$senha,$obs)
+    {
+        $sql = "insert into fale_conosco_psg values (null,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        $stmt = $this->conn->prepare($sql);
+
+        $stmt->bind_param('sssssssssssss', $nome, $sobrenome, $dataNasc, $endereco, $bairro, $cidade, $estado, $sexo,$fone,$email,$usuario,$senha,$obs);
+        $stmt->execute();
+        if ($stmt == true) {
+            echo "<script language='javascript' type='text/javascript'>"
+                . "alert('Mensagem enviada com sucesso!');"
+                . "window.location.href='../pages/fale_conosco.php'"
                 . "</script>";
             die();
         } else {
@@ -138,6 +186,7 @@ class conexao
         $sql = "select * from fale_conosco";
         $result = $this->conn->query($sql)
             or die("Falha na consulta " . $this->conn->error);
+        $this->conn->close();
         if ($result == true) {
             return $result;
         } else {

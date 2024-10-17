@@ -33,17 +33,6 @@ $pessoa->setSenha($senha);
 //----------------------------------------
 $pessoa->setMensagem($obs);
 
-$sql = "insert into fale_conosco_psg values (null,'" . $pessoa->getNome() . "','" . $pessoa->getSobrenome() . "','" . $pessoa->getDataNasc() . "','" . $pessoa->getEndereco() . "','" . $pessoa->getBairro() . "','" . $pessoa->getCidade() . "','" . $pessoa->getEstado() . "','" . $pessoa->getSexo() . "','" . $pessoa->getFone() . "','" . $pessoa->getEmail() . "','" . $pessoa->getUsuario() . "','" . $pessoa->getSenha() . "','" . $pessoa->getMensagem() . "')";
-var_dump($sql);
-if ($conn->query($sql) === true) {
-    echo "<script language='javascript' type='text/javascript'>"
-    . "alert('Mensagem enviada com sucesso!');"
-    . "window.location.href='../pages/fale_conosco.html'"
-    . "</script>";
-    die();
-} else {
-    echo "Erro: " . sql . "<br>" . $conn->error;
-    echo '<br>';
-    echo 'Cadastro nao realizado';
-}
-$conn->close();
+$conexao = new conexao();
+
+$conexao->cadastroFaleConoscoPSG($pessoa->getNome(),$pessoa->getSobrenome(),$pessoa->getDataNasc(),$pessoa->getEndereco(),$pessoa->getBairro(),$pessoa->getCidade(),$pessoa->getEstado(),$pessoa->getSexo(),$pessoa->getFone(),$pessoa->getEmail(),$pessoa->getUsuario(),$pessoa->getSenha(),$pessoa->getMensagem());
