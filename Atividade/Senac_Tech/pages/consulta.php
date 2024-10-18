@@ -320,6 +320,7 @@ if (isset($_GET['logout'])) {
             // echo '<p class="pLeft">- Mensagem: </p>';
             // echo '<p class="pMensagem">' . $mensagem . '</p>';
         }
+    }
         echo '</div>';
 
         ?>

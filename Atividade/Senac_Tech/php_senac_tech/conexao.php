@@ -44,19 +44,7 @@ class conexao
             echo $this->conn->error;
         }
     }
-    public function deletarFaleConosco($id){
-        $sql_delete = "DELETE FROM fale_conosco WHERE id = $id";
-        if ($this->conn->query($sql_delete) === true) {
-            echo "<script>
-    alert('Usuário excluído com sucesso!');
-    </script>";
-        } else {
-            echo "<script>
-    alert('Não foi possível excluir usuário! ');
-    </script>";
-            echo $this->conn->error;
-        }
-    }
+     
     public function deletar($id) //metodo para deletar usuario na tabela de administração
     {
         $sql_delete = "DELETE FROM meu_senac WHERE id = $id";
@@ -108,7 +96,6 @@ class conexao
             echo "<script>
             alert('Usuário editado com sucesso!');
             </script>";
-            die();
         } else {
             echo "<script>
             alert('Não foi possivel alterar usuário!');
@@ -129,7 +116,6 @@ class conexao
                 . "alert('Mensagem enviada com sucesso!');"
                 . "window.location.href='../pages/faleconosco.php'"
                 . "</script>";
-            die();
         } else {
             echo "Erro: <br>" . $this->conn->error;
             echo '<br>';
