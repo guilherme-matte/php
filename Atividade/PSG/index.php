@@ -78,7 +78,6 @@ session_start();
         <a href="./pages/perguntas.php">Perguntas frequentes</a>|
         <a href="./pages/fale_conosco.php">Fale Conosco</a>|
         <a href="../Senac_Tech/index.php">Senac Tech</a>
-        <a href="./pages/consultaFaleConosco.php">fale_conosco</a>
 
       </h1>
       <div id="divUsuarioLogado">
@@ -90,6 +89,7 @@ session_start();
 
           if (isset($_SESSION["nome_usu_sessao"]) && ($_SESSION['cargo_usu_sessao']) === 'ADM') {
             echo "<a href='./pages/ADM.php'> Administração | </a>  ";
+            echo"<a href='./pages/consultaFaleConosco.php'>Fale Conosco | </a>";
           }
           echo "<a href='index.php?logout'>Logout</a> ";
 

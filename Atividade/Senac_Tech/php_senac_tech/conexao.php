@@ -26,12 +26,13 @@ class conexao
     }
     public function listar() //metodo para listar usuario na tabela de administração
     {
-        $sql = "SELECT id,nomeCompleto ,email,cargo FROM meu_senac";
+        $sql = "SELECT * FROM meu_senac";
         $result = $this->conn->query($sql);
         $this->conn->close();
         return $result;
     }
-    public function deletarFaleConoscoPSG($id){
+    public function deletarFaleConoscoPSG($id)
+    {
         $sql_delete = "DELETE FROM fale_conosco_psg WHERE id = $id";
         if ($this->conn->query($sql_delete) === true) {
             echo "<script>
@@ -44,7 +45,7 @@ class conexao
             echo $this->conn->error;
         }
     }
-     
+
     public function deletar($id) //metodo para deletar usuario na tabela de administração
     {
         $sql_delete = "DELETE FROM meu_senac WHERE id = $id";
@@ -73,10 +74,24 @@ class conexao
             echo ($this->conn->error);
         }
     }
+    public function alterarFaleConoscoPSG($id, $nome, $sobrenome, $dataNasc, $endereco, $bairro, $cidade, $estado, $sexo, $fone, $email, $obs)
+    {
+        $sql_update = "UPDATE fale_conosco_psg SET nome='$nome',sobrenome='$sobrenome',dataNasc='$dataNasc',endereco='$endereco',bairro='$bairro',cidade='$cidade',estado='$estado',sexo='$sexo',fone='$fone',email='$email',obs='$obs' WHERE id = $id";
+        if ($this->conn->query($sql_update) === true) {
+            echo "<script>
+            alert('Usuário editado com sucesso!');
+            </script>";
+        } else {
+            echo "<script>
+            alert('Não foi possivel alterar usuário!');
+            </script>";
+            echo $this->conn->error;
+        }
+    }
     public function alterarFaleConosco($id, $nomeCompleto, $cpf, $uf, $cidade, $email, $telefone, $modalidade, $assunto, $mensagem)
     {
 
-        $sql_update = "UPDATE fale_conosco SET nomeCompleto='$nomeCompleto',uf='$uf',cidade='$cidade',email='$email',telefone='$telefone',modalidade='$modalidade',assunto='$assunto',mensagem='$mensagem',cpf='$cpf'";
+        $sql_update = "UPDATE fale_conosco SET nomeCompleto='$nomeCompleto',uf='$uf',cidade='$cidade',email='$email',telefone='$telefone',modalidade='$modalidade',assunto='$assunto',mensagem='$mensagem',cpf='$cpf' WHERE id = $id";
 
         if ($this->conn->query($sql_update) === true) {
             echo "<script>
@@ -124,12 +139,12 @@ class conexao
         $stmt->close();
         $this->conn->close();
     }
-    public function cadastroFaleConoscoPSG( $nome, $sobrenome, $dataNasc, $endereco, $bairro, $cidade, $estado, $sexo,$fone,$email,$usuario,$senha,$obs)
+    public function cadastroFaleConoscoPSG($nome, $sobrenome, $dataNasc, $endereco, $bairro, $cidade, $estado, $sexo, $fone, $email, $usuario, $senha, $obs)
     {
         $sql = "insert into fale_conosco_psg values (null,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         $stmt = $this->conn->prepare($sql);
 
-        $stmt->bind_param('sssssssssssss', $nome, $sobrenome, $dataNasc, $endereco, $bairro, $cidade, $estado, $sexo,$fone,$email,$usuario,$senha,$obs);
+        $stmt->bind_param('sssssssssssss', $nome, $sobrenome, $dataNasc, $endereco, $bairro, $cidade, $estado, $sexo, $fone, $email, $usuario, $senha, $obs);
         $stmt->execute();
         if ($stmt == true) {
             echo "<script language='javascript' type='text/javascript'>"
@@ -172,7 +187,18 @@ class conexao
         $sql = "select * from fale_conosco";
         $result = $this->conn->query($sql)
             or die("Falha na consulta " . $this->conn->error);
-        $this->conn->close();
+        if ($result == true) {
+            return $result;
+        } else {
+
+            die("Falha na consulta");
+        }
+    }
+    public function consultaFaleConoscoPSG()
+    {
+        $sql = "select * from fale_conosco_psg";
+        $result = $this->conn->query($sql)
+            or die("Falha na consulta " . $this->conn->error);
         if ($result == true) {
             return $result;
         } else {

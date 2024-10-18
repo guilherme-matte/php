@@ -3,12 +3,14 @@
 }
 
 table {
+    
     width: 1600px;
     margin: 0 auto;
     font-size: 23px;
     font-family: arial;
     border: 2px solid orange;
     margin-bottom: 5%;
+    margin-top: 1%;
 }
 
 #campos input {
@@ -18,7 +20,7 @@ table {
     height: 30px;
     border-radius: 5px;
     margin-top: 25%;
-
+    border: 1px solid orange;
 }
 
 table td {
@@ -91,17 +93,18 @@ tbody button:hover {
 
 }
 
-#mensagemInput {
+#mensagemText {
     display: grid;
     position: relative;
     left: 5%;
-    top: 2%;
+    top: 25px;
     width: 90%;
     margin-top: 15px;
-    margin-bottom: 15px;
-    text-align: start;
+    margin-bottom: 1px;
+    text-align: justify;
     height: 250px;
-
+    border: 1px solid orange;
+    resize: none;
 }
 
 #msg {

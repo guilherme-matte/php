@@ -65,7 +65,8 @@
           header("location: inscrever.php");
         }
         if (isset($_SESSION["nome_usu_sessao"]) && ($_SESSION['cargo_usu_sessao']) == 'ADM') {
-          echo "<a href='./ADM.php'> Administração | </a>  ";
+          echo "<a href='./ADM.php'> Administração | </a>  
+          <a href='consultaFaleConosco.php'>Fale Conosco | </a> ";
         }
         echo "<a href='inscrever.php?logout'>Logout</a> ";
 

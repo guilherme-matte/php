@@ -113,28 +113,30 @@ session_start();
 
       </h1>
       <div id="divUsuarioLogado">
-        <?php
-        echo "<p id='usuarioLogado'>";
-        if (isset($_SESSION['nome_usu_sessao'])) {
-          echo " Olá " . $_SESSION['nome_usu_sessao'];
-          echo "<br/>";
-          if (isset($_GET["logout"])) {
-            session_destroy();
-            header("location: consulta.php");
-          }
-          if (isset($_SESSION["nome_usu_sessao"]) && ($_SESSION['cargo_usu_sessao']) === 'ADM') {
-            echo "<a href='./pages/ADM.php'> Administração | </a>  ";
-          }
-          echo "<a href='consulta.php?logout'>Logout</a> ";
+            <?php
+            echo "<p id='usuarioLogado'>";
+            if (isset($_SESSION['nome_usu_sessao'])) {
+                echo " Olá " . $_SESSION['nome_usu_sessao'];
+                echo "<br/>";
+                if (isset($_GET["logout"])) {
+                    session_destroy();
+                    header("location: oprograma.php");
+                }
+                if (isset($_SESSION["nome_usu_sessao"]) && ($_SESSION['cargo_usu_sessao']) === 'ADM') {
+                    echo "<a href='ADM.php'> Administração | </a> 
+                    <a href='consultaFaleConosco.php'>Fale Conosco | </a> ";
 
-          echo "</p>";
-        } else {
-          echo '<a href="./login.html">Logar</a>';
-        }
+                }
+                echo "<a href='oprograma.php?logout'>Logout</a> ";
 
-        echo "</p>";
-        ?>
-      </div>
+                echo "</p>";
+            } else {
+                echo '<a href="./login.html">Logar</a>';
+            }
+
+            echo "</p>";
+            ?>
+        </div>
     </div>
     <hr class="hr2" />
 

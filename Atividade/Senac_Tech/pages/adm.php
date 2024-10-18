@@ -193,8 +193,12 @@ if (isset($_GET['logout'])) {
 			<tr>
 				<td>ID</td>
 				<td>Nome Completo</td>
+                <td>CPF</td>
 				<td>Email</td>
                 <td>Cargo</td>
+                <td>Telefone</td>
+                <td>Estado</td>
+                <td>Cidade</td>
 				<td>Ação</td>
 			</tr>
 		</thead>';
@@ -220,6 +224,10 @@ if (isset($_GET['logout'])) {
 								<input type='text' name='nomeCompleto' 
 								value='" . $row["nomeCompleto"] . "'/>
 								</td>
+                                <td>
+								<input type='text' name='cpf' 
+								value='" . $row["cpf"] . "'/>
+								</td>
 								<td>
 								<input type='text' name='email' 
 								value='" . $row["email"] . "'/>
@@ -228,6 +236,19 @@ if (isset($_GET['logout'])) {
 								<input type='text' name='cargo' 
 								value='" . $row["cargo"] . "'/>
 								</td>
+                                <td>
+								<input type='text' name='telefone' 
+								value='" . $row["telefone"] . "'/>
+								</td>
+                                <td>
+								<input type='text' name='estado' 
+								value='" . $row["estado"] . "'/>
+								</td>
+                                <td>
+								<input type='text' name='cidade' 
+								value='" . $row["cidade"] . "'/>
+								</td>
+
 								<td id='botoes'>
 								<button type='submit' name='edit_user'>
 									Editar

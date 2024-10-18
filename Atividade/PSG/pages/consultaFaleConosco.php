@@ -9,6 +9,9 @@
     <link rel="stylesheet" type="text/css" href="../css/reset.css" />
     <link rel="stylesheet" type="text/css" href="../css/estilo.css" />
     <link rel="stylesheet" type="text/css" href="../css/formAdmin.css" />
+    <link rel="stylesheet" type="text/css" href="../css/layout.css" />
+    <link rel="stylesheet" type="text/css" href="../css/layout2.css" />
+
 
 </head>
 
@@ -55,6 +58,7 @@
             <a href="./perguntas.php">Perguntas frequentes</a>|
             <a href="./fale_conosco.php">Fale Conosco</a>|
             <a href="../../Senac_Tech/index.php">Senac Tech</a>
+            
 
 
         </h1>
@@ -70,7 +74,8 @@
                     header("location: oprograma.php");
                 }
                 if (isset($_SESSION["nome_usu_sessao"]) && ($_SESSION['cargo_usu_sessao']) === 'ADM') {
-                    echo "<a href='ADM.php'> Administração | </a>  ";
+                    echo "<a href='ADM.php'> Administração | </a> 
+                    <a href='consultaFaleConosco.php'>Fale Conosco | </a> ";
                 }
                 echo "<a href='oprograma.php?logout'>Logout</a> ";
 
@@ -92,10 +97,7 @@
     $conexao = new Conexao();
 
     $consulta = $conexao->consultaFaleConoscoPSG();
-    echo '<div id="faleConosco" class="consulta">';
-    echo '<p class="titulo">
-                Consulta Fale Conosco
-                </p>';
+    
     echo '<hr class="hr" />';
 
 
@@ -103,19 +105,19 @@
         $conexao->alterarFaleConoscoPSG($_POST['id'],$_POST['nome'],$_POST['sobrenome'],$_POST['dataNasc'],$_POST['endereco'],$_POST['bairro'],$_POST['cidade'],$_POST['estado'],$_POST['sexo'],$_POST['fone'],$_POST['email'],$_POST['obs'],);
         echo
             "<script language='javascript' type='text/javascript'>"
-            . "window.location.href='../pages/consulta.php'"
+            . "window.location.href='../pages/consultaFaleConosco.php'"
             . "</script>";
     }
     if (isset($_POST["delete_user"])) {
         $conexao->deletarFaleConoscoPSG($_POST['id']);
         echo
             "<script language='javascript' type='text/javascript'>"
-            . "window.location.href='../pages/consulta.php'"
+            . "window.location.href='../pages/consultaFaleConosco.php'"
             . "</script>";
     }
     //$result = $conexao->listar();
     if (isset($_SESSION["nome_usu_sessao"]) && ($_SESSION['cargo_usu_sessao']) == 'ADM') {
-        echo '<h1 id="lista">Lista de usuários</h1>';
+        echo '<h1 id="lista">Consulta Fale Conosco</h1>';
         while ($linha = $consulta->fetch_assoc()) {
             $id = $linha['id'];
             $nome = $linha['nome'];
