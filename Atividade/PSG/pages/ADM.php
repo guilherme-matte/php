@@ -8,7 +8,7 @@
   <link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon" />
   <link rel="stylesheet" type="text/css" href="../css/reset.css" />
   <link rel="stylesheet" type="text/css" href="../css/estilo.css" />
-  <link rel="stylesheet" type="text/css" href="../css/formTabela.css" />
+  <link rel="stylesheet" type="text/css" href="../css/formAdmin.css" />
 
 </head>
 
