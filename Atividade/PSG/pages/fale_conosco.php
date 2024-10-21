@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -10,7 +9,7 @@
   <link rel="stylesheet" type="text/css" href="../css/reset.css" />
   <link rel="stylesheet" type="text/css" href="../css/estilo.css" />
   <link rel="stylesheet" type="text/css" href="../css/layout2.css" />
-  <link rel="stylesheet" type="text/css" href="../css/formulario.css"/>
+  <link rel="stylesheet" type="text/css" href="../css/formulario.css" />
 </head>
 
 <body>
@@ -73,31 +72,30 @@
 
       </h1>
       <div id="divUsuarioLogado">
-            <?php
-            session_start();
-            echo "<p id='usuarioLogado'>";
-            if (isset($_SESSION['nome_usu_sessao'])) {
-                echo " Olá " . $_SESSION['nome_usu_sessao'];
-                echo "<br/>";
-                if (isset($_GET["logout"])) {
-                    session_destroy();
-                    header("location: oprograma.php");
-                }
-                if (isset($_SESSION["nome_usu_sessao"]) && ($_SESSION['cargo_usu_sessao']) === 'ADM') {
-                    echo "<a href='ADM.php'> Administração | </a> 
+        <?php
+        session_start();
+        echo "<p id='usuarioLogado'>";
+        if (isset($_SESSION['nome_usu_sessao'])) {
+          echo " Olá " . $_SESSION['nome_usu_sessao'];
+          echo "<br/>";
+          if (isset($_GET["logout"])) {
+            session_destroy();
+            header("location: oprograma.php");
+          }
+          if (isset($_SESSION["nome_usu_sessao"]) && ($_SESSION['cargo_usu_sessao']) === 'ADM') {
+            echo "<a href='ADM.php'> Administração | </a> 
                     <a href='consultaFaleConosco.php'>Fale Conosco | </a> ";
+          }
+          echo "<a href='oprograma.php?logout'>Logout</a> ";
 
-                }
-                echo "<a href='oprograma.php?logout'>Logout</a> ";
+          echo "</p>";
+        } else {
+          echo '<a href="./login.html">Logar</a>';
+        }
 
-                echo "</p>";
-            } else {
-                echo '<a href="./login.html">Logar</a>';
-            }
-
-            echo "</p>";
-            ?>
-        </div>
+        echo "</p>";
+        ?>
+      </div>
     </div>
     <hr class="hr2" />
 
@@ -237,8 +235,7 @@
               <fieldset class="bloco">
                 <div class="dados">
                   <label>Observação:</label>
-                  <textarea name="obs" rows="6" cols="30" required>
-                                        </textarea>
+                  <textarea name="obs" rows="6" cols="30" required></textarea>
                 </div>
               </fieldset>
               <button type="submit" class="botao">Enviar</button>
