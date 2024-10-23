@@ -16,7 +16,7 @@
     <div id="corpo">
         <nav id="cabecalhoLateral">
             <nav class="menu">
-                <p id="logo"> <a href="../index.html">
+                <p id="logo"> <a href="../index.php">
                         <img id="logoSenac" src="../img/senac_logo.png" alt="Voltar para Página Principal"
                             title="Menu Principal">
                     </a>
@@ -27,10 +27,10 @@
                         CADASTRO
                         <li>
                         <li>
-                            <a href="./cadDoacao.html">Doação</a>
+                            <a href="./cadDoacao.php">Doação</a>
                         </li>
                         <li>
-                            <a href="./cadUsuarios.html">Usuários</a>
+                            <a href="./cadUsuarios.php">Usuários</a>
                         </li>
                         </li>
                     </ul>
@@ -39,10 +39,10 @@
                         CONSULTA
                         <li>
                         <li>
-                            <a href="./conComputadores.html">Computadores</a>
+                            <a href="./conComputadores.php">Computadores</a>
                         </li>
                         <li>
-                            <a href="./conColaboradores.html">Colaboradores</a>
+                            <a href="./conColaboradores.php">Colaboradores</a>
                         </li>
                         </li>
                     </ul>
@@ -52,7 +52,7 @@
                 <div id="sobrenos">
 
 
-                    <a href="../PSG/index.html">Sobre Nós</a>
+                    <a href="../PSG/index.php">Sobre Nós</a>
                 </div>
             </nav>
             <div class="linhaVertical"></div>
@@ -64,7 +64,6 @@
 
             </div>
         </nav>
-
         <div id="conteudoPrincipal">
             <!-- CONTEUDO DA PAGINA -->
 

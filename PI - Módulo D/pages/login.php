@@ -14,14 +14,15 @@
 
     <div id="blocoCentral">
         <div class="campos">
-            <form action="#">
+            <form action="../php/verificaLogin.php" method="post">
                 Usuário:
                 <br>
                 <input type="text" name="user" id="user">
                 <br>
                 Senha:
                 <br>
-                <input type="password" name="password" id="password"><br>
+                <input type="password" name="password" id="password">
+                <br>
                 <button type="submit">Entrar</button>
             </form>
         </div>
