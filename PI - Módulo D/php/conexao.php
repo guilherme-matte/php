@@ -30,7 +30,7 @@ class conexao
     }
     public function cadastrarUsuario($user, $password, $cargo, $cpf, $nomeCompleto, $email)
     {
-        $senhaHash = password_hash($password, PASSWORD_DEFAULT);
+        $senhaHash = password_hash($password, PASSWORD_BCRYPT);
 
         $stmt = $this->conn->prepare("INSERT INTO login VALUES(null,?,?,?,?,?,?)");
         $stmt->bind_param("ssssss", $cpf, $nomeCompleto, $user, $senhaHash, $cargo, $email);
