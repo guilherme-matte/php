@@ -32,6 +32,30 @@
     margin-bottom: 10%;
 }
 
+#usuario {
+    width: 150px;
+    height: auto;
+}
+
+#labelUsuario {
+    color: white;
+    font-size: 19px;
+    padding-bottom: 25px;
+}
+
+#aLogout {
+    margin-top: 5%;
+
+    color: white;
+    text-decoration: none;
+}
+
+#aLogout:hover {
+    color: rgb(177, 177, 177);
+
+    text-decoration: underline;
+}
+
 .hr1 {
     margin: 0 auto;
     width: 70%;
@@ -95,4 +119,3 @@
 
 
 }
-

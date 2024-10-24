@@ -17,12 +17,12 @@ $sql = "insert into pessoa_fisica values(null,'" . $cadUsuario->getCpf() . "','"
 
 if ($conn->query($sql) === true) {
     echo "<script language='javascript' type='text/javascript'>"
-    . "alert('Cadastro realizado com sucesso!');"
-    . "window.location.href='../pages/cadDoacao.html'"
-    . "</script>";
+        . "alert('Cadastro realizado com sucesso!');"
+        . "window.location.href='../pages/cadDoacao.html'"
+        . "</script>";
     die();
 } else {
-    echo "Erro: " . sql . "<br>" . $conn->error;
+    echo "Erro: <br>" . $conn->error;
     echo '<br>';
     echo 'Cadastro nao realizado';
 }

@@ -1,3 +1,10 @@
+<?php
+session_start();
+if (isset($_GET["logout"])) {
+    session_destroy();
+    header("Location: conColaboradores.php");
+}
+?>
 <!DOCTYPE html>
 <html>
 
@@ -21,6 +28,25 @@
                             title="Menu Principal">
                     </a>
                 </p>
+                <div id="divUsuario">
+                    <a href="editarPerfil.php"><img id="usuario" src="../img/usuario.png"
+                            alt="Clique para editar o perfil"></a>
+                    <br>
+                    <?php
+                    if (isset($_SESSION["user"])) {
+
+                        echo '<label id="labelUsuario">' . $_SESSION['user'] . '</label>';
+                        echo "
+                        <br>
+                        ";
+                        echo '
+                        <a  href="login.php?logout" id="aLogout">Logoff</a>
+                        ';
+                    } else {
+                        echo '<a herf="login.php">Faça o login</a>';
+                    }
+                    ?>
+                </div>
                 <hr class="hr2">
                 <ul>
                     <ul>
