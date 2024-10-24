@@ -13,29 +13,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (count($nomeFormatado) > 1) {
                 $_SESSION['user'] = $nomeFormatado[0] . " " . $nomeFormatado[count($nomeFormatado) - 1];
             } else {
-                $_SESSION["user"] = $nomeFormatado[0];
+                $_SESSION['user'] = $nomeFormatado[0];
             }
             $_SESSION['cargo'] = $row['cargo'];
-            echo "usuario logado1: " . $row['nome_completo'];
+            echo "usuario logado 1: " . $row['nome_completo'];
             echo "senha: "  . $row['senha'];
 
-            //header("Location: ../index.php");
-            //exit();
+            header("Location: ../index.php");
+            exit();
         } else {
-            // echo "<script language='javascript' type='text/javascript'>
-            //  	alert('Não foi possível realizar o login! Senha incorreta!');
-            //  	window.location.href='../pages/login.php';
-            //  	</script>";
-            echo "usuario logado: " . $row['nome_completo'];
+             echo "<script language='javascript' type='text/javascript'>
+              	alert('Não foi possível realizar o login! Senha incorreta!');
+              	window.location.href='../pages/login.php';
+              	</script>";
+            echo "usuario logado 2: " . $row['nome_completo'];
             echo "senha: "  . $row['senha'];
 
         }
     } else {
-        // echo "<script language='javascript' type='text/javascript'>
-        // alert('Não foi possível realizar o login! Usuário ou senha incorreta!');
-        // window.location.href='../pages/login.php';
-        // </script>";
-        echo "usuario logado: " . $row['nome_completo'];
+         echo "<script language='javascript' type='text/javascript'>
+         alert('Não foi possível realizar o login! Usuário ou senha incorreta!');
+         window.location.href='../pages/login.php';
+         </script>";
+        echo "usuario logado 3: " . $row['nome_completo'];
         echo "senha: "  . $row['senha'];
     }
 }
