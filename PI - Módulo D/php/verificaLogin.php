@@ -9,6 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $row = $result->fetch_assoc();
         if (password_verify($_POST['password'], $row['senha'])) {
             session_start();
+
             $nomeFormatado = explode(' ', $row['nome_completo']);
             if (count($nomeFormatado) > 1) {
                 $_SESSION['user'] = $nomeFormatado[0] . " " . $nomeFormatado[count($nomeFormatado) - 1];
@@ -16,26 +17,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_SESSION["user"] = $nomeFormatado[0];
             }
             $_SESSION['cargo'] = $row['cargo'];
-            echo "usuario logado1: " . $row['nome_completo'];
-            echo "senha: "  . $row['senha'];
 
-            //header("Location: ../index.php");
-            //exit();
+            header("Location: ../index.php");
+            exit();
         } else {
-            // echo "<script language='javascript' type='text/javascript'>
-            //  	alert('Não foi possível realizar o login! Senha incorreta!');
-            //  	window.location.href='../pages/login.php';
-            //  	</script>";
-            echo "usuario logado: " . $row['nome_completo'];
-            echo "senha: "  . $row['senha'];
-
+             echo "<script language='javascript' type='text/javascript'>
+              	alert('Não foi possível realizar o login! Senha incorreta!');
+              	window.location.href='../pages/login.php';
+              	</script>";
         }
     } else {
-        // echo "<script language='javascript' type='text/javascript'>
-        // alert('Não foi possível realizar o login! Usuário ou senha incorreta!');
-        // window.location.href='../pages/login.php';
-        // </script>";
-        echo "usuario logado: " . $row['nome_completo'];
-        echo "senha: "  . $row['senha'];
+         echo "<script language='javascript' type='text/javascript'>
+         alert('Não foi possível realizar o login! Usuário ou senha incorreta!');
+         window.location.href='../pages/login.php';
+         </script>";
     }
 }
