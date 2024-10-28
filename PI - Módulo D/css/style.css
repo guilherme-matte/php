@@ -43,7 +43,7 @@
     padding-bottom: 25px;
 }
 
-#aLogout {
+#aLogout,#aLogin {
     margin-top: 5%;
 
     color: white;

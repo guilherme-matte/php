@@ -1,6 +1,9 @@
 <?php
 session_start();
-if (isset($_GET["logout"]) ){
+if (!isset($_SESSION)) {
+    header("Location: ./pages/login.php");
+}
+if (isset($_GET["logout"])) {
     session_destroy();
     header("Location: index.php");
 }
@@ -29,6 +32,28 @@ if (isset($_GET["logout"]) ){
                         title="Menu Principal">
                 </a>
             </p>
+            <div id="divUsuario">
+
+                <?php
+                if (isset($_SESSION["user"]) != "") {
+                    echo '
+                        <a href="editarPerfil.php"><img id="usuario" src="./img/usuario.png"
+                            alt="Clique para editar o perfil"></a>
+                            <br>
+                            ';
+                    echo '<label id="labelUsuario">' . $_SESSION['user'] . '</label>';
+                    echo "
+                        <br>
+                        ";
+                    echo '
+                        <a href="./pages/login.php?logout" id="aLogout">Logoff</a>
+                        ';
+                } else {
+                    echo '<a href="login.php" id="aLogin">Logar</a>';
+                }
+                ?>
+            </div>
+
             <hr class="hr2">
             <ul>
                 <ul>
