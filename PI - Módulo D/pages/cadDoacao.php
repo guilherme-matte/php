@@ -59,7 +59,9 @@
             </nav>
             <div class="linhaVertical"></div>
             <div id="cabecalhoSuperior">
-                <div id="cabecalhoSuperiorEsq"><p>Pesquisar</p> </div>
+                <div id="cabecalhoSuperiorEsq">
+                    <p>Pesquisar</p>
+                </div>
                 <div id="cabecalhoSuperiorMeio"><input id="inputPesquisa" type="text"></div>
                 <div id="cabecalhoSuperiorDir"><button id="buttonPesquisa">Localizar</button></div>
                 <!-- <hr id="hrCabecalhoSuperior"> -->
@@ -79,7 +81,7 @@
                     <section id="sectionForms">
                         <article id="articleForms">
                             <p id="formP">Pessoa Física</p>
-                            <form action="../php/cadUsuario.php" method="post">
+                            <form action="cadDoacao.php" method="post">
 
                                 <fieldset class="bloco">
                                     <div class="dados">
@@ -149,13 +151,13 @@
                                 <fieldset class="bloco">
                                     <div class="dados">
                                         <label>Nome da Empresa: </label>
-                                        <input type="text" name="nomeSocial" required maxlength="50">
+                                        <input type="text" name="nomeEmpresa" required maxlength="50">
                                     </div>
                                 </fieldset>
                                 <fieldset class="bloco">
                                     <div class="dados">
                                         <label>Responsavel: </label>
-                                        <input type="text" name="responsavel" required maxlength="50">
+                                        <input type="text" name="nomeResponsavel" required maxlength="50">
                                     </div>
                                 </fieldset>
                                 <fieldset class="bloco">
@@ -185,16 +187,31 @@
                                         <input type="email" name="emailResponsavel" required maxlength="50">
                                     </div>
                                 </fieldset>
-
                                 <fieldset class="bloco">
-                                    <input type="submit" name="CADASTRAR" id="cadastrar">
+                                    <div class="dados">
+                                        <label>Cargo:</label>
+                                        <input type="text" name="cargo" required maxlength="50">
+                                    </div>
+                                </fieldset>
+                                <fieldset class="bloco">
+                                    <input type="submit" name="cadastrar_empresa" id="cadastrar">
                                 </fieldset>
                             </form>
                         </article>
                     </section>
                 </div>
             </div>
+            <?php
+            include("../php/conexao.php");
+            $conexao = new conexao();
 
+            if (isset($_POST["cadastrar_pessoaFisica"])) {
+                $conexao->cadPessoaFisica($_POST["cpf"], $_POST["nome"], $_POST["sobrenome"], $_POST["telefone"], $_POST["email"], $_POST["endereco"], $_POST["cep"], date('Y-m-d'));
+            }
+            if (isset($_POST['cadastrar_empresa'])) {
+                $conexao->cadastrarEmpresa($_POST['cnpj'], $_POST['nomeEmpresa'], $_POST['nomeResponsavel'], $_POST['telefoneEmpresa'], $_POST['telefoneResponsavel'], $_POST['emailEmpresa'], $_POST['emailResponsavel'], $_POST['cargo'], date('Y-m-d'));
+            }
+            ?>
             <!-- FIM DO CONTEUDO -->
         </div>
     </div>

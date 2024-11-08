@@ -28,6 +28,41 @@ class conexao
         $this->conn->close();
         return $result;
     }
+    public function cadPessoaFisica($cpf, $nome, $sobrenome, $telefone, $email, $endereco, $cep, $dataCad)
+    {
+        $stmt = $this->conn->prepare("INSERT INTO pessoa_fisica values(null,?,?,?,?,?,?,?,?)");
+        $stmt->bind_param("ssssssss", $cpf, $nome, $sobrenome, $email, $endereco, $cep, $dataCad, $telefone);
+        $stmt->execute();
+
+        if ($stmt == true) {
+            echo "<script language='javascript' type='text/javascript'>"
+                . "alert('Cadastro realizado com sucesso!');"
+                . "window.location.href='../pages/login.php'"
+                . "</script>";
+            die();
+        } else {
+            echo "Erro: <br>" . $this->conn->error;
+            echo '<br>';
+            echo 'Cadastro nao realizado';
+        }
+    }
+    public function cadastrarEmpresa($cnpj, $nomeEmpresa, $nomeResponsavel, $telefoneEmpresa, $telefoneResponsavel, $emailEmpresa, $emailResponsavel, $cargo, $dataCad)
+    {
+        $stmt = $this->conn->prepare('INSERT INTO empresas values(null,?,?,?,?,?,?,?,?,?)');
+        $stmt->bind_param("sssssssss", $cnpj, $nomeEmpresa, $nomeResponsavel, $telefoneEmpresa, $telefoneResponsavel, $emailEmpresa, $emailResponsavel, $cargo, $dataCad);
+        $stmt->execute();
+        if ($stmt == true) {
+            echo "<script language='javascript' type='text/javascript'>"
+                . "alert('Cadastro realizado com sucesso!');"
+                . "window.location.href='../pages/cadDoacao.php'"
+                . "</script>";
+            die();
+        } else {
+            echo "Erro: <br>" . $this->conn->error;
+            echo '<br>';
+            echo 'Cadastro nao realizado';
+        }
+    }
     public function cadastrarUsuario($user, $password, $cargo, $cpf, $nomeCompleto, $email)
     {
         $senhaHash = password_hash($password, PASSWORD_BCRYPT);
@@ -39,7 +74,7 @@ class conexao
         if ($stmt == true) {
             echo "<script language='javascript' type='text/javascript'>"
                 . "alert('Cadastro realizado com sucesso!');"
-                . "window.location.href='../pages/login.php'"
+                . "window.location.href='../pages/cadDoacao.php'"
                 . "</script>";
             die();
         } else {

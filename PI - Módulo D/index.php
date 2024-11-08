@@ -49,7 +49,7 @@ if (isset($_GET["logout"])) {
                         <a href="./pages/login.php?logout" id="aLogout">Logoff</a>
                         ';
                 } else {
-                    echo '<a href="login.php" id="aLogin">Logar</a>';
+                    echo '<a href="./pages/login.php" id="aLogin">Logar</a>';
                 }
                 ?>
             </div>

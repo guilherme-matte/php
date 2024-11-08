@@ -59,7 +59,7 @@
             </nav>
             <div class="linhaVertical"></div>
             <div id="cabecalhoSuperior">
-                <div id="cabecalhoSuperiorEsq">Pesquisar</div>
+                <div id="cabecalhoSuperiorEsq"><p>Pesquisar</p></div>
                 <div id="cabecalhoSuperiorMeio"><input id="inputPesquisa" type="text"></div>
                 <div id="cabecalhoSuperiorDir"><button id="buttonPesquisa">Localizar</button></div>
                 <!-- <hr id="hrCabecalhoSuperior"> -->
