@@ -107,76 +107,61 @@ if (isset($_GET["logout"])) {
         <!-- CONTEUDO DA PAGINA -->
         <div id="conteudoPrincipal">
 
-            <script>
-                function formatarCPF(campo) {
-                    let valor = campo.value.replace(/\D/g, ''); // Remove tudo que não for número
-                    if (valor.length <= 11) {
-                        valor = valor.replace(/(\d{3})(\d)/, '$1.$2'); // Coloca o primeiro ponto
-                        valor = valor.replace(/(\d{3})(\d)/, '$1.$2'); // Coloca o segundo ponto
-                        valor = valor.replace(/(\d{3})(\d{1,2})$/, '$1-$2'); // Coloca o hífen
-                    }
-                    campo.value = valor;
-                }
-            </script>
+
 
 
             <div class="container">
-                <a href="#pessoafisica">Doação Pessoa Física</a>
-                <a href="#empresa">Doação Empresa</a>
+                <a href="#pessoafisica">Pessoa Física</a>
+                <a href="#empresa">Empresa</a>
                 <div id="pessoafisica" class="cadastro">
                     <section id="sectionForms">
                         <article id="articleForms">
                             <p id="formP">Pessoa Física</p>
-                            <form action="cadDoacao.php" method="post">
-                                <form action="cadDoacao.php">
-                                    <fieldset class="bloco">
-                                        <div class="dados">
-                                            <label>CPF:</label>
-                                            <input required type="text" id="cpf" name="cpf" oninput="formatarCPF(this)" maxlength="14" placeholder="000.000.000-00" />
-
-                                        </div>
-                                        <button id="btnBuscar" name="buscar">Buscar</button>
-                                    </fieldset>
-
-                                </form>
-                                <?PHP
-                                include("../php/conexao.php");
-                                $conexao = new conexao();
-                                if (isset($_POST["buscar"])) {
-                                    $dados = $conexao->buscarCPF($_POST['cpf']);
-                                }
-                                if (isset($dados)) {
-                                    echo $dados['cpf'];
-                                }
-                                ?>
-                                <fieldset class="bloco">
-                                    <div class="dados">
-                                        <label>Nome Completo: </label>
-                                        <input readonly type="text" name="nomeCompleto" required maxlength="50">
-                                    </div>
-                                </fieldset>
+                            <form action="cadDoador.php" method="post">
 
                                 <fieldset class="bloco">
                                     <div class="dados">
-                                        <label>Quantidade </label>
-                                        <input min="0" type="number" name="quantidade" required maxlength="50">
-                                    </div>
-                                </fieldset>
-
-                                <fieldset class="bloco">
-                                    <div class="dados">
-                                        <label>Categoria: </label>
-                                        <select name="categoria">
-                                            <option value="Computador" select>Computador</option>
-                                            <option value="Notebook">Notebook</option>
-                                            <option value="Perifericos">Perifericos</option>
-                                        </select>
+                                        <label>CPF:</label>
+                                        <input type="text" name="cpf" required maxlength="14"
+                                            placeholder="000.000.000-00">
                                     </div>
                                 </fieldset>
                                 <fieldset class="bloco">
                                     <div class="dados">
-                                        <label>Descrição </label>
-                                        <textarea name="descricao" id="txtDescricao"></textarea>
+                                        <label>Nome: </label>
+                                        <input type="text" name="nome" required maxlength="50">
+                                    </div>
+                                </fieldset>
+                                <fieldset class="bloco">
+                                    <div class="dados">
+                                        <label>Sobrenome: </label>
+                                        <input type="text" name="sobrenome" required maxlength="50">
+                                    </div>
+                                </fieldset>
+                                <fieldset class="bloco">
+                                    <div class="dados">
+                                        <label>Telefone:</label>
+                                        <input type="tel" name="telefone" required maxlength="11"
+                                            placeholder="00000000000">
+                                    </div>
+                                </fieldset>
+                                <fieldset class="bloco">
+                                    <div class="dados">
+                                        <label>Email:</label>
+                                        <input type="email" name="email" required maxlength="50">
+                                    </div>
+                                </fieldset>
+                                <fieldset class="bloco">
+                                    <div class="dados">
+                                        <label>Endereço:</label>
+                                        <input type="text" name="endereco" required maxlength="50">
+                                    </div>
+                                </fieldset>
+                                <fieldset class="bloco">
+                                    <div class="dados">
+                                        <label>CEP:</label>
+                                        <input type="text" name="cep" required maxlength="10" placeholder="00.000-000">
+                                    </div>
                                 </fieldset>
 
                                 <fieldset class="bloco">
@@ -252,7 +237,17 @@ if (isset($_GET["logout"])) {
                     </section>
                 </div>
             </div>
+            <?php
+            include("../php/conexao.php");
+            $conexao = new conexao();
 
+            if (isset($_POST["cadastrar_pessoaFisica"])) {
+                $conexao->cadPessoaFisica($_POST["cpf"], $_POST["nome"], $_POST["sobrenome"], $_POST["telefone"], $_POST["email"], $_POST["endereco"], $_POST["cep"], date('Y-m-d'));
+            }
+            if (isset($_POST['cadastrar_empresa'])) {
+                $conexao->cadastrarEmpresa($_POST['cnpj'], $_POST['nomeEmpresa'], $_POST['nomeResponsavel'], $_POST['telefoneEmpresa'], $_POST['telefoneResponsavel'], $_POST['emailEmpresa'], $_POST['emailResponsavel'], $_POST['cargo'], date('Y-m-d'));
+            }
+            ?>
             <!-- FIM DO CONTEUDO -->
         </div>
     </div>

@@ -1,3 +1,14 @@
+<?php
+session_start();
+if (!isset($_SESSION)) {
+    header("Location: ./pages/login.php");
+}
+if (isset($_GET["logout"])) {
+    session_destroy();
+    header("Location: cadUsuarios.php");
+}
+
+?>
 <!DOCTYPE html>
 <html>
 
@@ -23,11 +34,35 @@
                             title="Menu Principal">
                     </a>
                 </p>
+                <div id="divUsuario">
+
+                    <?php
+                    if (isset($_SESSION["user"]) != "") {
+                        echo '
+    <a href="editarPerfil.php"><img id="usuario" src="../img/usuario.png"
+        alt="Clique para editar o perfil" title="Editar Perfil"></a>
+        <br>
+        ';
+                        echo '<label id="labelUsuario">' . $_SESSION['user'] . '</label>';
+                        echo "
+    <br>
+    ";
+                        echo '
+    <a href="login.php?logout" id="aLogout">Logoff</a>
+    ';
+                    } else {
+                        echo '<a href="login.php" id="aLogin">Logar</a>';
+                    }
+                    ?>
+                </div>
                 <hr class="hr2">
                 <ul>
                     <ul>
                         CADASTRO
                         <li>
+                        <li>
+                            <a href="./cadDoador.php">Doador</a>
+                        </li>
                         <li>
                             <a href="./cadDoacao.php">Doação</a>
                         </li>
@@ -59,7 +94,9 @@
             </nav>
             <div class="linhaVertical"></div>
             <div id="cabecalhoSuperior">
-                <div id="cabecalhoSuperiorEsq">Pesquisar</div>
+                <div id="cabecalhoSuperiorEsq">
+                    <p>Pesquisar</p>
+                </div>
                 <div id="cabecalhoSuperiorMeio"><input id="inputPesquisa" type="text"></div>
                 <div id="cabecalhoSuperiorDir"><button id="buttonPesquisa">Localizar</button></div>
                 <!-- <hr id="hrCabecalhoSuperior"> -->

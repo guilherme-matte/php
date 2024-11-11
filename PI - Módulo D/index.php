@@ -49,7 +49,7 @@ if (isset($_GET["logout"])) {
                         <a href="./pages/login.php?logout" id="aLogout">Logoff</a>
                         ';
                 } else {
-                    echo '<a href="login.php" id="aLogin">Logar</a>';
+                    echo '<a href="./pages/login.php" id="aLogin">Logar</a>';
                 }
                 ?>
             </div>
@@ -60,7 +60,10 @@ if (isset($_GET["logout"])) {
                     CADASTRO
                     <li>
                     <li>
-                        <a href="./pages/cadDoacao.php">Doação</a>
+                        <a href="./pages/cadDoador.php">Doador</a>
+                    </li>
+                    <li>
+                        <a href="./cadDoacao.php">Doação</a>
                     </li>
                     <li>
                         <a href="./pages/cadUsuarios.php">Usuários</a>
