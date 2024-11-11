@@ -1,3 +1,14 @@
+<?php
+session_start();
+if (!isset($_SESSION)) {
+    header("Location: ./pages/login.php");
+}
+if (isset($_GET["logout"])) {
+    session_destroy();
+    header("Location: cadUsuarios.php");
+}
+
+?>
 <!DOCTYPE html>
 <html>
 
