@@ -60,7 +60,10 @@ if (isset($_GET["logout"])) {
                     CADASTRO
                     <li>
                     <li>
-                        <a href="./pages/cadDoacao.php">Doação</a>
+                        <a href="./pages/cadDoador.php">Doador</a>
+                    </li>
+                    <li>
+                        <a href="./cadDoacao.php">Doação</a>
                     </li>
                     <li>
                         <a href="./pages/cadUsuarios.php">Usuários</a>

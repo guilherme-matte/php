@@ -61,6 +61,9 @@ if (isset($_GET["logout"])) {
                         CADASTRO
                         <li>
                         <li>
+                            <a href="./cadDoador.php">Doador</a>
+                        </li>
+                        <li>
                             <a href="./cadDoacao.php">Doação</a>
                         </li>
                         <li>

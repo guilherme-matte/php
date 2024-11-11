@@ -16,6 +16,7 @@
 }
 
 .container a:hover,
+#btnBuscar:hover,
 #cadastrar:hover {
     background-color: rgb(170, 111, 0);
 }
@@ -42,6 +43,7 @@ fieldset {
 .dados input[type="password"],
 .dados input[type="tel"],
 .dados input[type="date"],
+.dados input[type = "number"],
 .dados select,
 .dados textarea {
     padding: 3px;
@@ -52,7 +54,10 @@ fieldset {
     height: 50px;
     font-size: 16px;
 }
-
+#txtDescricao{
+    height: 200px;
+    resize: none;
+}
 .dados label {
     display: block;
     padding-top: 10%;
@@ -68,7 +73,8 @@ fieldset {
     font-size: 24px;
 }
 
-#cadastrar {
+#cadastrar,
+#btnBuscar {
     margin-top: 5%;
     margin-bottom: 15%;
     background-color: orange;

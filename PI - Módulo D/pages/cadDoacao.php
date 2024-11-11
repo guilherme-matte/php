@@ -5,7 +5,8 @@ if (!isset($_SESSION)) {
 }
 if (isset($_GET["logout"])) {
     session_destroy();
-    header("Location: cadDoacao.php");
+    header("Location: cadDoador.php");
+    $_SESSION['user'] = null;
 }
 
 ?>
@@ -61,6 +62,9 @@ if (isset($_GET["logout"])) {
                         CADASTRO
                         <li>
                         <li>
+                            <a href="./cadDoador.php">Doador</a>
+                        </li>
+                        <li>
                             <a href="./cadDoacao.php">Doação</a>
                         </li>
                         <li>
@@ -103,149 +107,149 @@ if (isset($_GET["logout"])) {
         <!-- CONTEUDO DA PAGINA -->
         <div id="conteudoPrincipal">
 
-
+            <script>
+                function formatarCPF(campo) {
+                    let valor = campo.value.replace(/\D/g, ''); // Remove tudo que não for número
+                    if (valor.length <= 11) {
+                        valor = valor.replace(/(\d{3})(\d)/, '$1.$2'); // Coloca o primeiro ponto
+                        valor = valor.replace(/(\d{3})(\d)/, '$1.$2'); // Coloca o segundo ponto
+                        valor = valor.replace(/(\d{3})(\d{1,2})$/, '$1-$2'); // Coloca o hífen
+                    }
+                    campo.value = valor;
+                }
+            </script>
 
 
             <div class="container">
-                <a href="#pessoafisica">Pessoa Física</a>
-                <a href="#empresa">Empresa</a>
+                <a href="#pessoafisica">Doação Pessoa Física</a>
+                <a href="#empresa">Doação Empresa</a>
                 <div id="pessoafisica" class="cadastro">
                     <section id="sectionForms">
                         <article id="articleForms">
                             <p id="formP">Pessoa Física</p>
                             <form action="cadDoacao.php" method="post">
-
                                 <fieldset class="bloco">
                                     <div class="dados">
                                         <label>CPF:</label>
-                                        <input type="text" name="cpf" required maxlength="14"
-                                            placeholder="000.000.000-00">
+                                        <input required type="text" id="cpf" name="cpf" maxlength="14" placeholder="000.000.000-00"
+                                            value="<?php echo htmlspecialchars($cpf); ?>" />
                                     </div>
-                                </fieldset>
-                                <fieldset class="bloco">
-                                    <div class="dados">
-                                        <label>Nome: </label>
-                                        <input type="text" name="nome" required maxlength="50">
-                                    </div>
-                                </fieldset>
-                                <fieldset class="bloco">
-                                    <div class="dados">
-                                        <label>Sobrenome: </label>
-                                        <input type="text" name="sobrenome" required maxlength="50">
-                                    </div>
-                                </fieldset>
-                                <fieldset class="bloco">
-                                    <div class="dados">
-                                        <label>Telefone:</label>
-                                        <input type="tel" name="telefone" required maxlength="11"
-                                            placeholder="00000000000">
-                                    </div>
-                                </fieldset>
-                                <fieldset class="bloco">
-                                    <div class="dados">
-                                        <label>Email:</label>
-                                        <input type="email" name="email" required maxlength="50">
-                                    </div>
-                                </fieldset>
-                                <fieldset class="bloco">
-                                    <div class="dados">
-                                        <label>Endereço:</label>
-                                        <input type="text" name="endereco" required maxlength="50">
-                                    </div>
-                                </fieldset>
-                                <fieldset class="bloco">
-                                    <div class="dados">
-                                        <label>CEP:</label>
-                                        <input type="text" name="cep" required maxlength="10" placeholder="00.000-000">
-                                    </div>
-                                </fieldset>
-
-                                <fieldset class="bloco">
-                                    <input type="submit" name="CADASTRAR" id="cadastrar">
+                                    <button type="submit" id="btnBuscar" name="buscar">Buscar</button>
                                 </fieldset>
                             </form>
-                        </article>
-                    </section>
-                </div>
-                <div id="empresa" class="cadastro">
-                    <section id="sectionForms">
-                        <article id="articleForms">
-                            <p id="formP">Empresa</p>
-                            <form action="#" method="post">
 
+                            <?php if (isset($dados)): ?>
+                                <!-- Exibe os dados retornados se houver -->
                                 <fieldset class="bloco">
                                     <div class="dados">
-                                        <label>CNPJ::</label>
-                                        <input type="text" name="cnpj" required maxlength="14"
-                                            placeholder="00.000.000/0000-00">
+                                        <label>Nome Completo: </label>
+                                        <input readonly type="text" name="nomeCompleto" value="<?php echo htmlspecialchars($dados['nome_completo']); ?>" maxlength="50">
                                     </div>
                                 </fieldset>
-                                <fieldset class="bloco">
-                                    <div class="dados">
-                                        <label>Nome da Empresa: </label>
-                                        <input type="text" name="nomeEmpresa" required maxlength="50">
-                                    </div>
-                                </fieldset>
-                                <fieldset class="bloco">
-                                    <div class="dados">
-                                        <label>Responsavel: </label>
-                                        <input type="text" name="nomeResponsavel" required maxlength="50">
-                                    </div>
-                                </fieldset>
-                                <fieldset class="bloco">
-                                    <div class="dados">
-                                        <label>Telefone da Empresa</label>
-                                        <input type="tel" name="telefoneEmpresa" required maxlength="16"
-                                            placeholder="(00) 0 0000-0000">
-                                    </div>
-                                </fieldset>
-                                <fieldset class="bloco">
-                                    <div class="dados">
-                                        <label>Email da Empresa:</label>
-                                        <input type="email" name="emailEmpresa" required maxlength="50">
-                                    </div>
-                                </fieldset>
+                            <?php endif; ?>
 
-                                <fieldset class="bloco">
-                                    <div class="dados">
-                                        <label>Telefone do Responsavel:</label>
-                                        <input type="tel" name="telefoneResponsavel" required maxlength="10"
-                                            placeholder="00000000000">
-                                    </div>
-                                </fieldset>
-                                <fieldset class="bloco">
-                                    <div class="dados">
-                                        <label>Email do Responsavel:</label>
-                                        <input type="email" name="emailResponsavel" required maxlength="50">
-                                    </div>
-                                </fieldset>
-                                <fieldset class="bloco">
-                                    <div class="dados">
-                                        <label>Cargo:</label>
-                                        <input type="text" name="cargo" required maxlength="50">
-                                    </div>
-                                </fieldset>
-                                <fieldset class="bloco">
-                                    <input type="submit" name="cadastrar_empresa" id="cadastrar">
-                                </fieldset>
-                            </form>
+                            <fieldset class="bloco">
+                                <div class="dados">
+                                    <label>Quantidade </label>
+                                    <input min="0" type="number" name="quantidade" required maxlength="50">
+                                </div>
+                            </fieldset>
+
+                            <fieldset class="bloco">
+                                <div class="dados">
+                                    <label>Categoria: </label>
+                                    <select name="categoria">
+                                        <option value="Computador" select>Computador</option>
+                                        <option value="Notebook">Notebook</option>
+                                        <option value="Perifericos">Perifericos</option>
+                                    </select>
+                                </div>
+                            </fieldset>
+
+                            <fieldset class="bloco">
+                                <div class="dados">
+                                    <label>Descrição </label>
+                                    <textarea name="descricao" id="txtDescricao"></textarea>
+                                </div>
+                            </fieldset>
+
+                            <fieldset class="bloco">
+                                <input type="submit" name="CADASTRAR" id="cadastrar">
+                            </fieldset>
                         </article>
                     </section>
                 </div>
             </div>
-            <?php
-            include("../php/conexao.php");
-            $conexao = new conexao();
-
-            if (isset($_POST["cadastrar_pessoaFisica"])) {
-                $conexao->cadPessoaFisica($_POST["cpf"], $_POST["nome"], $_POST["sobrenome"], $_POST["telefone"], $_POST["email"], $_POST["endereco"], $_POST["cep"], date('Y-m-d'));
-            }
-            if (isset($_POST['cadastrar_empresa'])) {
-                $conexao->cadastrarEmpresa($_POST['cnpj'], $_POST['nomeEmpresa'], $_POST['nomeResponsavel'], $_POST['telefoneEmpresa'], $_POST['telefoneResponsavel'], $_POST['emailEmpresa'], $_POST['emailResponsavel'], $_POST['cargo'], date('Y-m-d'));
-            }
-            ?>
-            <!-- FIM DO CONTEUDO -->
         </div>
+        <div id="empresa" class="cadastro">
+            <section id="sectionForms">
+                <article id="articleForms">
+                    <p id="formP">Empresa</p>
+                    <form action="#" method="post">
+
+                        <fieldset class="bloco">
+                            <div class="dados">
+                                <label>CNPJ::</label>
+                                <input type="text" name="cnpj" required maxlength="14"
+                                    placeholder="00.000.000/0000-00">
+                            </div>
+                        </fieldset>
+                        <fieldset class="bloco">
+                            <div class="dados">
+                                <label>Nome da Empresa: </label>
+                                <input type="text" name="nomeEmpresa" required maxlength="50">
+                            </div>
+                        </fieldset>
+                        <fieldset class="bloco">
+                            <div class="dados">
+                                <label>Responsavel: </label>
+                                <input type="text" name="nomeResponsavel" required maxlength="50">
+                            </div>
+                        </fieldset>
+                        <fieldset class="bloco">
+                            <div class="dados">
+                                <label>Telefone da Empresa</label>
+                                <input type="tel" name="telefoneEmpresa" required maxlength="16"
+                                    placeholder="(00) 0 0000-0000">
+                            </div>
+                        </fieldset>
+                        <fieldset class="bloco">
+                            <div class="dados">
+                                <label>Email da Empresa:</label>
+                                <input type="email" name="emailEmpresa" required maxlength="50">
+                            </div>
+                        </fieldset>
+
+                        <fieldset class="bloco">
+                            <div class="dados">
+                                <label>Telefone do Responsavel:</label>
+                                <input type="tel" name="telefoneResponsavel" required maxlength="10"
+                                    placeholder="00000000000">
+                            </div>
+                        </fieldset>
+                        <fieldset class="bloco">
+                            <div class="dados">
+                                <label>Email do Responsavel:</label>
+                                <input type="email" name="emailResponsavel" required maxlength="50">
+                            </div>
+                        </fieldset>
+                        <fieldset class="bloco">
+                            <div class="dados">
+                                <label>Cargo:</label>
+                                <input type="text" name="cargo" required maxlength="50">
+                            </div>
+                        </fieldset>
+                        <fieldset class="bloco">
+                            <input type="submit" name="cadastrar_empresa" id="cadastrar">
+                        </fieldset>
+                    </form>
+                </article>
+            </section>
+        </div>
+    </div>
+
+    <!-- FIM DO CONTEUDO -->
+    </div>
     </div>
 </body>
 

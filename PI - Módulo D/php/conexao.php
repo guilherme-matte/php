@@ -16,7 +16,16 @@ class conexao
     {
         $this->conn = new mysqli($this->host, $this->user, $this->password, $this->banco);
     }
-
+    public function buscarCPF($cpf)
+    {
+        $stmt = $this->conn->prepare("SELECT * FROM pessoa_fisica where cpf=?");
+        $stmt->bind_param("s", $cpf);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        $this->conn->close();
+        return $result;
+    }
     public function logar($user)
     {
         $stmt = $this->conn->prepare("SELECT * FROM login WHERE usuario = ?");
