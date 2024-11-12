@@ -109,11 +109,11 @@ if (isset($_GET["logout"])) {
 
             <script>
                 function formatarCPF(campo) {
-                    let valor = campo.value.replace(/\D/g, ''); // Remove tudo que não for número
+                    let valor = campo.value.replace(/\D/g, '');
                     if (valor.length <= 11) {
-                        valor = valor.replace(/(\d{3})(\d)/, '$1.$2'); // Coloca o primeiro ponto
-                        valor = valor.replace(/(\d{3})(\d)/, '$1.$2'); // Coloca o segundo ponto
-                        valor = valor.replace(/(\d{3})(\d{1,2})$/, '$1-$2'); // Coloca o hífen
+                        valor = valor.replace(/(\d{3})(\d)/, '$1.$2');
+                        valor = valor.replace(/(\d{3})(\d)/, '$1.$2');
+                        valor = valor.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
                     }
                     campo.value = valor;
                 }
@@ -145,14 +145,15 @@ if (isset($_GET["logout"])) {
                                 if (isset($_POST["buscar"])) {
                                     $dados = $conexao->buscarCPF($_POST['cpf']);
                                 }
-                                if (isset($dados)) {
-                                    echo $dados['cpf'];
-                                }
-                                ?>
-                                <fieldset class="bloco">
+                                if ($dados->num_rows > 0) {
+                                    $row = $dados->fetch_assoc();
+                                    $nomeCompleto = $row["nome"] ." ". $row["sobrenome"];
+                                    var_dump($nomeCompleto);
+                                    echo '
+                                    <fieldset class="bloco">
                                     <div class="dados">
                                         <label>Nome Completo: </label>
-                                        <input readonly type="text" name="nomeCompleto" required maxlength="50">
+                                        <input readonly value='.$nomeCompleto.' type="text" name="nomeCompleto" required maxlength="50">
                                     </div>
                                 </fieldset>
 
@@ -182,6 +183,10 @@ if (isset($_GET["logout"])) {
                                 <fieldset class="bloco">
                                     <input type="submit" name="CADASTRAR" id="cadastrar">
                                 </fieldset>
+                                    ';
+                                }
+                                ?>
+
                             </form>
                         </article>
                     </section>
@@ -194,7 +199,7 @@ if (isset($_GET["logout"])) {
 
                                 <fieldset class="bloco">
                                     <div class="dados">
-                                        <label>CNPJ::</label>
+                                        <label>CNPJ:</label>
                                         <input type="text" name="cnpj" required maxlength="14"
                                             placeholder="00.000.000/0000-00">
                                     </div>
