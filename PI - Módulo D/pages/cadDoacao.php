@@ -117,6 +117,17 @@ if (isset($_GET["logout"])) {
                     }
                     campo.value = valor;
                 }
+
+                function formatarCNPJ(campo) {
+                    let valor = campo.value.replace(/\D/g, '');
+                    if (valor.length <= 14) {
+                        valor = valor.replace(/^(\d{2})(\d)/, '$1.$2');
+                        valor = valor.replace(/^(\d{2})\.(\d{3})(\d)/, '$1.$2.$3');
+                        valor = valor.replace(/\.(\d{3})(\d)/, '.$1/$2');
+                        valor = valor.replace(/(\d{4})(\d)/, '$1-$2');
+                    }
+                    campo.value = valor;
+                }
             </script>
 
 
@@ -128,32 +139,43 @@ if (isset($_GET["logout"])) {
                         <article id="articleForms">
                             <p id="formP">Pessoa Física</p>
                             <form action="cadDoacao.php" method="post">
-                                <form action="cadDoacao.php">
-                                    <fieldset class="bloco">
-                                        <div class="dados">
-                                            <label>CPF:</label>
-                                            <input required type="text" id="cpf" name="cpf" oninput="formatarCPF(this)" maxlength="14" placeholder="000.000.000-00" />
 
-                                        </div>
-                                        <button id="btnBuscar" name="buscar">Buscar</button>
-                                    </fieldset>
+                                <fieldset class="bloco">
+                                    <div class="dados">
+                                        <label>Pesquisar por CPF:</label>
+                                        <input type="text" id="cpf" name="cpfPesquisa" oninput="formatarCPF(this)" maxlength="14" placeholder="000.000.000-00" />
 
-                                </form>
+                                    </div>
+                                    <button id="btnBuscar" name="buscarCPF">Buscar</button>
+                                </fieldset>
+
+
                                 <?PHP
                                 include("../php/conexao.php");
                                 $conexao = new conexao();
-                                if (isset($_POST["buscar"])) {
-                                    $dados = $conexao->buscarCPF($_POST['cpf']);
+                                if (isset($_POST['cpfPesquisa']) == null || isset($_POST['cpfPesquisa']) == "") {
+                                    $cpf = 1;
+                                } else {
+                                    $cpf = $_POST["cpfPesquisa"];
                                 }
-                                if ($dados->num_rows > 0) {
-                                    $row = $dados->fetch_assoc();
-                                    $nomeCompleto = $row["nome"] ." ". $row["sobrenome"];
-                                    var_dump($nomeCompleto);
-                                    echo '
+                                if (isset($_POST["buscarCPF"])) {
+                                    $dados = $conexao->buscarCPF($cpf);
+
+                                    if ($dados->num_rows > 0) {
+                                        $row = $dados->fetch_assoc();
+                                        $nomeCompleto = $row["nome"] . " " . $row["sobrenome"];
+                                        echo '
+                                <fieldset class="bloco">
+                                    <div class="dados">
+                                        <label>CPF: </label>
+                                        <input readonly value="' . $row["cpf"] . '" type="text" name="cpf" required maxlength="50">
+                                    </div>
+                                </fieldset>
+
                                     <fieldset class="bloco">
                                     <div class="dados">
                                         <label>Nome Completo: </label>
-                                        <input readonly value='.$nomeCompleto.' type="text" name="nomeCompleto" required maxlength="50">
+                                        <input readonly value="' . $nomeCompleto . '" type="text" name="nomeCompleto" required maxlength="50">
                                     </div>
                                 </fieldset>
 
@@ -167,7 +189,7 @@ if (isset($_GET["logout"])) {
                                 <fieldset class="bloco">
                                     <div class="dados">
                                         <label>Categoria: </label>
-                                        <select name="categoria">
+                                        <select required name="categoria">
                                             <option value="Computador" select>Computador</option>
                                             <option value="Notebook">Notebook</option>
                                             <option value="Perifericos">Perifericos</option>
@@ -181,9 +203,15 @@ if (isset($_GET["logout"])) {
                                 </fieldset>
 
                                 <fieldset class="bloco">
-                                    <input type="submit" name="CADASTRAR" id="cadastrar">
+                                    <button type="submit" name="cadastrarProdPF" id="cadastrar">Cadastrar Produto</button>
                                 </fieldset>
                                     ';
+                                    } else {
+                                        echo "ERRO AO BUSCAR USUARIO(INEXISTENTE)";
+                                    }
+                                }
+                                if (isset($_POST['cadastrarProdPF'])) {
+                                    $conexao->cadProdutoPF($_POST['cpf'], $_POST['nomeCompleto'], $_POST['quantidade'], $_POST['categoria'], $_POST['descricao']);
                                 }
                                 ?>
 
@@ -195,63 +223,85 @@ if (isset($_GET["logout"])) {
                     <section id="sectionForms">
                         <article id="articleForms">
                             <p id="formP">Empresa</p>
-                            <form action="#" method="post">
+                            <form action="cadDoacao.php" method="post">
 
                                 <fieldset class="bloco">
                                     <div class="dados">
-                                        <label>CNPJ:</label>
-                                        <input type="text" name="cnpj" required maxlength="14"
-                                            placeholder="00.000.000/0000-00">
+                                        <label>Pesquisar por CNPJ:</label>
+                                        <input type="text" id="cnpj" name="cnpjPesquisa" oninput="formatarCNPJ(this)" maxlength="18" placeholder="00.000.000/0000-00" />
+
                                     </div>
+                                    <button id="btnBuscar" name="buscarCNPJ">Buscar</button>
                                 </fieldset>
+
+
+                                <?PHP
+                                if (isset($_POST['cnpjPesquisa']) == null || isset($_POST['cnpjPesquisa']) == "") {
+                                    $cnpj = 1;
+                                } else {
+                                    $cnpj = $_POST["cnpjPesquisa"];
+                                }
+                                if (isset($_POST["buscarCNPJ"])) {
+                                    $dados = $conexao->buscarCnpj($cnpj);
+
+                                    if ($dados->num_rows > 0) {
+                                        $row = $dados->fetch_assoc();
+                                        echo '
                                 <fieldset class="bloco">
                                     <div class="dados">
+                                        <label>cnpj: </label>
+                                        <input readonly value="' . $row["cnpj"] . '" type="text" name="cnpj" required maxlength="50">
+                                    </div>
+                                </fieldset>
+
+                                    <fieldset class="bloco">
+                                    <div class="dados">
                                         <label>Nome da Empresa: </label>
-                                        <input type="text" name="nomeEmpresa" required maxlength="50">
+                                        <input readonly value="' . $row['nome_empresa'] . '" type="text" name="nomeEmpresa" required maxlength="50">
                                     </div>
                                 </fieldset>
                                 <fieldset class="bloco">
                                     <div class="dados">
                                         <label>Responsavel: </label>
-                                        <input type="text" name="nomeResponsavel" required maxlength="50">
+                                        <input readonly value="' . $row['nome_responsavel'] . '" type="text" name="responsavel" required maxlength="50">
                                     </div>
                                 </fieldset>
                                 <fieldset class="bloco">
                                     <div class="dados">
-                                        <label>Telefone da Empresa</label>
-                                        <input type="tel" name="telefoneEmpresa" required maxlength="16"
-                                            placeholder="(00) 0 0000-0000">
-                                    </div>
-                                </fieldset>
-                                <fieldset class="bloco">
-                                    <div class="dados">
-                                        <label>Email da Empresa:</label>
-                                        <input type="email" name="emailEmpresa" required maxlength="50">
+                                        <label>Quantidade </label>
+                                        <input min="0" type="number" name="quantidade" required maxlength="50">
                                     </div>
                                 </fieldset>
 
                                 <fieldset class="bloco">
                                     <div class="dados">
-                                        <label>Telefone do Responsavel:</label>
-                                        <input type="tel" name="telefoneResponsavel" required maxlength="10"
-                                            placeholder="00000000000">
+                                        <label>Categoria: </label>
+                                        <select required name="categoria">
+                                            <option value="Computador" select>Computador</option>
+                                            <option value="Notebook">Notebook</option>
+                                            <option value="Perifericos">Perifericos</option>
+                                        </select>
                                     </div>
                                 </fieldset>
                                 <fieldset class="bloco">
                                     <div class="dados">
-                                        <label>Email do Responsavel:</label>
-                                        <input type="email" name="emailResponsavel" required maxlength="50">
-                                    </div>
+                                        <label>Descrição </label>
+                                        <textarea name="descricao" id="txtDescricao"></textarea>
                                 </fieldset>
+
                                 <fieldset class="bloco">
-                                    <div class="dados">
-                                        <label>Cargo:</label>
-                                        <input type="text" name="cargo" required maxlength="50">
-                                    </div>
+                                    <button type="submit" name="cadastrarProdutoEmpresa" id="cadastrar">Cadastrar Produto</button>
                                 </fieldset>
-                                <fieldset class="bloco">
-                                    <input type="submit" name="cadastrar_empresa" id="cadastrar">
-                                </fieldset>
+                                    ';
+                                    } else {
+                                        echo "ERRO AO BUSCAR USUARIO(INEXISTENTE)";
+                                    }
+                                }
+                                if (isset($_POST['cadastrarProdutoEmpresa'])) {
+                                    $conexao->cadProdutoEmpresa($_POST['cnpj'], $_POST['categoria'], $_POST['quantidade'], $_POST['nomeEmpresa'], $_POST['responsavel'], $_POST['descricao']);
+                                }
+                                ?>
+
                             </form>
                         </article>
                     </section>

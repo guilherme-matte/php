@@ -16,6 +16,14 @@ class conexao
     {
         $this->conn = new mysqli($this->host, $this->user, $this->password, $this->banco);
     }
+    public function buscarCNPJ($cnpj){
+        $stmt = $this->conn->prepare("SELECT * FROM empresas where cnpj=?");
+        $stmt->bind_param("s", $cnpj);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        return $result; 
+    }
     public function buscarCPF($cpf)
     {
         $stmt = $this->conn->prepare("SELECT * FROM pessoa_fisica where cpf=?");
@@ -23,7 +31,6 @@ class conexao
         $stmt->execute();
         $result = $stmt->get_result();
         $stmt->close();
-        $this->conn->close();
         return $result;
     }
     public function logar($user)
@@ -37,6 +44,26 @@ class conexao
         $this->conn->close();
         return $result;
     }
+    public function cadProdutoPF($cpf, $nomeCompleto, $quantidade, $categoria, $descricao)
+    {
+        if (!$this->conn) {
+            die("Erro na conexão: " . $this->conn->error);
+        }
+        $stmt = $this->conn->prepare("INSERT INTO cadastro_produto_pessoafisica (cpf, nomePF, quantidade, categoria, descricao) VALUES (?, ?, ?, ?, ?)");
+        $stmt->bind_param("ssiss", $cpf, $nomeCompleto, $quantidade, $categoria, $descricao);
+        $stmt->execute();
+        if ($stmt->affected_rows > 0) {
+            echo "<script language='javascript' type='text/javascript'>"
+                . "alert('Cadastro realizado com sucesso!');"
+                . "window.location.href='../pages/cadDoacao.php'"
+                . "</script>";
+            die();
+        } else {
+            echo "Erro: <br>" . $this->conn->error;
+            echo '<br>';
+            echo 'Cadastro nao realizado';
+        }
+    }
     public function cadPessoaFisica($cpf, $nome, $sobrenome, $telefone, $email, $endereco, $cep, $dataCad)
     {
         $stmt = $this->conn->prepare("INSERT INTO pessoa_fisica values(null,?,?,?,?,?,?,?,?)");
@@ -47,6 +74,26 @@ class conexao
             echo "<script language='javascript' type='text/javascript'>"
                 . "alert('Cadastro realizado com sucesso!');"
                 . "window.location.href='../pages/login.php'"
+                . "</script>";
+            die();
+        } else {
+            echo "Erro: <br>" . $this->conn->error;
+            echo '<br>';
+            echo 'Cadastro nao realizado';
+        }
+    }
+    public function cadProdutoEmpresa($cnpj, $categoria, $quantidade, $nomeEmpresa, $responsavel, $descricao)
+    {
+        if (!$this->conn) {
+            die("Erro na conexão: " . $this->conn->error);
+        }
+        $stmt = $this->conn->prepare("INSERT INTO cadastro_produto_empresas (cnpj, categoria, quantidade, nomeEmpresa,responsavel, descricao) VALUES (?, ?, ?, ?, ?,?)");
+        $stmt->bind_param("ssisss", $cnpj, $categoria, $quantidade, $nomeEmpresa, $responsavel, $descricao);
+        $stmt->execute();
+        if ($stmt->affected_rows > 0) {
+            echo "<script language='javascript' type='text/javascript'>"
+                . "alert('Cadastro realizado com sucesso!');"
+                . "window.location.href='../pages/cadDoacao.php'"
                 . "</script>";
             die();
         } else {
@@ -83,7 +130,7 @@ class conexao
         if ($stmt == true) {
             echo "<script language='javascript' type='text/javascript'>"
                 . "alert('Cadastro realizado com sucesso!');"
-                . "window.location.href='../pages/cadDoacao.php'"
+                . "window.location.href='../pages/cadUsuarios.php'"
                 . "</script>";
             die();
         } else {

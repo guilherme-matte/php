@@ -23,7 +23,28 @@ if (isset($_GET["logout"])) {
     <link rel="stylesheet" href="../css/menu.css" type="text/css">
     <link rel="stylesheet" href="../css/formCadastroDoacao.css" type="text/css">
 
+    <script>
+        function formatarCPF(campo) {
+            let valor = campo.value.replace(/\D/g, '');
+            if (valor.length <= 11) {
+                valor = valor.replace(/(\d{3})(\d)/, '$1.$2');
+                valor = valor.replace(/(\d{3})(\d)/, '$1.$2');
+                valor = valor.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+            }
+            campo.value = valor;
+        }
 
+        function formatarCNPJ(campo) {
+            let valor = campo.value.replace(/\D/g, '');
+            if (valor.length <= 14) {
+                valor = valor.replace(/^(\d{2})(\d)/, '$1.$2');
+                valor = valor.replace(/^(\d{2})\.(\d{3})(\d)/, '$1.$2.$3');
+                valor = valor.replace(/\.(\d{3})(\d)/, '.$1/$2');
+                valor = valor.replace(/(\d{4})(\d)/, '$1-$2');
+            }
+            campo.value = valor;
+        }
+    </script>
 </head>
 
 <body id="body">
@@ -122,8 +143,7 @@ if (isset($_GET["logout"])) {
                                 <fieldset class="bloco">
                                     <div class="dados">
                                         <label>CPF:</label>
-                                        <input type="text" name="cpf" required maxlength="14"
-                                            placeholder="000.000.000-00">
+                                        <input type="text" id="cpf" name="cpfPesquisa" oninput="formatarCPF(this)" maxlength="14" placeholder="000.000.000-00" />
                                     </div>
                                 </fieldset>
                                 <fieldset class="bloco">
@@ -180,8 +200,7 @@ if (isset($_GET["logout"])) {
                                 <fieldset class="bloco">
                                     <div class="dados">
                                         <label>CNPJ::</label>
-                                        <input type="text" name="cnpj" required maxlength="14"
-                                            placeholder="00.000.000/0000-00">
+                                        <input type="text" id="cnpj" name="cnpjPesquisa" oninput="formatarCNPJ(this)" maxlength="18" placeholder="00.000.000/0000-00" />
                                     </div>
                                 </fieldset>
                                 <fieldset class="bloco">

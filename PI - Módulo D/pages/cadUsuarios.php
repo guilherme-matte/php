@@ -22,7 +22,17 @@ if (isset($_GET["logout"])) {
     <link rel="stylesheet" href="../css/menu.css" type="text/css">
     <link rel="stylesheet" href="../css/formCadUsuario.css" type="text/css">
 
-
+    <script>
+        function formatarCPF(campo) {
+            let valor = campo.value.replace(/\D/g, '');
+            if (valor.length <= 11) {
+                valor = valor.replace(/(\d{3})(\d)/, '$1.$2');
+                valor = valor.replace(/(\d{3})(\d)/, '$1.$2');
+                valor = valor.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+            }
+            campo.value = valor;
+        }
+    </script>
 </head>
 
 <body id="body">
@@ -106,17 +116,20 @@ if (isset($_GET["logout"])) {
 
         <div id="conteudoPrincipal">
             <!-- CONTEUDO DA PAGINA -->
+            <p id="tituloCadUsuario"></p>
             <table>
                 <tbody>
                     <form action="cadUsuarios.php" method="post" id="form">
-
+                        <tr id="trTitulo">
+                            <td id="tdTitulo" colspan="2">Cadastro de Usuários</td>
+                        </tr>
                         <tr>
                             <td id="tdLeft">CPF: </td>
-                            <td id="tdRight"><input type="text" name="cpf" id="cpf"></td>
+                            <td id="tdRight"><input required type="text" id="cpf" name="cpfPesquisa" oninput="formatarCPF(this)" maxlength="14" placeholder="000.000.000-00" /></td>
                         </tr>
                         <tr>
                             <td id="tdLeft">Nome Completo: </td>
-                            <td id="tdRight"><input type="text" name="nomeCompleto" id="nomeCompleto"></td>
+                            <td id="tdRight"><input type="text" name="nomeCompleto" id="nomeCompleto" required placeholder="Nome Completo"></td>
                         </tr>
                         <tr>
                             <td id="tdLeft">Acesso:</td>
@@ -130,15 +143,15 @@ if (isset($_GET["logout"])) {
                         </tr>
                         <tr>
                             <td id="tdLeft">Usuário: </td>
-                            <td id="tdRight"><input type="text" name="user" id="user"></td>
+                            <td id="tdRight"><input type="text" name="user" id="user" required placeholder="nome-sobrenome"></td>
                         </tr>
                         <tr>
                             <td id="tdLeft">Senha: </td>
-                            <td id="tdRight"><input type="password" name="password" id="password"></td>
+                            <td id="tdRight"><input type="password" name="password" id="password" required placeholder="Senha"></td>
                         </tr>
                         <tr>
                             <td id="tdLeft">E-mail: </td>
-                            <td id="tdRight"><input type="email" name="email" id="email"></td>
+                            <td id="tdRight"><input required type="email" name="email" id="email" required placeholder="email@dominio.com"></td>
                         </tr>
                         <tr>
                             <td id="tdLeft"><button type="submit" name="enviar" id="enviar">Cadastrar</button></td>

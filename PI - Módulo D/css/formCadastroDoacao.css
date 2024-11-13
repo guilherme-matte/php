@@ -73,8 +73,7 @@ fieldset {
     font-size: 24px;
 }
 
-#cadastrar,
-#btnBuscar {
+#cadastrar {
     margin-top: 5%;
     margin-bottom: 15%;
     background-color: orange;
@@ -85,4 +84,14 @@ fieldset {
     border: none;
 
 
+}
+#btnBuscar{
+    margin-top: 5%;
+    margin-bottom: 3%;
+    background-color: orange;
+    width: 150px;
+    height: 35px;
+    border-radius: 10px;
+    font-size: 18px;
+    border: none;
 }
