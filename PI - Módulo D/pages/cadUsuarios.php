@@ -32,8 +32,6 @@ if (isset($_GET["logout"])) {
             }
             campo.value = valor;
         }
-
-        
     </script>
 </head>
 
@@ -91,6 +89,9 @@ if (isset($_GET["logout"])) {
                             <a href="./conComputadores.php">Computadores</a>
                         </li>
                         <li>
+                            <a href="./conDoadores.php">Doadores</a>
+                        </li>
+                        <li>
                             <a href="./conColaboradores.php">Colaboradores</a>
                         </li>
                         </li>
@@ -118,7 +119,10 @@ if (isset($_GET["logout"])) {
 
         <div id="conteudoPrincipal">
             <!-- CONTEUDO DA PAGINA -->
-            <p id="tituloCadUsuario"></p>
+            <?php
+            if (isset($_SESSION["user"]) && $_SESSION['cargo'] == "admin") {
+                echo '
+                <p id="tituloCadUsuario"></p>
             <table>
                 <tbody>
                     <form action="cadUsuarios.php" method="post" id="form">
@@ -163,6 +167,16 @@ if (isset($_GET["logout"])) {
                 </tbody>
 
             </table>
+                ';
+            } else {
+                echo '
+
+            <p id="semPermissão">Usuário sem permissão para acessar</p>
+            
+            ';
+            }
+            ?>
+
             <?php
             include("../php/conexao.php");
             $conexao = new conexao();

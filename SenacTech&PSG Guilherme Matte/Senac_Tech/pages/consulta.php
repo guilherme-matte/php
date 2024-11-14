@@ -185,7 +185,7 @@ if (isset($_GET['logout'])) {
         echo '<p class="titulo">
                 Consulta Fale Conosco
                 </p>';
-
+        $linhaTabela = 0;
         if (isset($_SESSION["nome_usu_sessao"]) && ($_SESSION['cargo_usu_sessao']) == 'ADM') {
             while ($linha = $consulta->fetch_assoc()) {
                 $id = $linha['id'];
@@ -199,7 +199,7 @@ if (isset($_GET['logout'])) {
                 $mensagem = $linha['mensagem'];
                 $cpf = $linha['cpf'];
 
-                $linhaTabela = 0;
+
 
                 $linhaTabela + 1;
                 if ($linhaTabela % 2 == 0) {

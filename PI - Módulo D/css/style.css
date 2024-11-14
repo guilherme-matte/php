@@ -1,3 +1,18 @@
+#semPermissão {
+    text-align: center;
+    position: relative;
+    top: 350px;
+    left: 150px;
+    font-size: 34px;
+    font-family: arial;
+    border: 5px solid red;
+    height: 150px;
+    padding-top: 9%;
+    background-color: red;
+    width: 80%;
+    border-radius: 5px;
+    color: white;
+}
 .aWhite {
     color: aliceblue;
 }

@@ -125,6 +125,9 @@ if (isset($_GET["logout"])) {
                             <a href="./conComputadores.php">Computadores</a>
                         </li>
                         <li>
+                            <a href="./conDoadores.php">Doadores</a>
+                        </li>
+                        <li>
                             <a href="./conColaboradores.php">Colaboradores</a>
                         </li>
                         </li>

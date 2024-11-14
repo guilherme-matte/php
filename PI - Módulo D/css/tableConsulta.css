@@ -1,0 +1,56 @@
+
+
+thead td{
+    height: 30px;
+    padding-top: 10px;
+    font-size: 18px;
+    font-family: arial;
+    background-color: orange;
+}
+table {
+    text-align: center;
+    position: relative;
+    top: 100px;
+    left: 95px;
+    border: solid 1px red;
+    width: 1400px;
+}
+
+#linha1 {
+    background-color: rgb(233, 233, 233);
+}
+
+#linha2 {
+    background-color: rgb(207, 207, 207);
+}
+
+tbody tr {
+    height: 70px;
+}
+
+tbody td input,
+tbody td select {
+    margin-top: 6%;
+    width: 90%;
+    height: 35px;
+    border: solid orange 0.1px;
+    border-radius: 5px;
+}
+tbody td select{
+    cursor: pointer;
+}
+tbody td button{
+    width: 45%;
+    height: 35px;
+    border: solid orange 0.1px;
+    background-color: orange;
+    border-radius: 5px;
+}
+tbody td button:hover{
+background-color: rgb(185, 121, 0);
+cursor: pointer;
+}
+
+#tdID{
+    width: 50px;
+}

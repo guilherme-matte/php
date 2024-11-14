@@ -40,17 +40,17 @@ if (isset($_GET["logout"])) {
                     <?php
                     if (isset($_SESSION["user"]) != "") {
                         echo '
-    <a href="editarPerfil.php"><img id="usuario" src="../img/usuario.png"
-        alt="Clique para editar o perfil" title="Editar Perfil"></a>
-        <br>
-        ';
+                    <a href="editarPerfil.php"><img id="usuario" src="../img/usuario.png"
+                        alt="Clique para editar o perfil" title="Editar Perfil"></a>
+                        <br>
+                        ';
                         echo '<label id="labelUsuario">' . $_SESSION['user'] . '</label>';
                         echo "
-    <br>
-    ";
+                        <br>
+                        ";
                         echo '
-    <a href="login.php?logout" id="aLogout">Logoff</a>
-    ';
+                        <a href="login.php?logout" id="aLogout">Logoff</a>
+                        ';
                     } else {
                         echo '<a href="login.php" id="aLogin">Logar</a>';
                     }

@@ -1,14 +1,8 @@
 <?php
 session_start();
-function deslogar()
-{
-    if (session_destroy()) {
-        header("Location: login.php");
-    }
-}
-
 if (isset($_GET["logout"])) {
-    deslogar();
+    session_destroy();
+    header("Location: conColaboradores.php");
 }
 ?>
 <!DOCTYPE html>
@@ -22,7 +16,8 @@ if (isset($_GET["logout"])) {
     <link rel="stylesheet" href="../css/reset.css" type="text/css">
     <link rel="stylesheet" href="../css/style.css" type="text/css">
     <link rel="stylesheet" href="../css/menu.css" type="text/css">
-    <link rel="stylesheet" href="../css/formCadUsuario.css" type="text/css">
+    <link rel="stylesheet" href="../css/tableConsulta.css" type="text/css">
+
 
 </head>
 
@@ -110,64 +105,101 @@ if (isset($_GET["logout"])) {
         <div id="conteudoPrincipal">
             <!-- CONTEUDO DA PAGINA -->
             <?php
-            include '../php/conexao.php';
+            include "../php/conexao.php";
+
             $conexao = new conexao();
+            $consulta = $conexao->consultarPF();
+            $linha = 0;
+
+            echo '
+	<h1 id="lista">Lista de Usuários</h1>
+	<table>
+		<thead>
+			<tr>
+				<td>ID</td>
+                
+                <td>CPF</td>
+				
+                <td>Nome</td>
+                
+                <td>Sobrenome</td>
+                
+				
+                <td>Email</td>
+                
+                <td>Endereço</td>
+				
+                <td>Cep</td>
+
+                <td>Data de Cadastro</td>
+
+                <td>Telefone</td>
+
+                <td>Ação</td>
+			</tr>
+		</thead>';
+
+            if ($consulta->num_rows > 0) {
 
 
-            if (isset($_SESSION['id'])) {
-                $dados = $conexao->buscarID($_SESSION['id']);
-                if ($dados->num_rows > 0) {
-                    $row = $dados->fetch_assoc();
-
-                    echo '
-                    <table>
-                <tbody>
-                    <form action="editarPerfil.php" method="post" id="form">
-                        <tr>
-                            <td id="tdTitulo" colspan="2">Perfil</td>
-                        </tr>
-                        <tr>
-                            <td id="tdLeft">CPF: </td>
-                            <td id="tdRight"> <input value="' . $row['cpf'] . '" readonly type="text" id="cpf" name="cpf" oninput="formatarCPF(this)" maxlength="14" placeholder="000.000.000-00" />
-                            </td>
-                        </tr>
-
-
-                        <tr>
-                            <td id="tdLeft">Usuário: </td>
-                            <td id="tdRight"><input value="' . $row['usuario'] . '" type="text" name="user" id="user"></td>
-                        </tr>
-                        <tr>
-                            <td id="tdLeft">Nome Completo: </td>
-                            <td id="tdRight"><input value="' . $row['nome_completo'] . '" type="text" name="nomeCompleto" id="nomeCompleto"></td>
-                        </tr>
-
-                        <tr>
-                            <td id="tdLeft">E-mail: </td>
-                            <td id="tdRight"><input value="' . $row['email'] . '" type="email" name="email" id="email"></td>
-                        </tr>
-                        <tr>
-                            <td id="tdLeft"><button type="submit" name="alterarPerfil" id="enviar">ALTERAR</button></td>
-                            <td id="tdRight"><button type="reset" id="limpar">REDEFINIR</button></td>
-                        </tr>
-                    </form>
-                </tbody>
-
-            </table>
-
-                    ';
-                    if (isset($_POST['alterarPerfil'])) {
-
-
-                        $conexao->alterarUsuario($_SESSION['id'], $_POST['nomeCompleto'], $_POST['user'], $_POST['email']);
+                while ($row = $consulta->fetch_assoc()) {
+                    $linha + 1;
+                    if ($linha % 2 == 0) {
+                        $linha = 1;
+                    } else {
+                        $linha = 2;
                     }
+                    echo '
+                        <tbody id="linha' . $linha . '">
+                        <form action="conColaboradores.php" method="post">
+                    <tr >
+                        <td id="tdID"><input readonly type="text" name="id" value="' . $row['pessoaFisica_id'] . '"></td>
+                        <td><input readonly type="text" name="cpf" value="' . $row['cpf'] . '"></td>
+                        <td><input type="text" name="nome" value="' . $row['nome'] . '"></td>
+                        <td><input type="text" name="sobrenome" value="' . $row['sobrenome'] . '"></td>
+
+                        <td><input type="email" name="email" value="' . $row['email'] . '"></td>
+
+                        <td><input type="text" name="endereco" value="' . $row['endereco'] . '"></td>
+
+                        <td><input type="text" name="cep" value="' . $row['cep'] . '"></td>
+                        <td><input readonly type="date" value="' . $row['data_cadastro'] . '"></td>
+                        <td><input type="fone" name="telefone" value="' . $row['telefone'] . '"></td>
+
+
+
+                        <td><button name="editar">Editar</button>  <button>Excluir</button name="Excluir"></td>
+                    </tr>
+                    </form>
+                    </tbody>
+                    ';
                 }
             } else {
-                echo 'ERROR
-                ERRO AO CARREGAR PAGINA
+                echo '
+                        <tbody>
+                            <tr>
+                                <td colspan="5">Nenhum usuário encontrado</td>
+                            </tr>
+                        </tbody>
+                  
+                    ';
+            }
+            echo '
+                </table>
                 ';
+
+            if (isset($_POST['editar'])) {
+                if (isset($_SESSION["user"]) && $_SESSION['cargo'] == "admin") {
+                    $conexao->alterarPFConsulta($_POST['id'], $_POST['nome'], $_POST['sobrenome'], $_POST['email'], $_POST['endereco'],$_POST['cep'],$_POST['telefone']);
+                } else {
+                    echo "<script language='javascript' type='text/javascript'>"
+                        . "alert('Usuario sem permissão para realizar a função editar');"
+                        . "window.location.href='../pages/conColaboradores.php'"
+                        . "</script>";
+                }
             }
             ?>
+
 
             <!-- FIM DO CONTEUDO -->
         </div>

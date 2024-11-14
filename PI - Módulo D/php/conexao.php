@@ -149,15 +149,76 @@ class conexao
         $stmt->close();
         return $result;
     }
+    public function consultarPF(){
+        $result = $this->conn->query("SELECT * FROM pessoa_fisica") or die("Falha na consulta " . $this->conn->error);
+        if ($result == TRUE) {
+            return $result;
+        } else {
+            die("Erro na conexão!");
+        }
+    }
+    public function alterarPFConsulta($id, $nome, $sobrenome, $email, $endereco, $cep, $telefone)
+    {
+
+        $stmt = $this->conn->prepare("UPDATE login SET nome = ?,sobrenome=?,email=?, endereco = ? where login_id=$id");
+        $stmt->bind_param("ssss", $nome, $sobrenome, $email, $endereco, $cep, $telefone);
+        $stmt->execute();
+        if ($stmt == true) {
+            echo "<script language='javascript' type='text/javascript'>"
+                . "alert('Perfil editado com sucesso!');"
+                . "window.location.href='../pages/conDoadores.php'"
+                . "</script>";
+            die();
+        } else {
+            echo "Erro: <br>" . $this->conn->error;
+            echo '<br>';
+            echo 'Cadastro nao realizado';
+        }
+    }
+    public function excluirUsuarioConsulta($id)
+    {
+        $stmt = $this->conn->prepare("DELETE FROM login where login_id = $id");
+        $stmt->execute();
+        if ($stmt == true) {
+            echo "<script language='javascript' type='text/javascript'>"
+                . "alert('Perfil excluido com sucesso!');"
+                . "window.location.href='../pages/conColaboradores.php'"
+                . "</script>";
+            die();
+        } else {
+            echo "Erro: <br>" . $this->conn->error;
+            echo '<br>';
+            echo 'Cadastro nao realizado';
+        }
+    }
+    public function alterarUsuarioConsulta($id, $nomeCompleto, $usuario, $email, $perfil)
+    {
+
+        $stmt = $this->conn->prepare("UPDATE login SET nome_completo = ?,usuario=?, email=?, perfil = ? where login_id=$id");
+        $stmt->bind_param("ssss", $nomeCompleto, $usuario, $email, $perfil);
+        $stmt->execute();
+        if ($stmt == true) {
+            echo "<script language='javascript' type='text/javascript'>"
+                . "alert('Perfil editado com sucesso!');"
+                . "window.location.href='../pages/conColaboradores.php'"
+                . "</script>";
+            die();
+        } else {
+            echo "Erro: <br>" . $this->conn->error;
+            echo '<br>';
+            echo 'Cadastro nao realizado';
+        }
+    }
+
     public function alterarUsuario($id, $nomeCompleto, $usuario, $email)
     {
 
         $stmt = $this->conn->prepare("UPDATE login SET nome_completo = ?,usuario=?,email=? where login_id=$id");
-        $stmt->bind_param("sss",$nomeCompleto,$usuario,$email);
+        $stmt->bind_param("sss", $nomeCompleto, $usuario, $email);
         $stmt->execute();
         if ($stmt == true) {
             echo "<script language='javascript' type='text/javascript'>"
-                . "alert('Alteração realizada com sucesso!');"
+                . "alert('Perfil editado com sucesso!');"
                 . "window.location.href='../pages/editarPerfil.php'"
                 . "</script>";
             die();
@@ -165,6 +226,15 @@ class conexao
             echo "Erro: <br>" . $this->conn->error;
             echo '<br>';
             echo 'Cadastro nao realizado';
+        }
+    }
+    public function consultarUsuarios()
+    {
+        $result = $this->conn->query("SELECT * FROM login") or die("Falha na consulta " . $this->conn->error);
+        if ($result == TRUE) {
+            return $result;
+        } else {
+            die("Erro na conexão!");
         }
     }
 }

@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             } else {
                 $_SESSION["user"] = $nomeFormatado[0];
             }
-            $_SESSION['cargo'] = $row['cargo'];
+            $_SESSION['cargo'] = $row['perfil'];
             $_SESSION['id'] = $row['login_id'];
             header("Location: ../index.php");
             exit();

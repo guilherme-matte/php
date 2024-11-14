@@ -59,6 +59,7 @@ if (isset($_GET["logout"])) {
                 <ul>
                     CADASTRO
                     <li>
+                    
                     <li>
                         <a href="./pages/cadDoador.php">Doador</a>
                     </li>
@@ -77,6 +78,9 @@ if (isset($_GET["logout"])) {
                     <li>
                         <a href="./pages/conComputadores.php">Computadores</a>
                     </li>
+                    <li>
+                            <a href="./pages/conDoadores.php">Doadores</a>
+                        </li>
                     <li>
                         <a href="./pages/conColaboradores.php">Colaboradores</a>
                     </li>
