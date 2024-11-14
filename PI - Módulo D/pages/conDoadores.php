@@ -108,11 +108,10 @@ if (isset($_GET["logout"])) {
             include "../php/conexao.php";
 
             $conexao = new conexao();
-            $consulta = $conexao->consultarPF();
+            $consultaPF = $conexao->consultarPF();
             $linha = 0;
 
             echo '
-	<h1 id="lista">Lista de Usuários</h1>
 	<table>
 		<thead>
 			<tr>
@@ -139,10 +138,10 @@ if (isset($_GET["logout"])) {
 			</tr>
 		</thead>';
 
-            if ($consulta->num_rows > 0) {
+            if ($consultaPF->num_rows > 0) {
 
 
-                while ($row = $consulta->fetch_assoc()) {
+                while ($row = $consultaPF->fetch_assoc()) {
                     $linha + 1;
                     if ($linha % 2 == 0) {
                         $linha = 1;
@@ -151,10 +150,10 @@ if (isset($_GET["logout"])) {
                     }
                     echo '
                         <tbody id="linha' . $linha . '">
-                        <form action="conColaboradores.php" method="post">
+                        <form action="conDoadores.php" method="post">
                     <tr >
                         <td id="tdID"><input readonly type="text" name="id" value="' . $row['pessoaFisica_id'] . '"></td>
-                        <td><input readonly type="text" name="cpf" value="' . $row['cpf'] . '"></td>
+                        <td><input readonly type="text" name="cpf" maxlength="14" value="' . $row['cpf'] . '"></td>
                         <td><input type="text" name="nome" value="' . $row['nome'] . '"></td>
                         <td><input type="text" name="sobrenome" value="' . $row['sobrenome'] . '"></td>
 
@@ -162,13 +161,13 @@ if (isset($_GET["logout"])) {
 
                         <td><input type="text" name="endereco" value="' . $row['endereco'] . '"></td>
 
-                        <td><input type="text" name="cep" value="' . $row['cep'] . '"></td>
+                        <td><input type="text" name="cep" maxlength="9" value="' . $row['cep'] . '"></td>
                         <td><input readonly type="date" value="' . $row['data_cadastro'] . '"></td>
-                        <td><input type="fone" name="telefone" value="' . $row['telefone'] . '"></td>
+                        <td><input type="fone" name="telefone" maxlength="16" value="' . $row['telefone'] . '"></td>
 
 
 
-                        <td><button name="editar">Editar</button>  <button>Excluir</button name="Excluir"></td>
+                        <td><button name="editarPFcon">Editar</button>  <button name="excluirPF">Excluir</button ></td>
                     </tr>
                     </form>
                     </tbody>
@@ -188,15 +187,100 @@ if (isset($_GET["logout"])) {
                 </table>
                 ';
 
-            if (isset($_POST['editar'])) {
-                if (isset($_SESSION["user"]) && $_SESSION['cargo'] == "admin") {
-                    $conexao->alterarPFConsulta($_POST['id'], $_POST['nome'], $_POST['sobrenome'], $_POST['email'], $_POST['endereco'],$_POST['cep'],$_POST['telefone']);
-                } else {
-                    echo "<script language='javascript' type='text/javascript'>"
-                        . "alert('Usuario sem permissão para realizar a função editar');"
-                        . "window.location.href='../pages/conColaboradores.php'"
-                        . "</script>";
+            if (isset($_POST['editarPFcon'])) {
+                $conexao->alterarPFConsulta($_POST['id'], $_POST['nome'], $_POST['sobrenome'], $_POST['email'], $_POST['endereco'], $_POST['cep'], $_POST['telefone']);
+            }
+            if (isset($_POST['excluirPF'])) {
+                $conexao->excluirPFConsulta($_POST['id']);
+            }
+
+            $consultaEmpresa = $conexao->consultarEmpresa();
+            $linha = 0;
+
+            echo '
+	<table>
+		<thead>
+			<tr>
+				<td>ID</td>
+                
+                <td>CNPJ</td>
+				
+                <td>Empresa</td>
+                
+                <td>Responsavel</td>
+                
+                <td>Cargo</td>
+
+                <td>Email Responsavel</td>
+                
+                <td>Telefone Responsavel</td>
+
+                <td>Email Empresa</td>
+				
+                <td>Telefone Empresa</td>
+
+                <td>Data de Cadastro</td>
+
+                
+
+                <td>Ação</td>
+			</tr>
+		</thead>';
+
+            if ($consultaEmpresa->num_rows > 0) {
+
+
+                while ($row = $consultaEmpresa->fetch_assoc()) {
+                    $linha + 1;
+                    if ($linha % 2 == 0) {
+                        $linha = 1;
+                    } else {
+                        $linha = 2;
+                    }
+                    echo '
+                        <tbody id="linha' . $linha . '">
+                        <form action="conDoadores.php" method="post">
+                    <tr >
+                        <td id="tdID"><input readonly type="text" name="id" value="' . $row['empresa_id'] . '"></td>
+                        <td><input readonly type="text" name="cnpj" maxlength="14" value="' . $row['cnpj'] . '"></td>
+                        <td><input type="text" name="nomeEmpresa" value="' . $row['nome_empresa'] . '"></td>
+                        <td><input type="text" name="responsavel" value="' . $row['nome_responsavel'] . '"></td>
+                        <td><input type="text" name="cargo" value="' . $row['cargo'] . '"></td>
+
+                        <td><input type="email" name="emailResponsavel" value="' . $row['email_responsavel'] . '"></td>
+
+                        <td><input type="fone" name="telefoneResponsavel" maxlength="16" value="' . $row['telefone_responsavel'] . '"></td>
+                        <td><input type="email" name="emailEmpresa" value="' . $row['email_empresa'] . '"></td>
+                        <td><input type="fone" name="telefoneEmpresa" maxlength="16" value="' . $row['telefone_empresa'] . '"></td>
+
+                        <td><input readonly type="date" value="' . $row['data_cadastro'] . '"></td>
+                        
+
+
+                        <td><button name="editarEmpresaCon">Editar</button>  <button name="excluirEmpresa">Excluir</button ></td>
+                    </tr>
+                    </form>
+                    </tbody>
+                    ';
                 }
+            } else {
+                echo '
+                        <tbody>
+                            <tr>
+                                <td colspan="5">Nenhum usuário encontrado</td>
+                            </tr>
+                        </tbody>
+                  
+                    ';
+            }
+            echo '
+                </table>
+                ';
+            if (isset($_POST['editarEmpresaCon'])) {
+                $conexao->alterarEmpresaConsulta($_POST['id'], $_POST['nomeEmpresa'], $_POST['responsavel'], $_POST['cargo'], $_POST['emailResponsavel'], $_POST['telefoneResponsavel'], $_POST['emailEmpresa'],$_POST['telefoneEmpresa']);
+            }
+            if (isset($_POST['excluirEmpresa'])) {
+                $conexao->excluirEmpresaConsulta($_POST['id']);
             }
             ?>
 

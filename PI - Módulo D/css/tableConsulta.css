@@ -12,8 +12,9 @@ table {
     position: relative;
     top: 100px;
     left: 95px;
-    border: solid 1px red;
+    border: solid 1px orange;
     width: 1400px;
+    margin-bottom: 8%;
 }
 
 #linha1 {
@@ -52,5 +53,5 @@ cursor: pointer;
 }
 
 #tdID{
-    width: 50px;
+    width: 30px;
 }

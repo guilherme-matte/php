@@ -149,7 +149,26 @@ class conexao
         $stmt->close();
         return $result;
     }
-    public function consultarPF(){
+    public function consultarEmpresa()
+    {
+        $result = $this->conn->query("SELECT * FROM empresas") or die("Falha na consulta " . $this->conn->error);
+        if ($result == TRUE) {
+            return $result;
+        } else {
+            die("Erro na conexão!");
+        }
+    }
+    public function consultarEmpresaDoacao()
+    {
+        $result = $this->conn->query("SELECT * FROM cadastro_produto_empresas") or die("Falha na consulta " . $this->conn->error);
+        if ($result == TRUE) {
+            return $result;
+        } else {
+            die("Erro na conexão!");
+        }
+    }
+    public function consultarPF()
+    {
         $result = $this->conn->query("SELECT * FROM pessoa_fisica") or die("Falha na consulta " . $this->conn->error);
         if ($result == TRUE) {
             return $result;
@@ -157,15 +176,84 @@ class conexao
             die("Erro na conexão!");
         }
     }
-    public function alterarPFConsulta($id, $nome, $sobrenome, $email, $endereco, $cep, $telefone)
+    public function excluirPFConsulta($id)
     {
-
-        $stmt = $this->conn->prepare("UPDATE login SET nome = ?,sobrenome=?,email=?, endereco = ? where login_id=$id");
-        $stmt->bind_param("ssss", $nome, $sobrenome, $email, $endereco, $cep, $telefone);
+        $stmt = $this->conn->prepare("DELETE FROM pessoa_fisica where pessoaFisica_id = $id");
         $stmt->execute();
         if ($stmt == true) {
             echo "<script language='javascript' type='text/javascript'>"
-                . "alert('Perfil editado com sucesso!');"
+                . "alert('Perfil excluido com sucesso!');"
+                . "window.location.href='../pages/conDoadores.php'"
+                . "</script>";
+            die();
+        } else {
+            echo "Erro: <br>" . $this->conn->error;
+            echo '<br>';
+            echo 'Cadastro nao realizado';
+        }
+    }
+    public function excluirEmpresaConsulta($id)
+    {
+        $stmt = $this->conn->prepare("DELETE FROM empresas where empresa_id = $id");
+        $stmt->execute();
+        if ($stmt == true) {
+            echo "<script language='javascript' type='text/javascript'>"
+                . "alert('Perfil excluido com sucesso!');"
+                . "window.location.href='../pages/conDoadores.php'"
+                . "</script>";
+            die();
+        } else {
+            echo "Erro: <br>" . $this->conn->error;
+            echo '<br>';
+            echo 'Cadastro nao realizado';
+        }
+    }
+    public function alterarEmpresaConsulta($id, $nomeEmpresa, $responsavel, $cargo, $emailResponsavel, $telefoneResponsavel, $emailEmpresa, $telefoneEmpresa)
+    {
+
+        $stmt = $this->conn->prepare("UPDATE empresas SET nome_empresa = ?,nome_responsavel = ?,telefone_empresa = ?, telefone_responsavel = ?,email_empresa=?,email_responsavel=?,cargo=? where empresa_id=$id");
+        $stmt->bind_param("sssssss", $nomeEmpresa, $responsavel, $telefoneEmpresa, $telefoneResponsavel, $emailEmpresa, $emailResponsavel, $cargo);
+        $stmt->execute();
+        if ($stmt == true) {
+            echo "<script language='javascript' type='text/javascript'>"
+                . "alert('Usuário editado com sucesso!');"
+                . "window.location.href='../pages/conDoadores.php'"
+                . "</script>";
+            die();
+        } else {
+            echo "Erro: <br>" . $this->conn->error;
+            echo '<br>';
+            echo 'Cadastro nao realizado';
+        }
+    }
+
+    public function alterarEmpresaDoacao($id, $categoria, $quantidade, $nomeEmpresa, $responsavel, $descricao)
+    {
+
+        $stmt = $this->conn->prepare("UPDATE cadastro_produto_empresas SET categoria = ?,quantidade = ?,nomeEmpresa = ?,responsavel = ?,descricao=? where produto_id=$id");
+        $stmt->bind_param("sisssss", $categoria, $quantidade, $nomeEmpresa, $responsavel, $descricao);
+        $stmt->execute();
+        if ($stmt == true) {
+            echo "<script language='javascript' type='text/javascript'>"
+                . "alert('Computador editado com sucesso!');"
+                . "window.location.href='../pages/conComputadores.php'"
+                . "</script>";
+            die();
+        } else {
+            echo "Erro: <br>" . $this->conn->error;
+            echo '<br>';
+            echo 'Cadastro nao realizado';
+        }
+    }
+    public function alterarPFConsulta($id, $nome, $sobrenome, $email, $endereco, $cep, $telefone)
+    {
+
+        $stmt = $this->conn->prepare("UPDATE pessoa_fisica SET nome = ?,sobrenome = ?,email = ?, endereco = ?,cep=?,telefone=? where pessoaFisica_id=$id");
+        $stmt->bind_param("ssssss", $nome, $sobrenome, $email, $endereco, $cep, $telefone);
+        $stmt->execute();
+        if ($stmt == true) {
+            echo "<script language='javascript' type='text/javascript'>"
+                . "alert('Usuário editado com sucesso!');"
                 . "window.location.href='../pages/conDoadores.php'"
                 . "</script>";
             die();
