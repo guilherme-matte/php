@@ -1,9 +1,19 @@
 <?php
 session_start();
+include "../php/conexao.php";
+
+$conexao = new conexao();
 if (isset($_GET["logout"])) {
     session_destroy();
     header("Location: conColaboradores.php");
 }
+if (isset($_POST['editarDoacaoEmpresa'])) {
+    $conexao->alterarEmpresaDoacao($_POST['id'], $_POST['categoria'], $_POST['quantidade'], $_POST['nomeEmpresa'], $_POST['responsavel'], $_POST['descricao']);
+}
+if (isset($_POST['excluirDoacaoEmpresa'])) {
+    $conexao->excluirEmpresaDoacao($_POST['id']);
+}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -105,10 +115,9 @@ if (isset($_GET["logout"])) {
         <div id="conteudoPrincipal">
             <!-- CONTEUDO DA PAGINA -->
             <?php
-            include "../php/conexao.php";
 
-            $conexao = new conexao();
-            $consultaPF = $conexao->consultarPF();
+
+            $consultaPF = $conexao->consultarPFDoacao();
             $linha = 0;
 
             echo '
@@ -119,20 +128,13 @@ if (isset($_GET["logout"])) {
                 
                 <td>CPF</td>
 				
-                <td>Nome</td>
+                <td>Nome Completo</td>
                 
-                <td>Sobrenome</td>
-                
+                <td>quantidade</td>
 				
-                <td>Email</td>
-                
-                <td>Endereço</td>
-				
-                <td>Cep</td>
+                <td>Categoria</td>
 
-                <td>Data de Cadastro</td>
-
-                <td>Telefone</td>
+                <td>Descrição</td>
 
                 <td>Ação</td>
 			</tr>
@@ -152,22 +154,35 @@ if (isset($_GET["logout"])) {
                         <tbody id="linha' . $linha . '">
                         <form action="conComputadores.php" method="post">
                     <tr >
-                        <td id="tdID"><input readonly type="text" name="id" value="' . $row['pessoaFisica_id'] . '"></td>
+                        <td id="tdID"><input readonly type="text" name="id" value="' . $row['pfproduto_id'] . '"></td>
                         <td><input readonly type="text" name="cpf" maxlength="14" value="' . $row['cpf'] . '"></td>
-                        <td><input type="text" name="nome" value="' . $row['nome'] . '"></td>
-                        <td><input type="text" name="sobrenome" value="' . $row['sobrenome'] . '"></td>
+                        <td><input type="text" name="nomePF" value="' . $row['nomePF'] . '"></td>
+                        <td><input type="number" min="0" name="quantidade" value="' . $row['quantidade'] . '"></td>
+                        <td>
+                        <select name="categoria">
+                        <option value="Computador" ' .
 
-                        <td><input type="email" name="email" value="' . $row['email'] . '"></td>
+                        (
+                            $row['categoria'] == "computador" ? "selected" : ""
+                        )
 
-                        <td><input type="text" name="endereco" value="' . $row['endereco'] . '"></td>
+                        . '>Computador</option>
+                        <option value="Notebook"' .
+                        (
+                            $row['categoria'] == "Notebook" ? "selected" : ""
+                        )
+                        . '>Notebook</option>
+                        <option value="Periférico"' .
+                        (
+                            $row['categoria'] == "Periférico" ? "selected" : ""
+                        )
+                        . '>Periférico</option>
+                        </select>
+                        </td>
+                        <td><input type="text" name="descricao" value="' . $row['descricao'] . '"></td>
 
-                        <td><input type="text" name="cep" maxlength="9" value="' . $row['cep'] . '"></td>
-                        <td><input readonly type="date" value="' . $row['data_cadastro'] . '"></td>
-                        <td><input type="fone" name="telefone" maxlength="16" value="' . $row['telefone'] . '"></td>
 
-
-
-                        <td><button name="editarPFcon">Editar</button>  <button name="excluirPF">Excluir</button ></td>
+                        <td><button name="editarPFDoacao">Editar</button>  <button name="excluirPFDoacao">Excluir</button ></td>
                     </tr>
                     </form>
                     </tbody>
@@ -187,11 +202,11 @@ if (isset($_GET["logout"])) {
                 </table>
                 ';
 
-            if (isset($_POST['editarPFcon'])) {
-                $conexao->alterarPFConsulta($_POST['id'], $_POST['nome'], $_POST['sobrenome'], $_POST['email'], $_POST['endereco'], $_POST['cep'], $_POST['telefone']);
+            if (isset($_POST['editarPFDoacao'])) {
+                $conexao->alterarPFDoacao($_POST['id'], $_POST['nomePF'], $_POST['quantidade'], $_POST['categoria'], $_POST['descricao']);
             }
-            if (isset($_POST['excluirPF'])) {
-                $conexao->excluirPFConsulta($_POST['id']);
+            if (isset($_POST['excluirPFDoacao'])) {
+                $conexao->excluirPFDoacao($_POST['id']);
             }
 
             $consultaEmpresa = $conexao->consultarEmpresaDoacao();
@@ -288,12 +303,7 @@ if (isset($_GET["logout"])) {
             echo '
                 </table>
                 ';
-            if (isset($_POST['editarDoacaoEmpresa'])) {
-                $conexao->alterarEmpresaDoacao($_POST['id'], $_POST['categoria'], $_POST['quantidade'], $_POST['nomeEmpresa'], $_POST['responsavel'], $_POST['descricao0']);
-            }
-            if (isset($_POST['excluirDoacaoEmpresa'])) {
-                //$conexao->excluirEmpresaDoacao($_POST['id']);
-            }
+
             ?>
 
 

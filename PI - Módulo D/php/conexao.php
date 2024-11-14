@@ -167,6 +167,15 @@ class conexao
             die("Erro na conexão!");
         }
     }
+    public function consultarPFDoacao()
+    {
+        $result = $this->conn->query("SELECT * FROM cadastro_produto_pessoafisica") or die("Falha na consulta " . $this->conn->error);
+        if ($result == TRUE) {
+            return $result;
+        } else {
+            die("Erro na conexão!");
+        }
+    }
     public function consultarPF()
     {
         $result = $this->conn->query("SELECT * FROM pessoa_fisica") or die("Falha na consulta " . $this->conn->error);
@@ -174,6 +183,22 @@ class conexao
             return $result;
         } else {
             die("Erro na conexão!");
+        }
+    }
+    public function excluirPFDoacao($id)
+    {
+        $stmt = $this->conn->prepare("DELETE FROM cadastro_produto_pessoafisica where pfproduto_id = $id");
+        $stmt->execute();
+        if ($stmt == true) {
+            echo "<script language='javascript' type='text/javascript'>"
+                . "alert('Perfil excluido com sucesso!');"
+                . "window.location.href='../pages/conComputadores.php'"
+                . "</script>";
+            die();
+        } else {
+            echo "Erro: <br>" . $this->conn->error;
+            echo '<br>';
+            echo 'Cadastro nao realizado';
         }
     }
     public function excluirPFConsulta($id)
@@ -184,6 +209,22 @@ class conexao
             echo "<script language='javascript' type='text/javascript'>"
                 . "alert('Perfil excluido com sucesso!');"
                 . "window.location.href='../pages/conDoadores.php'"
+                . "</script>";
+            die();
+        } else {
+            echo "Erro: <br>" . $this->conn->error;
+            echo '<br>';
+            echo 'Cadastro nao realizado';
+        }
+    }
+    public function excluirEmpresaDoacao($id)
+    {
+        $stmt = $this->conn->prepare("DELETE FROM cadastro_produto_empresas where produto_id = $id");
+        $stmt->execute();
+        if ($stmt == true) {
+            echo "<script language='javascript' type='text/javascript'>"
+                . "alert('Produto excluido com sucesso!');"
+                . "window.location.href='../pages/conComputadores.php'"
                 . "</script>";
             die();
         } else {
@@ -226,12 +267,29 @@ class conexao
             echo 'Cadastro nao realizado';
         }
     }
+    public function alterarPFDoacao($id, $nomePF, $quantidade, $categoria,  $descricao)
+    {
 
+        $stmt = $this->conn->prepare("UPDATE cadastro_produto_pessoafisica SET nomePF = ?,categoria = ?,quantidade = ?,descricao=? where pfproduto_id=$id");
+        $stmt->bind_param("ssis", $nomePF,$categoria, $quantidade,  $descricao);
+        $stmt->execute();
+        if ($stmt == true) {
+            echo "<script language='javascript' type='text/javascript'>"
+                . "alert('Computador editado com sucesso!');"
+                . "window.location.href='../pages/conComputadores.php'"
+                . "</script>";
+            die();
+        } else {
+            echo "Erro: <br>" . $this->conn->error;
+            echo '<br>';
+            echo 'Cadastro nao realizado';
+        }
+    }
     public function alterarEmpresaDoacao($id, $categoria, $quantidade, $nomeEmpresa, $responsavel, $descricao)
     {
 
         $stmt = $this->conn->prepare("UPDATE cadastro_produto_empresas SET categoria = ?,quantidade = ?,nomeEmpresa = ?,responsavel = ?,descricao=? where produto_id=$id");
-        $stmt->bind_param("sisssss", $categoria, $quantidade, $nomeEmpresa, $responsavel, $descricao);
+        $stmt->bind_param("sisss", $categoria, $quantidade, $nomeEmpresa, $responsavel, $descricao);
         $stmt->execute();
         if ($stmt == true) {
             echo "<script language='javascript' type='text/javascript'>"
