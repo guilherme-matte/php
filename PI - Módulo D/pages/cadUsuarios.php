@@ -32,6 +32,8 @@ if (isset($_GET["logout"])) {
             }
             campo.value = valor;
         }
+
+        
     </script>
 </head>
 
@@ -125,7 +127,7 @@ if (isset($_GET["logout"])) {
                         </tr>
                         <tr>
                             <td id="tdLeft">CPF: </td>
-                            <td id="tdRight"><input required type="text" id="cpf" name="cpfPesquisa" oninput="formatarCPF(this)" maxlength="14" placeholder="000.000.000-00" /></td>
+                            <td id="tdRight"><input required type="text" id="cpf" name="cpf" oninput="formatarCPF(this)" maxlength="14" placeholder="000.000.000-00" /></td>
                         </tr>
                         <tr>
                             <td id="tdLeft">Nome Completo: </td>

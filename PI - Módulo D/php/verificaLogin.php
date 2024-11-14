@@ -17,17 +17,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_SESSION["user"] = $nomeFormatado[0];
             }
             $_SESSION['cargo'] = $row['cargo'];
-
+            $_SESSION['id'] = $row['login_id'];
             header("Location: ../index.php");
             exit();
         } else {
-             echo "<script language='javascript' type='text/javascript'>
+            echo "<script language='javascript' type='text/javascript'>
               	alert('Não foi possível realizar o login! Senha incorreta!');
               	window.location.href='../pages/login.php';
               	</script>";
         }
     } else {
-         echo "<script language='javascript' type='text/javascript'>
+        echo "<script language='javascript' type='text/javascript'>
          alert('Não foi possível realizar o login! Usuário ou senha incorreta!');
          window.location.href='../pages/login.php';
          </script>";

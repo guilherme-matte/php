@@ -16,13 +16,14 @@ class conexao
     {
         $this->conn = new mysqli($this->host, $this->user, $this->password, $this->banco);
     }
-    public function buscarCNPJ($cnpj){
+    public function buscarCNPJ($cnpj)
+    {
         $stmt = $this->conn->prepare("SELECT * FROM empresas where cnpj=?");
         $stmt->bind_param("s", $cnpj);
         $stmt->execute();
         $result = $stmt->get_result();
         $stmt->close();
-        return $result; 
+        return $result;
     }
     public function buscarCPF($cpf)
     {
@@ -73,7 +74,7 @@ class conexao
         if ($stmt == true) {
             echo "<script language='javascript' type='text/javascript'>"
                 . "alert('Cadastro realizado com sucesso!');"
-                . "window.location.href='../pages/login.php'"
+                . "window.location.href='../pages/cadDoador.php'"
                 . "</script>";
             die();
         } else {
@@ -110,7 +111,7 @@ class conexao
         if ($stmt == true) {
             echo "<script language='javascript' type='text/javascript'>"
                 . "alert('Cadastro realizado com sucesso!');"
-                . "window.location.href='../pages/cadDoacao.php'"
+                . "window.location.href='../pages/cadDoador.php'"
                 . "</script>";
             die();
         } else {
@@ -131,6 +132,33 @@ class conexao
             echo "<script language='javascript' type='text/javascript'>"
                 . "alert('Cadastro realizado com sucesso!');"
                 . "window.location.href='../pages/cadUsuarios.php'"
+                . "</script>";
+            die();
+        } else {
+            echo "Erro: <br>" . $this->conn->error;
+            echo '<br>';
+            echo 'Cadastro nao realizado';
+        }
+    }
+    public function buscarID($id)
+    {
+        $stmt = $this->conn->prepare("SELECT * FROM login where login_id=?");
+        $stmt->bind_param("s", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $stmt->close();
+        return $result;
+    }
+    public function alterarUsuario($id, $nomeCompleto, $usuario, $email)
+    {
+
+        $stmt = $this->conn->prepare("UPDATE login SET nome_completo = ?,usuario=?,email=? where login_id=$id");
+        $stmt->bind_param("sss",$nomeCompleto,$usuario,$email);
+        $stmt->execute();
+        if ($stmt == true) {
+            echo "<script language='javascript' type='text/javascript'>"
+                . "alert('Alteração realizada com sucesso!');"
+                . "window.location.href='../pages/editarPerfil.php'"
                 . "</script>";
             die();
         } else {

@@ -16,6 +16,7 @@ if (isset($_GET["logout"])) {
     <link rel="stylesheet" href="../css/reset.css" type="text/css">
     <link rel="stylesheet" href="../css/style.css" type="text/css">
     <link rel="stylesheet" href="../css/menu.css" type="text/css">
+    <link rel="stylesheet" href="../css/formCadUsuario.css" type="text/css">
 
 </head>
 
@@ -85,7 +86,9 @@ if (isset($_GET["logout"])) {
             </nav>
             <div class="linhaVertical"></div>
             <div id="cabecalhoSuperior">
-                <div id="cabecalhoSuperiorEsq">Pesquisar</div>
+                <div id="cabecalhoSuperiorEsq">
+                    <p>Pesquisar</p>
+                </div>
                 <div id="cabecalhoSuperiorMeio"><input id="inputPesquisa" type="text"></div>
                 <div id="cabecalhoSuperiorDir"><button id="buttonPesquisa">Localizar</button></div>
                 <!-- <hr id="hrCabecalhoSuperior"> -->
@@ -94,49 +97,63 @@ if (isset($_GET["logout"])) {
         </nav>
         <div id="conteudoPrincipal">
             <!-- CONTEUDO DA PAGINA -->
+            <?php
+            include '../php/conexao.php';
+            $conexao = new conexao();
 
-            <table>
+
+            if (isset($_SESSION['id'])) {
+                $dados = $conexao->buscarID($_SESSION['id']);
+                if ($dados->num_rows > 0) {
+                    $row = $dados->fetch_assoc();
+
+                    echo '
+                    <table>
                 <tbody>
-                    <form action="cadUsuarios.php" method="post" id="form">
-
+                    <form action="editarPerfil.php" method="post" id="form">
+                        <tr>
+                            <td id="tdTitulo" colspan="2">Perfil</td>
+                        </tr>
                         <tr>
                             <td id="tdLeft">CPF: </td>
-                            <td id="tdRight"><input type="text" name="cpf" id="cpf"></td>
+                            <td id="tdRight"> <input value="' . $row['cpf'] . '" readonly type="text" id="cpf" name="cpf" oninput="formatarCPF(this)" maxlength="14" placeholder="000.000.000-00" />
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <td id="tdLeft">Usuário: </td>
+                            <td id="tdRight"><input value="' . $row['usuario'] . '" type="text" name="user" id="user"></td>
                         </tr>
                         <tr>
                             <td id="tdLeft">Nome Completo: </td>
-                            <td id="tdRight"><input type="text" name="nomeCompleto" id="nomeCompleto"></td>
+                            <td id="tdRight"><input value="' . $row['nome_completo'] . '" type="text" name="nomeCompleto" id="nomeCompleto"></td>
                         </tr>
-                        <tr>
-                            <td id="tdLeft">Acesso:</td>
-                            <td id="tdRight">
-                                <select name="cargo" id="cargo">
-                                    <option value="usuario" selected>Usuário</option>
 
-                                    <option value="admin">Administrador</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td id="tdLeft">Usuário: </td>
-                            <td id="tdRight"><input type="text" name="user" id="user"></td>
-                        </tr>
-                        <tr>
-                            <td id="tdLeft">Senha: </td>
-                            <td id="tdRight"><input type="password" name="password" id="password"></td>
-                        </tr>
                         <tr>
                             <td id="tdLeft">E-mail: </td>
-                            <td id="tdRight"><input type="email" name="email" id="email"></td>
+                            <td id="tdRight"><input value="' . $row['email'] . '" type="email" name="email" id="email"></td>
                         </tr>
                         <tr>
-                            <td id="tdLeft"><button type="submit" name="enviar" id="enviar">Cadastrar</button></td>
-                            <td id="tdRight"><button type="reset" id="limpar">Limpar</button></td>
+                            <td id="tdLeft"><button type="submit" name="alterarPerfil" id="enviar">ALTERAR</button></td>
+                            <td id="tdRight"><button type="reset" id="limpar">REDEFINIR</button></td>
                         </tr>
                     </form>
                 </tbody>
 
             </table>
+
+                    ';
+                    if (isset($_POST['alterarPerfil'])) {
+                        $conexao->alterarUsuario($_SESSION['id'], $_POST['nomeCompleto'], $_POST['user'], $_POST['email']);
+                    }
+                }
+            } else {
+                echo 'ERROR
+                ERRO AO CARREGAR PAGINA
+                ';
+            }
+            ?>
 
             <!-- FIM DO CONTEUDO -->
         </div>

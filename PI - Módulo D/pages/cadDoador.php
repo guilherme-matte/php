@@ -44,6 +44,30 @@ if (isset($_GET["logout"])) {
             }
             campo.value = valor;
         }
+
+        function formatarTelefone(campo) {
+            let valor = campo.value.replace(/\D/g, '');
+
+            if (valor.length <= 10) {
+                valor = valor.replace(/(\d{2})(\d)/, '($1) $2');
+                valor = valor.replace(/(\d{4})(\d)/, '$1-$2');
+            } else {
+                valor = valor.replace(/(\d{2})(\d)/, '($1) $2');
+                valor = valor.replace(/(\d{5})(\d)/, '$1-$2');
+            }
+
+            campo.value = valor;
+        }
+
+        function formatarCEP(campo) {
+            let valor = campo.value.replace(/\D/g, '');
+
+            if (valor.length <= 8) {
+                valor = valor.replace(/(\d{5})(\d)/, '$1-$2');
+            }
+
+            campo.value = valor;
+        }
     </script>
 </head>
 
@@ -143,7 +167,7 @@ if (isset($_GET["logout"])) {
                                 <fieldset class="bloco">
                                     <div class="dados">
                                         <label>CPF:</label>
-                                        <input type="text" id="cpf" name="cpfPesquisa" oninput="formatarCPF(this)" maxlength="14" placeholder="000.000.000-00" />
+                                        <input type="text" id="cpf" name="cpf" oninput="formatarCPF(this)" maxlength="14" placeholder="000.000.000-00" />
                                     </div>
                                 </fieldset>
                                 <fieldset class="bloco">
@@ -161,8 +185,8 @@ if (isset($_GET["logout"])) {
                                 <fieldset class="bloco">
                                     <div class="dados">
                                         <label>Telefone:</label>
-                                        <input type="tel" name="telefone" required maxlength="11"
-                                            placeholder="00000000000">
+                                        <input type="tel" name="telefone" required maxlength="16"
+                                            oninput="formatarTelefone(this)" placeholder="(xx) xxxxx - xxxx / (xx) xxxx - xxxx">
                                     </div>
                                 </fieldset>
                                 <fieldset class="bloco">
@@ -180,12 +204,12 @@ if (isset($_GET["logout"])) {
                                 <fieldset class="bloco">
                                     <div class="dados">
                                         <label>CEP:</label>
-                                        <input type="text" name="cep" required maxlength="10" placeholder="00.000-000">
+                                        <input type="text" name="cep" required maxlength="9" placeholder="00000-000" oninput="formatarCEP(this)">
                                     </div>
                                 </fieldset>
 
                                 <fieldset class="bloco">
-                                    <input type="submit" name="CADASTRAR" id="cadastrar">
+                                    <input type="submit" name="cadastrar_pessoaFisica" id="cadastrar">
                                 </fieldset>
                             </form>
                         </article>
@@ -200,7 +224,7 @@ if (isset($_GET["logout"])) {
                                 <fieldset class="bloco">
                                     <div class="dados">
                                         <label>CNPJ::</label>
-                                        <input type="text" id="cnpj" name="cnpjPesquisa" oninput="formatarCNPJ(this)" maxlength="18" placeholder="00.000.000/0000-00" />
+                                        <input type="text" id="cnpj" name="cnpj" oninput="formatarCNPJ(this)" maxlength="18" placeholder="00.000.000/0000-00" />
                                     </div>
                                 </fieldset>
                                 <fieldset class="bloco">
@@ -219,7 +243,7 @@ if (isset($_GET["logout"])) {
                                     <div class="dados">
                                         <label>Telefone da Empresa</label>
                                         <input type="tel" name="telefoneEmpresa" required maxlength="16"
-                                            placeholder="(00) 0 0000-0000">
+                                            oninput="formatarTelefone(this)" placeholder="(xx) xxxxx - xxxx / (xx) xxxx - xxxx">
                                     </div>
                                 </fieldset>
                                 <fieldset class="bloco">
@@ -232,8 +256,8 @@ if (isset($_GET["logout"])) {
                                 <fieldset class="bloco">
                                     <div class="dados">
                                         <label>Telefone do Responsavel:</label>
-                                        <input type="tel" name="telefoneResponsavel" required maxlength="10"
-                                            placeholder="00000000000">
+                                        <input type="tel" name="telefoneResponsavel" required maxlength="16"
+                                            oninput="formatarTelefone(this)" placeholder="(xx) xxxxx - xxxx / (xx) xxxx - xxxx">
                                     </div>
                                 </fieldset>
                                 <fieldset class="bloco">

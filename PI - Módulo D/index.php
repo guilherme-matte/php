@@ -37,7 +37,7 @@ if (isset($_GET["logout"])) {
                 <?php
                 if (isset($_SESSION["user"]) != "") {
                     echo '
-                        <a href="editarPerfil.php"><img id="usuario" src="./img/usuario.png"
+                        <a href="./pages/editarPerfil.php"><img id="usuario" src="./img/usuario.png"
                             alt="Clique para editar o perfil"></a>
                             <br>
                             ';
