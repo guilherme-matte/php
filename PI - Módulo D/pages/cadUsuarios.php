@@ -1,7 +1,7 @@
 <?php
 session_start();
-if (!isset($_SESSION)) {
-    header("Location: ./pages/login.php");
+if (!isset($_SESSION['user'])) {
+    header("Location: ./login.php");
 }
 if (isset($_GET["logout"])) {
     session_destroy();
@@ -58,7 +58,7 @@ if (isset($_GET["logout"])) {
     <br>
     ";
                         echo '
-    <a href="login.php?logout" id="aLogout">Logoff</a>
+    <a href="login.php?logout" name="logout" id="aLogout">Logoff</a>
     ';
                     } else {
                         echo '<a href="login.php" id="aLogin">Logar</a>';

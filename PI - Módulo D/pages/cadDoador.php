@@ -1,12 +1,16 @@
 <?php
+
 session_start();
-if (!isset($_SESSION)) {
-    header("Location: ./pages/login.php");
-}
-if (isset($_GET["logout"])) {
-    session_destroy();
-    header("Location: cadDoador.php");
-    $_SESSION['user'] = null;
+if (isset($_SESSION['user'])) {
+
+    
+    if (isset($_GET["logout"])) {
+        session_destroy();
+        header("Location: cadDoador.php");
+       
+    }
+} else {
+    header("Location: ./login.php");
 }
 
 ?>

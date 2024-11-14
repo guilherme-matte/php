@@ -2,7 +2,7 @@
     text-align: center;
     position: relative;
     top: 350px;
-    left: 150px;
+    left: 10%;
     font-size: 34px;
     font-family: arial;
     border: 5px solid red;
@@ -48,7 +48,7 @@
 }
 
 #usuario {
-    width: 150px;
+    width: 60%;
     height: auto;
 }
 
