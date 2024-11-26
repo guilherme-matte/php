@@ -16,7 +16,7 @@
     <a href="./pages/pesqProd.php">Pesquisar Produto</a>
     <hr>
     <p class="pTitulo">Todos os Produtos</p>
-
+    <hr>
     <?php
     $url = "http://localhost:8080/products";
 
@@ -63,13 +63,20 @@
                 } else {
                     $dataRate = json_decode($responseRate, true);
                     if ($dataRate && is_array($dataRate)) {
-                        foreach ($dataRate as $rate)
-                            if ($rate['quantity'] == 0 || $rate['allRate'] == null) {
-                                echo 'Avaliação: 0';
-                            } else {
-                                $media = $rate['allRate'] / $rate['quantity'];
-                                echo 'Avaliação' . $media;
-                            }
+                        $quantity = $dataRate["quantity"];
+                        $allRate = $dataRate["allRate"];
+                        if ($quantity == 0 || $allRate == null) {
+                            echo 'Avaliação: 0';
+                            echo '
+                            <hr>
+                            ';
+                        } else {
+                            $media = $allRate / $quantity;
+                            echo 'Avaliação' . $media;
+                            echo '
+                            <hr>
+                            ';
+                        }
                     }
                 }
             }
@@ -78,7 +85,7 @@
         }
     }
     ?>
-    <hr>
+
 </body>
 
 </html>
