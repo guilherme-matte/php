@@ -26,7 +26,21 @@ if (isset($_GET["logout"])) {
     <link rel="stylesheet" href="../css/style.css" type="text/css">
     <link rel="stylesheet" href="../css/menu.css" type="text/css">
     <link rel="stylesheet" href="../css/formCadUsuario.css" type="text/css">
+<<<<<<< Updated upstream
 
+=======
+    <script>
+        function formatarCPF(campo) {
+            let valor = campo.value.replace(/\D/g, '');
+            if (valor.length <= 11) {
+                valor = valor.replace(/(\d{3})(\d)/, '$1.$2');
+                valor = valor.replace(/(\d{3})(\d)/, '$1.$2');
+                valor = valor.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+            }
+            campo.value = valor;
+        }
+    </script>
+>>>>>>> Stashed changes
 </head>
 
 <body id="body">
@@ -113,6 +127,7 @@ if (isset($_GET["logout"])) {
         <div id="conteudoPrincipal">
             <!-- CONTEUDO DA PAGINA -->
             <?php
+<<<<<<< Updated upstream
             include '../php/conexao.php';
             $conexao = new conexao();
 
@@ -139,6 +154,18 @@ if (isset($_GET["logout"])) {
                         <tr>
                             <td id="tdLeft">Usuário: </td>
                             <td id="tdRight"><input value="' . $row['usuario'] . '" type="text" name="user" id="user"></td>
+=======
+            $conexao->buscarID($_SESSION['id']);
+
+            echo '
+    <table>
+                <tbody>
+                    <form action="editarPerfil.php" method="post" id="form">
+
+                        <tr>
+                            <td id="tdLeft">CPF: </td>
+                            <td id="tdRight"><input required type="text" id="cpf" name="cpfPesquisa" oninput="formatarCPF(this)" maxlength="14" placeholder="000.000.000-00" /></td>
+>>>>>>> Stashed changes
                         </tr>
                         <tr>
                             <td id="tdLeft">Nome Completo: </td>
@@ -147,16 +174,27 @@ if (isset($_GET["logout"])) {
 
                         <tr>
                             <td id="tdLeft">E-mail: </td>
+<<<<<<< Updated upstream
                             <td id="tdRight"><input value="' . $row['email'] . '" type="email" name="email" id="email"></td>
                         </tr>
                         <tr>
                             <td id="tdLeft"><button type="submit" name="alterarPerfil" id="enviar">ALTERAR</button></td>
                             <td id="tdRight"><button type="reset" id="limpar">REDEFINIR</button></td>
+=======
+                            <td id="tdRight"><input type="email" name="email" id="email" value="' . $_SESSION['id'] . '"></td>
+                        </tr>
+                        <tr>
+                            <td id="tdLeft"><button type="submit" name="enviar" id="enviar">Editar</button></td>
+                            <td id="tdRight"><button type="reset" id="limpar">Desfazer</button></td>
+>>>>>>> Stashed changes
                         </tr>
                     </form>
                 </tbody>
 
             </table>
+';
+            ?>
+
 
                     ';
                     if (isset($_POST['alterarPerfil'])) {

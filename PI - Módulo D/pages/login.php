@@ -31,7 +31,7 @@ if (!isset($_SESSION)) {
                 <br>
                 <input type="password" name="password" id="password">
                 <br>
-                <button type="submit">Entrar</button>
+                <button id="btnLogin" type="submit">ACESSAR</button>
             </form>
         </div>
 

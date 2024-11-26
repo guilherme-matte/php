@@ -16,7 +16,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             } else {
                 $_SESSION["user"] = $nomeFormatado[0];
             }
+<<<<<<< Updated upstream
             $_SESSION['cargo'] = $row['perfil'];
+=======
+            $_SESSION['cargo'] = $row['cargo'];
+>>>>>>> Stashed changes
             $_SESSION['id'] = $row['login_id'];
             header("Location: ../index.php");
             exit();

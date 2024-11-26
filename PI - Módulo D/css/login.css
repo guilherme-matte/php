@@ -24,20 +24,31 @@
     left: 5%;
     font-family: Arial;
     font-size: 20px;
-    color: gray;
+    color: black;
 }
 
 .campos input {
-    margin: 3%;
+    text-align: center;
     border: 5px;
     border-radius: 10px;
-    width: 250px;
-    height: 20px;
+    width: 350px;
+    height: 50px;
     border-style: none;
+margin-top: 15%;
+margin-bottom: 5%;
 }
 
 .campos button {
+    
     border: none;
     width: 100%;
+    height: 75px;
     border-radius: 5px;
+    position: relative;
+    top: 50px;
+    font-size: 22px;
+
+}
+body{
+    background-color: rgb(197, 197, 197);
 }
