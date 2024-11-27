@@ -34,14 +34,17 @@
         echo 'ERRO na requisição 1';
     } else {
         $data = json_decode($response, true);
-        //var_dump($data);
         if ($data && is_array($data)) {
             foreach ($data as $product) {
                 $id = $product['idproduct'];
                 $name = $product['name'];
                 $value = $product['value'];
 
-                echo "ID: $id<br>";
+                echo '
+               <a href="./pages/pesqProd.php?id="' . $id . '" &name="Ver produto">
+               ';
+
+
                 echo "Nome: $name<br>";
                 echo "Valor: $value<br>";
 
@@ -71,13 +74,17 @@
                             ';
                         } else {
                             $media = $allRate / $quantity;
-                            echo 'Avaliação' . $media;
+                            echo 'Avaliação: ' . $media;
                             echo '
                             <hr>
                             ';
                         }
                     }
                 }
+
+                echo '
+                </a>
+                ';
             }
         } else {
             echo 'Nenhum dado encontrado';
