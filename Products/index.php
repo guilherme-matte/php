@@ -37,7 +37,6 @@
         //var_dump($data);
         if ($data && is_array($data)) {
             foreach ($data as $product) {
-                echo 'aa';
                 $id = $product['idproduct'];
                 $name = $product['name'];
                 $value = $product['value'];
