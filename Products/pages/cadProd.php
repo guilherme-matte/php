@@ -18,6 +18,19 @@
     <p class="pTitulo">Cadastrar produto</p>
 
     <hr>
+    <form action="#" method="post">
+    <br>
+    <label>nome</label>
+    <input type="text" name="name">
+<br>
+    <label>Valor</label>
+    <input type="number" name="value">
+<br>
+    <label>imagem</label>
+    <input type="file" name="name">
+
+
+    </form>
 </body>
 
 </html>

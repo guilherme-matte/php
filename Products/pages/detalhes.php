@@ -8,48 +8,48 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/reset.css" type="text/css">
-    <link rel="stylesheet" href="./css/layout.css" type="text/css">
-
-    <title>Produtos</title>
+    <link rel="stylesheet" href="../css/reset.css" type="text/css">
+    <link rel="stylesheet" href="../css/layout.css" type="text/css">
+    <title>Detalhes</title>
 </head>
 
 <body>
-    <a href="index.php">Menu Principal</a>
-    <a href="./pages/cadProd.php">Cadastrar Produto</a>
-    <a href="./pages/pesqProd.php">Pesquisar Produto</a>
+    <a href="../index.php">Menu Principal</a>
+    <a href="cadProd.php">Cadastrar Produto</a>
+    <a href="pesqProd.php">Pesquisar Produto</a>
     <hr>
-    <p class="pTitulo">Todos os Produtos</p>
+    <p class="pTitulo">Detalhes</p>
     <hr>
     <?php
-    $url = "http://localhost:8080/products";
+    if (isset($_GET['id'])) {
+        $id = $_GET['id'];
 
-    $ch = curl_init();
+        $url = "http://localhost:8080/products/" . $id;
 
-    curl_setopt($ch, CURLOPT_URL, $url);
+        $ch = curl_init();
 
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_URL, $url);
 
-    $response = curl_exec($ch);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-    if ($response === false) {
-        $error = curl_error($ch);
+        $response = curl_exec($ch);
 
-        echo 'ERRO na requisição 1';
-    } else {
-        $data = json_decode($response, true);
-        if ($data && is_array($data)) {
-            foreach ($data as $product) {
-                $id = $product['idproduct'];
-                $name = $product['name'];
-                $value = $product['value'];
+        if ($response === false) {
+            $error = curl_error($ch);
 
-                echo '
-               <a href="./pages/detalhes.php?id='.$id.'">
-               ';
+            echo 'ERRO na requisição 1';
+        } else {
+            $data = json_decode($response, true);
+            if ($data && is_array($data)) {
 
-               echo "ID: $id<br>";
-               echo "Nome: $name<br>";
+                $id = $data['idproduct'];
+                $name = $data['name'];
+                $value = $data['value'];
+
+
+
+                echo "ID: $id<br>";
+                echo "Nome: $name<br>";
                 echo "Valor: $value<br>";
 
                 $urlRate = "http://localhost:8080/products/" . $id . "/rate";
@@ -74,28 +74,23 @@ session_start();
                         if ($quantity == 0 || $allRate == null) {
                             echo 'Avaliação: 0';
                             echo '
-                            <hr>
-                            ';
+                                <hr>
+                                ';
                         } else {
                             $media = $allRate / $quantity;
                             echo 'Avaliação: ' . $media;
                             echo '
-                            <hr>
-                            ';
+                                <hr>
+                                ';
                         }
                     }
                 }
-
-                echo '
-                </a>
-                ';
+            } else {
+                echo 'Nenhum dado encontrado';
             }
-        } else {
-            echo 'Nenhum dado encontrado';
         }
     }
     ?>
-
 </body>
 
 </html>
