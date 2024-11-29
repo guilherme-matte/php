@@ -40,16 +40,19 @@ session_start();
         $data = json_decode($response, true);
         if ($data && is_array($data)) {
             foreach ($data as $product) {
-                $id = $product['idproduct'];
+                $id = $product['idProduct'];
                 $name = $product['name'];
                 $value = $product['value'];
-
+                $imageUrl = $product['image_url'];
                 echo '
-               <a href="./pages/detalhes.php?id='.$id.'">
+               <a href="./pages/detalhes.php?id=' . $id . '">
                ';
-
-               echo "ID: $id<br>";
-               echo "Nome: $name<br>";
+                echo '
+                <img src="./img/' . $imageUrl . '">
+                <br>
+                ';
+                echo "ID: $id<br>";
+                echo "Nome: $name<br>";
                 echo "Valor: $value<br>";
 
                 $urlRate = "http://localhost:8080/products/" . $id . "/rate";

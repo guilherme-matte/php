@@ -18,19 +18,20 @@
     <p class="pTitulo">Cadastrar produto</p>
 
     <hr>
-    <form action="#" method="post">
-    <br>
-    <label>nome</label>
-    <input type="text" name="name">
-<br>
-    <label>Valor</label>
-    <input type="number" name="value">
-<br>
-    <label>imagem</label>
-    <input type="file" name="name">
+    <form action="../php/cadastrar.php" method="post" enctype="multipart/form-data">
+        <br>
+        <label>nome</label>
+        <input type="text" name="name">
+        <br>
+        <label>Valor</label>
+        <input type="number" name="value">
+        <br>
+        <label>imagem</label>
+        <input type="file" name="image" accept="image/*">
 
-
+        <button name="cadastrar">Cadastrar</button>
     </form>
+    <img src="../img/81d8de13-2f03-4a69-b880-0369fda58d8f.jpg" alt="">
 </body>
 
 </html>
