@@ -1,4 +1,5 @@
 <?php
+session_start();
 if (isset($_POST['cadastrar'])) {
     // Captura os dados do formulário
     $name = $_POST['name'];
@@ -38,12 +39,17 @@ if (isset($_POST['cadastrar'])) {
 
         // Verifica a resposta
         if ($response === false) {
-            echo "Erro ao enviar os dados: " . $error;
+            echo  "<script>alert('ERRO AO PROCESSAR REQUISIÇÃO '" . $error . ");</script>";
+            header('Location: ../pages/cadProd.php');
+
+            $_SESSION['cadItem'] = false;
         } else {
-            echo "Resposta da API: " . $response;
+            header('Location: ../pages/cadProd.php');
+            $_SESSION['cadItem'] = true;
         }
     } else {
-        echo "Erro ao fazer upload da imagem.";
+        echo  "<script>alert('ERRO AO ENVIAR IMAGEM '" . $error . ");</script>";
+        header('Location: ../pages/cadProd.php');
+        $_SESSION['cadItem'] = false;
     }
 }
-?>

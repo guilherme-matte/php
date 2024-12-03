@@ -1,3 +1,8 @@
+<?php
+session_start();
+
+
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -7,6 +12,7 @@
     <link rel="stylesheet" href="../css/reset.css" type="text/css">
     <link rel="stylesheet" href="../css/layout.css" type="text/css">
 
+    <link rel="stylesheet" href="../css/cadProd.css" type="text/css">
     <title>Cadastrar</title>
 </head>
 
@@ -18,6 +24,19 @@
     <p class="pTitulo">Cadastrar produto</p>
 
     <hr>
+    <?php
+    if (isset($_SESSION['cadItem'])) {
+        if ($_SESSION['cadItem'] == true) {
+            echo '
+            <div id="produtoCadastrado">Produto cadastrado com sucesso</div>
+            ';
+        } else {
+            echo '
+            <div id="produtoNaoCadastrado">Erro ao cadastrar Produto</div>
+            ';
+        }
+    }
+    ?>
     <form action="../php/cadastrar.php" method="post" enctype="multipart/form-data">
         <br>
         <label>nome</label>
@@ -31,7 +50,6 @@
 
         <button name="cadastrar">Cadastrar</button>
     </form>
-    <img src="../img/81d8de13-2f03-4a69-b880-0369fda58d8f.jpg" alt="">
 </body>
 
 </html>
